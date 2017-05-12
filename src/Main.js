@@ -1,16 +1,9 @@
-class Main extends Phaser.Game
+class Main extends Script4
 {
 	constructor()
 	{
-		super(768, 450, Phaser.AUTO);
-
-		this.state.add('PreLoader', new Preloader);
-		this.state.start('PreLoader');
-	}
-
-	create()
-	{
-		console.log('sd');
+		super(Root);
+		this.start();
 	}
 }
 new Main();
