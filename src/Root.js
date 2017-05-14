@@ -17,5 +17,14 @@ class Root extends Container
 		spine.scale.set(0.6);
 		spine.play('walk', true);
 		this.addChild(spine);
+
+		var bt = new SimpleButton('btExample', 100, 350);
+		this.addChild(bt);
+
+		bt.addEventListener(Event.TRIGGERED, onTest);
+		function onTest()
+		{
+			console.log('TRIGGERED');
+		}
 	}
 }

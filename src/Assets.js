@@ -6,5 +6,6 @@
 const ASSETS = [
 	{ name:'imgExample', path:'assets/images/gameExample.png', type:'image' },
 	{ name:'coin', path:'assets/sounds/coin.mp3', type:'audio' },
-	{ name:'spineboy', path:'assets/animations/spineboy.json', type:'spine'}
+	{ name:'spineboy', path:'assets/animations/spineboy.json', type:'spine'},
+	{ name:'btExample', path:'assets/images/btExample.png', type:'image'}
 ];
