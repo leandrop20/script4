@@ -6,4 +6,3 @@ class Main extends Script4
 		this.start();
 	}
 }
-new Main();
