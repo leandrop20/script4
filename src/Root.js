@@ -26,5 +26,23 @@ class Root extends Container
 		{
 			console.log('TRIGGERED');
 		}
+
+		var atlasImg = new Sprite('atlas.coin', 600, 400);
+		this.addChild(atlasImg);
+
+		var atlasImg = new Sprite('atlas.danger', 660, 400);
+		this.addChild(atlasImg);
+
+		var atlasImg = new Sprite('atlas.super', 660, 300);
+		this.addChild(atlasImg);
+
+		var atlasImg = new Sprite('atlas.world', 660, 350);
+		this.addChild(atlasImg);
+
+		var tf = new TextField(200, 100, 'bitmapFont', 'Hello World! É Ã Ô');
+		tf.position.set(600, 200);
+		// tf.appendText('mais isso');
+		tf.text = 'asdasdasd as asdas';
+		this.addChild(tf);
 	}
 }
