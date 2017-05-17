@@ -20,7 +20,6 @@ class Root extends Container
 
 		var bt = new SimpleButton('btExample', 100, 350);
 		this.addChild(bt);
-
 		bt.addEventListener(Event.TRIGGERED, onTest);
 		function onTest()
 		{
@@ -39,10 +38,13 @@ class Root extends Container
 		var atlasImg = new Sprite('atlas.world', 660, 350);
 		this.addChild(atlasImg);
 
-		var tf = new TextField(280, 80, 'bitmapFont', 'Hello World!');
+		var tf = new TextField(280, 60, 'bitmapFont', 'Hello World!');
+		// tf.hAlign = Align.CENTER;
+		// tf.vAlign = Align.BOTTOM;
+		tf.align(Align.CENTER, Align.MIDDLE);
 		tf.position.set(480, 180);
 		// tf.appendText(' mais isso');
-		// tf.text = 'Á á É é Ó Ô Õ ô';
+		// tf.text = 'ÁÂÃáâãÉéÓÔÕô';
 		tf.border = true;
 		this.addChild(tf);
 	}
