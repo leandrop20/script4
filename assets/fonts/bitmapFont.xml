@@ -1,6 +1,6 @@
 <font>
 	<info face="C:\Users\MN-LEO\Desktop\examples\bitmapFont" size="80" />
-	<common lineHeight="80" scaleW="230" scaleH="238" pages="1" />
+	<common lineHeight="40" scaleW="230" scaleH="238" pages="1" />
 	<pages>
 		<page id="0" file="C:\Users\MN-LEO\Desktop\examples\bitmapFont.png" />
 	</pages>

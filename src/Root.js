@@ -39,10 +39,11 @@ class Root extends Container
 		var atlasImg = new Sprite('atlas.world', 660, 350);
 		this.addChild(atlasImg);
 
-		var tf = new TextField(200, 100, 'bitmapFont', 'Hello World! É Ã Ô');
-		tf.position.set(600, 200);
-		// tf.appendText('mais isso');
-		tf.text = 'asdasdasd as asdas';
+		var tf = new TextField(280, 80, 'bitmapFont', 'Hello World!');
+		tf.position.set(480, 180);
+		// tf.appendText(' mais isso');
+		// tf.text = 'Á á É é Ó Ô Õ ô';
+		tf.border = true;
 		this.addChild(tf);
 	}
 }
