@@ -13,10 +13,14 @@ class Root extends Container
 		t2.position.set(Script4.width-90, 40);
 		this.addChild(t2);
 
+		// var spine = new Spine('goblins', Script4.width*0.5, Script4.height);
 		var spine = new Spine('spineboy', Script4.width*0.5, Script4.height);
 		spine.scale.set(0.6);
 		spine.play('walk', true);
 		this.addChild(spine);
+		spine.onChildInputDown.add(function(e){
+			console.log(e);
+		});
 
 		var bt = new SimpleButton('btExample', 100, 350);
 		this.addChild(bt);
@@ -48,7 +52,7 @@ class Root extends Container
 		tf.border = true;
 		this.addChild(tf);
 
-		var container = new Container();
+		/*var container = new Container();
 		container.name = 'container';
 		this.addChild(container);
 
@@ -68,12 +72,6 @@ class Root extends Container
 		b1.name = 'b3';
 		b1.position.set(600, 280);
 		b1.scale.set(0.2);
-		container.addChild(b1);
-
-		this.onChildInputDown.add(onDown);
-		function onDown()
-		{
-			console.log('DOWN');
-		}
+		container.addChild(b1);*/
 	}
 }
