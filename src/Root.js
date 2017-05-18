@@ -38,7 +38,7 @@ class Root extends Container
 		var atlasImg = new Sprite('atlas.world', 660, 350);
 		this.addChild(atlasImg);
 
-		var tf = new TextField(280, 60, 'bitmapFont', 'Hello World!');
+		var tf = new TextField(280, 60, 'bitmapFont', 'Hello á World!');
 		// tf.hAlign = Align.CENTER;
 		// tf.vAlign = Align.BOTTOM;
 		tf.align(Align.CENTER, Align.MIDDLE);
@@ -47,5 +47,33 @@ class Root extends Container
 		// tf.text = 'ÁÂÃáâãÉéÓÔÕô';
 		tf.border = true;
 		this.addChild(tf);
+
+		var container = new Container();
+		container.name = 'container';
+		this.addChild(container);
+
+		var b1 = new Sprite('imgExample');
+		b1.name = 'b1';
+		b1.position.set(200, 280);
+		b1.scale.set(0.2);
+		container.addChild(b1);
+
+		var b1 = new Sprite('imgExample');
+		b1.name = 'b2';
+		b1.position.set(400, 280);
+		b1.scale.set(0.2);
+		container.addChild(b1);
+
+		var b1 = new Sprite('imgExample');
+		b1.name = 'b3';
+		b1.position.set(600, 280);
+		b1.scale.set(0.2);
+		container.addChild(b1);
+
+		this.onChildInputDown.add(onDown);
+		function onDown()
+		{
+			console.log('DOWN');
+		}
 	}
 }
