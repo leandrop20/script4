@@ -13,14 +13,18 @@ class Root extends Container
 		t2.position.set(Script4.width-90, 40);
 		this.addChild(t2);
 
-		// var spine = new Spine('goblins', Script4.width*0.5, Script4.height);
-		var spine = new Spine('spineboy', Script4.width*0.5, Script4.height);
-		spine.scale.set(0.6);
+		var spine = new Spine('pipoqueiro', Script4.width*0.5, Script4.height);
 		spine.play('walk', true);
 		this.addChild(spine);
-		spine.onChildInputDown.add(function(e){
-			console.log(e);
-		});
+		spine.addEventListener(TouchEvent.TOUCH, onTouch);
+		function onTouch(object, event, isDown)
+		{
+			if (isDown == undefined) {//DOWN
+				object.input.enableDrag(true);
+			} else {
+				object.input.enableDrag(false);
+			}
+		}
 
 		var bt = new SimpleButton('btExample', 100, 350);
 		this.addChild(bt);

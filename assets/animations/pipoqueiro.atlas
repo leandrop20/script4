@@ -1,0 +1,160 @@
+
+pipoqueiro.png
+size: 0,0
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+FUMVERDE8
+  rotate: false
+  xy: 113 ,219
+  size: 33 ,28
+  orig: 34 ,29
+  offset: 0 ,0
+  index: -1
+FUMVERDE1
+  rotate: false
+  xy: 58 ,97
+  size: 33 ,27
+  orig: 34 ,28
+  offset: 0 ,0
+  index: -1
+FUMVERDE7
+  rotate: false
+  xy: 64 ,203
+  size: 35 ,29
+  orig: 35 ,30
+  offset: 0 ,0
+  index: -1
+FUMVERDE4
+  rotate: false
+  xy: 42 ,132
+  size: 37 ,28
+  orig: 37 ,29
+  offset: 0 ,0
+  index: -1
+FUMVERDE10
+  rotate: false
+  xy: 58 ,68
+  size: 33 ,27
+  orig: 33 ,28
+  offset: 0 ,0
+  index: -1
+FUMVERDE3
+  rotate: false
+  xy: 81 ,126
+  size: 33 ,26
+  orig: 33 ,27
+  offset: 0 ,0
+  index: -1
+FUMVERDE9
+  rotate: false
+  xy: 77 ,162
+  size: 34 ,28
+  orig: 34 ,29
+  offset: 0 ,0
+  index: -1
+FUMVERDE6
+  rotate: false
+  xy: 113 ,154
+  size: 32 ,26
+  orig: 33 ,27
+  offset: 0 ,0
+  index: -1
+FUMVERDE5
+  rotate: false
+  xy: 101 ,192
+  size: 37 ,25
+  orig: 37 ,26
+  offset: 0 ,0
+  index: -1
+FUMVERDE2
+  rotate: false
+  xy: 40 ,171
+  size: 35 ,30
+  orig: 35 ,31
+  offset: 0 ,0
+  index: -1
+pipo_bracotras
+  rotate: false
+  xy: 67 ,1
+  size: 11 ,31
+  orig: 12 ,32
+  offset: 0 ,0
+  index: -1
+pipo_perna
+  rotate: false
+  xy: 33 ,210
+  size: 29 ,44
+  orig: 30 ,45
+  offset: 0 ,0
+  index: -1
+pipo_perna_infected
+  rotate: false
+  xy: 1 ,210
+  size: 30 ,43
+  orig: 31 ,43
+  offset: 0 ,0
+  index: -1
+pip_corpocarrinho
+  rotate: false
+  xy: 1 ,1
+  size: 64 ,65
+  orig: 65 ,66
+  offset: 0 ,0
+  index: -1
+pipo_roda
+  rotate: false
+  xy: 140 ,182
+  size: 21 ,29
+  orig: 22 ,30
+  offset: 0 ,0
+  index: -1
+pop_cabeca_infected
+  rotate: false
+  xy: 1 ,171
+  size: 37 ,37
+  orig: 37 ,37
+  offset: 0,0
+  index: -1
+pop_cabeca
+  rotate: false
+  xy: 1 ,132
+  size: 39 ,37
+  orig: 39 ,37
+  offset: 0,0
+  index: -1
+pipo_braco
+  rotate: false
+  xy: 164 ,213
+  size: 13 ,37
+  orig: 14 ,37
+  offset: 0 ,0
+  index: -1
+pop_braco_infected
+  rotate: false
+  xy: 148 ,213
+  size: 14 ,37
+  orig: 14 ,37
+  offset: 0,0
+  index: -1
+pipo_iluminado
+  rotate: false
+  xy: 1 ,68
+  size: 55 ,62
+  orig: 56 ,63
+  offset: 0 ,0
+  index: -1
+ally_Laser/raio_laser
+  rotate: false
+  xy: 58 ,126
+  size: 11 ,4
+  orig: 11 ,4
+  offset: 0,0
+  index: -1
+palhyaco_fumac
+  rotate: false
+  xy: 101 ,219
+  size: 8 ,12
+  orig: 8 ,12
+  offset: 0,0
+  index: -1
