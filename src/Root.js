@@ -4,29 +4,18 @@ class Root extends Container
 	{
 		super();
 
-		/*var t = new Sprite('imgExample');
+		var t = new Sprite('imgExample');
 		t.position.set(130, 110);
 		t.scale.set(0.37);
-		this.addChild(t);*/
+		this.addChild(t);
 
-		/*var t2 = new Sprite('imgLoad');
+		var t2 = new Sprite('imgLoad');
 		t2.position.set(Script4.width-90, 40);
-		this.addChild(t2);*/
+		this.addChild(t2);
 
-		/*var spine = new Spine('pipoqueiro', Script4.width*0.5, Script4.height);
+		var spine = new Spine('pipoqueiro', Script4.width*0.5, Script4.height);
 		spine.play('walk', true);
 		this.addChild(spine);
-		spine.addEventListener(TouchEvent.TOUCH, onTouch);
-		function onTouch(e)
-		{
-			if (e.phase == TouchPhase.BEGAN) {
-				trace('BEGAN');
-			} else if (e.phase == TouchPhase.MOVED) {
-				trace('MOVED');
-			} else if (e.phase == TouchPhase.ENDED) {
-				trace('ENDED');
-			}
-		}
 
 		var bt = new SimpleButton('btExample', 100, 350);
 		this.addChild(bt);
@@ -34,12 +23,12 @@ class Root extends Container
 		function onTest()
 		{
 			console.log('TRIGGERED');
-		}*/
+		}
 
 		/*var atlasImg = new Sprite('atlas.coin', 600, 400);
-		this.addChild(atlasImg);
+		this.addChild(atlasImg);*/
 
-		var atlasImg = new Sprite('atlas.danger', 660, 400);
+		/*var atlasImg = new Sprite('atlas.danger', 660, 400);
 		this.addChild(atlasImg);
 
 		var atlasImg = new Sprite('atlas.super', 660, 300);
@@ -85,14 +74,37 @@ class Root extends Container
 		b4.play('walk', true);
 		container.addChild(b4);
 
-		container.addEventListener(TouchEvent.TOUCH, onTouch);
+		var objDrag;
+
+		this.addEventListener(TouchEvent.TOUCH, onTouch);
 		function onTouch(e) {
-			var touch = e.getTouch(b4);
+			var touch = e.getTouch(t2);
 			if (touch) {
-				if (touch.phase == TouchPhase.MOVED) {
-					touch.target.x = touch.globalX;
-					touch.target.y = touch.globalY;
+				if (touch.phase == TouchPhase.BEGAN) {
+					objDrag = touch.target;
+				} else if (touch.phase == TouchPhase.MOVED) {
+					if (objDrag) {
+						objDrag.position.set(touch.globalX, touch.globalY);
+						for (var i=0;i<container.numChildren;i++) {
+							if (objDrag.getBounds().intersects(container.getChildAt(i).getBounds())) {
+								container.removeChild(container.getChildAt(i));
+							}
+						}
+					}
+				} else if (touch.phase == TouchPhase.ENDED) {
+					objDrag = null;
 				}
+			}
+		}
+
+		this.addEventListener(Event.ENTER_FRAME, loop);
+		function loop(e) {
+			spine.position.x -= 2;
+			if (spine.position.x <= 0) {
+				spine.position.x = 770;
+			}
+			if (spine.position.x == 600) {
+				this.removeEventListener(Event.ENTER_FRAME, loop);
 			}
 		}
 	}
