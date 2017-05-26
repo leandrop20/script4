@@ -110,6 +110,35 @@ class Root extends Sprite
 		var tile = new TileSprite('atlas.world', 250, 20, 200, 150);
 		this.addChild(tile);
 
-		Script4.juggler.tween(bt, 1.5, { alpha:0.0 });
+		Script4.juggler.tween(bt, 0.3, {
+			alpha: 0.2,
+			scaleX:0.5,
+			scaleY:0.5,
+			transition:Transitions.LINEAR,
+			delay:0.2,
+			onComplete:onComplete,
+			onCompleteArgs:['argTween'],
+			repeatCount:1,
+			reverse: true
+		});
+
+		function onComplete(a)
+		{
+			console.log(a);
+		}
+
+		var tween = new Tween(t, 0.3, { scaleX:0.3, reverse:true, delay:1.0, transition:Transitions.EASE_IN });
+		Script4.juggler.add(tween);
+
+		Script4.juggler.delayedCall(onDelayedCall, 2.0, ['arg1', 'arg2']);
+		function onDelayedCall(a, b)
+		{
+			console.log('delayedCallCompleted: ' + a + ', ' + b);
+		}
+
+		var delayedCall = new DelayedCall(onDelayedCall, 1.0, ['test2', 'test3']);
+		delayedCall.repeatCount = 3;
+		Script4.juggler.add(delayedCall);
+		// Script4.juggler.remove(delayedCall);
 	}
 }
