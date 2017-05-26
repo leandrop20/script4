@@ -4,7 +4,7 @@ class Root extends Sprite
 	{
 		super();
 
-		var t = new ImageSuper('imgExample');
+		/*var t = new ImageSuper('imgExample');
 		t.position.set(130, 110);
 		t.scale.set(0.37);
 		this.addChild(t);
@@ -108,9 +108,15 @@ class Root extends Sprite
 		}
 
 		var tile = new TileSprite('atlas.world', 250, 20, 200, 150);
-		this.addChild(tile);
+		this.addChild(tile);*/
 
-		Script4.juggler.tween(bt, 0.3, {
+		var particle = new PDParticleSystem('particle');
+		particle.x = Script4.width*0.5;
+		particle.y = Script4.height*0.5;
+		this.addChild(particle);
+		particle.start(0.5);
+
+		/*Script4.juggler.tween(bt, 0.3, {
 			alpha: 0.2,
 			scaleX:0.5,
 			scaleY:0.5,
@@ -139,6 +145,6 @@ class Root extends Sprite
 		var delayedCall = new DelayedCall(onDelayedCall, 1.0, ['test2', 'test3']);
 		delayedCall.repeatCount = 3;
 		Script4.juggler.add(delayedCall);
-		// Script4.juggler.remove(delayedCall);
+		// Script4.juggler.remove(delayedCall);*/
 	}
 }

@@ -10,5 +10,6 @@ const ASSETS = [
 	{ name:'pipoqueiro', path:'assets/animations/pipoqueiro.json', type:'spine'},
 	{ name:'btExample', path:'assets/images/btExample.png', type:'image'},
 	{ name: 'atlas', path:'assets/images/sprites.json', type:'atlas' },
-	{ name: 'bitmapFont', path:'assets/fonts/bitmapfont.xml', type:'bitmapfont' }
+	{ name: 'bitmapFont', path:'assets/fonts/bitmapfont.xml', type:'bitmapfont' },
+	{ name:'particle', path:'assets/particles/star.png', type:'image'},
 ];
