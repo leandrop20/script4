@@ -110,11 +110,30 @@ class Root extends Sprite
 		var tile = new TileSprite('atlas.world', 250, 20, 200, 150);
 		this.addChild(tile);*/
 
-		var particle = new PDParticleSystem('particle');
+		const defaultValues = {
+			'positionX':200, 'positionY':200, 
+			'positionVarX':0, 'positionVarY':0,
+			'angle':0, 'angleVar':360,
+			'speed':100, 'speedVar':0,
+			'life':2, 'lifeVar':0,
+			'count':10,
+			'duration':0, 'durationTimer':0,
+			'rate':0.1, 'rateTimer':0,
+			'velRotate':0, 'velRotateVar':0,
+			'rotate':0, 'rotateVar':0,
+			'startAlpha':1, 'endAlpha':1,
+			'startScale':1, 'startScaleVar':0,
+			'endScale':1, 'endScaleVar':0,
+			'accelAngle':2, 'accelAngleVar':0,
+			'accelSpeed':0, 'accelSpeedVar':0,
+			'startColor':[255,255,255], 'endColor':[0,0,0]
+		};
+
+		var particle = new PDParticleSystem(defaultValues, 'particle');
 		particle.x = Script4.width*0.5;
 		particle.y = Script4.height*0.5;
 		this.addChild(particle);
-		particle.start(0.5);
+		particle.start(0);
 
 		/*Script4.juggler.tween(bt, 0.3, {
 			alpha: 0.2,
