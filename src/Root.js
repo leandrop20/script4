@@ -4,7 +4,7 @@ class Root extends Sprite
 	{
 		super();
 
-		/*var t = new ImageSuper('imgExample');
+		var t = new ImageSuper('imgExample');
 		t.position.set(130, 110);
 		t.scale.set(0.37);
 		this.addChild(t);
@@ -108,7 +108,7 @@ class Root extends Sprite
 		}
 
 		var tile = new TileSprite('atlas.world', 250, 20, 200, 150);
-		this.addChild(tile);*/
+		this.addChild(tile);
 
 		const defaultValues = {
 			'positionX':200, 'positionY':200, 
@@ -116,7 +116,7 @@ class Root extends Sprite
 			'angle':0, 'angleVar':360,
 			'speed':100, 'speedVar':0,
 			'life':2, 'lifeVar':0,
-			'count':10,
+			'count':5,
 			'duration':0, 'durationTimer':0,
 			'rate':0.1, 'rateTimer':0,
 			'velRotate':0, 'velRotateVar':0,
@@ -126,7 +126,7 @@ class Root extends Sprite
 			'endScale':1, 'endScaleVar':0,
 			'accelAngle':2, 'accelAngleVar':0,
 			'accelSpeed':0, 'accelSpeedVar':0,
-			'startColor':[255,255,255], 'endColor':[0,0,0]
+			'startColor':[255,255,255], 'endColor':[0,255,0]
 		};
 
 		var particle = new PDParticleSystem(defaultValues, 'particle');
