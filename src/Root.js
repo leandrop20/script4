@@ -1,5 +1,6 @@
 class Root extends Sprite
 {
+
 	constructor()
 	{
 		super();
@@ -126,7 +127,8 @@ class Root extends Sprite
 			'endScale':1, 'endScaleVar':0,
 			'accelAngle':2, 'accelAngleVar':0,
 			'accelSpeed':0, 'accelSpeedVar':0,
-			'startColor':[255,255,255], 'endColor':[0,255,0]
+			'startColor':[255,255,255], 'endColor':[0,255,0],
+			'blendMode':'NORMAL'
 		};
 
 		var particle = new PDParticleSystem(defaultValues, 'particle');
