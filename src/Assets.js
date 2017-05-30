@@ -11,5 +11,5 @@ const ASSETS = [
 	{ name:'btExample', path:'assets/images/btExample.png', type:'image'},
 	{ name: 'atlas', path:'assets/images/sprites.json', type:'atlas' },
 	{ name: 'bitmapFont', path:'assets/fonts/bitmapfont.xml', type:'bitmapfont' },
-	{ name:'particle', path:'assets/particles/star.png', type:'image'},
+	{ name:'particle', path:'assets/particles/starParticle.png', type:'particle'}
 ];

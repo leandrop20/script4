@@ -112,7 +112,7 @@ class Root extends Sprite
 		this.addChild(tile);
 
 		const defaultValues = {
-			'positionX':200, 'positionY':200, 
+			'positionX':200, 'positionY':200,
 			'positionVarX':0, 'positionVarY':0,
 			'angle':0, 'angleVar':360,
 			'speed':100, 'speedVar':0,
@@ -131,7 +131,7 @@ class Root extends Sprite
 			'blendMode':'NORMAL'
 		};
 
-		var particle = new PDParticleSystem(defaultValues, 'particle');
+		var particle = new PDParticleSystem('particle');
 		particle.x = Script4.width*0.5;
 		particle.y = Script4.height*0.5;
 		this.addChild(particle);
