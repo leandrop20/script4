@@ -1,7 +1,7 @@
 /**
 * name string
 * path string
-* type string (image, audio, spine, 'atlas')
+* type string (image, audio, spine, atlas, bitmapfont, particle)
 */
 const ASSETS = [
 	{ name:'imgExample', path:'assets/images/gameExample.png', type:'image' },
