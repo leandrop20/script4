@@ -6,6 +6,7 @@ class Root extends Sprite
 		super();
 
 		var t = new ImageSuper('imgExample');
+		t.input.enableDrag(true);
 		t.position.set(130, 110);
 		t.scale.set(0.37);
 		this.addChild(t);
@@ -21,9 +22,17 @@ class Root extends Sprite
 		var bt = new ButtonSuper('btExample', 100, 350);
 		this.addChild(bt);
 		bt.addEventListener(Event.TRIGGERED, onTest);
+		var channel;
 		function onTest()
 		{
 			console.log('TRIGGERED');
+			channel = Sound.play('coin');
+			channel.addEventListener(Event.SOUND_COMPLETE, onSoundComplete);
+		}
+
+		function onSoundComplete(e)
+		{
+			console.log('soundComplete');
 		}
 
 		var atlasImg = new ImageSuper('atlas.coin', 600, 400);
@@ -75,10 +84,10 @@ class Root extends Sprite
 		b4.play('walk', true);
 		container.addChild(b4);
 
-		var objDrag;
+		/*var objDrag;
 		this.addEventListener(TouchEvent.TOUCH, onTouch);
 		function onTouch(e) {
-			var touch = e.getTouch(spine);
+			var touch = e.getTouch(this);
 			if (touch) {
 				if (touch.phase == TouchPhase.BEGAN) {
 					objDrag = touch.target;
@@ -95,7 +104,7 @@ class Root extends Sprite
 					objDrag = null;
 				}
 			}
-		}
+		}*/
 
 		this.addEventListener(Event.ENTER_FRAME, loop);
 		function loop(e) {
