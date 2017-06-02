@@ -25,8 +25,9 @@ class Root extends Sprite
 		function onTest()
 		{
 			console.log('TRIGGERED');
-			channel = Sound.play('coin');
+			channel = Sound.play('coin', 1.0, true);
 			channel.addEventListener(Event.SOUND_COMPLETE, onSoundComplete);
+			// SoundMixer.stopAll();
 		}
 
 		function onSoundComplete(e)
