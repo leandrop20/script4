@@ -6,7 +6,6 @@ class Root extends Sprite
 		super();
 
 		var t = new ImageSuper('imgExample');
-		t.input.enableDrag(true);
 		t.position.set(130, 110);
 		t.scale.set(0.37);
 		this.addChild(t);
@@ -84,7 +83,7 @@ class Root extends Sprite
 		b4.play('walk', true);
 		container.addChild(b4);
 
-		/*var objDrag;
+		var objDrag;
 		this.addEventListener(TouchEvent.TOUCH, onTouch);
 		function onTouch(e) {
 			var touch = e.getTouch(this);
@@ -104,7 +103,7 @@ class Root extends Sprite
 					objDrag = null;
 				}
 			}
-		}*/
+		}
 
 		this.addEventListener(Event.ENTER_FRAME, loop);
 		function loop(e) {
