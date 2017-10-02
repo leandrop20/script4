@@ -87,7 +87,7 @@ class Root extends Sprite
 		var objDrag;
 		this.addEventListener(TouchEvent.TOUCH, onTouch);
 		function onTouch(e) {
-			var touch = e.getTouch(this);
+			var touch = e.getTouch(atlasImg);
 			if (touch) {
 				if (touch.phase == TouchPhase.BEGAN) {
 					objDrag = touch.target;
