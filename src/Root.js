@@ -84,21 +84,21 @@ class Root extends Sprite
 		b4.play('walk', true);
 		container.addChild(b4);
 
+		container.addEventListener(TouchEvent.TOUCH, onTouch);
 		var objDrag;
-		this.addEventListener(TouchEvent.TOUCH, onTouch);
 		function onTouch(e) {
-			var touch = e.getTouch(atlasImg);
+			var touch = e.getTouch(b4);
 			if (touch) {
 				if (touch.phase == TouchPhase.BEGAN) {
 					objDrag = touch.target;
 				} else if (touch.phase == TouchPhase.MOVED) {
 					if (objDrag) {
 						objDrag.position.set(touch.globalX, touch.globalY);
-						for (var i=0;i<container.numChildren;i++) {
+						/*for (var i=0;i<container.numChildren;i++) {
 							if (objDrag.getBounds().intersects(container.getChildAt(i).getBounds())) {
 								container.removeChild(container.getChildAt(i));
 							}
-						}
+						}*/
 					}
 				} else if (touch.phase == TouchPhase.ENDED) {
 					objDrag = null;
