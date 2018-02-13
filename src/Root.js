@@ -1,9 +1,9 @@
-class Root extends Sprite
-{
+class Root extends Sprite {
 
-	constructor()
-	{
+	constructor() {
 		super();
+
+		// this.addChild(new TouchEvents());
 
 		var t = new ImageSuper('imgExample');
 		t.position.set(130, 110);
@@ -22,16 +22,14 @@ class Root extends Sprite
 		this.addChild(bt);
 		bt.addEventListener(Event.TRIGGERED, onTest);
 		var channel;
-		function onTest()
-		{
+		function onTest() {
 			console.log('TRIGGERED');
-			channel = Sound.play('coin', 1.0, true);
+			channel = Sound.play('coin', 1.0, false);
 			channel.addEventListener(Event.SOUND_COMPLETE, onSoundComplete);
 			// SoundMixer.stopAll();
 		}
 
-		function onSoundComplete(e)
-		{
+		function onSoundComplete(e) {
 			console.log('soundComplete');
 		}
 
@@ -138,8 +136,7 @@ class Root extends Sprite
 			reverse: true
 		});
 
-		function onComplete(a)
-		{
+		function onComplete(a) {
 			console.log(a);
 		}
 
@@ -147,8 +144,7 @@ class Root extends Sprite
 		Script4.juggler.add(tween);
 
 		Script4.juggler.delayedCall(onDelayedCall, 2.0, ['arg1', 'arg2']);
-		function onDelayedCall(a, b)
-		{
+		function onDelayedCall(a, b) {
 			console.log('delayedCallCompleted: ' + a + ', ' + b);
 		}
 
@@ -157,4 +153,5 @@ class Root extends Sprite
 		Script4.juggler.add(delayedCall);
 		// Script4.juggler.remove(delayedCall);*/
 	}
+
 }

@@ -2,8 +2,9 @@ class Main extends Script4
 {
 	static get imports() { return [
 		'src/Assets',
-		'src/Root'
+		'src/Root',
 		//IMPORT YOUR CLASSES HERE!
+		'src/possibilities/TouchEvents'
 	]; };
 
 	constructor()
