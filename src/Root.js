@@ -122,7 +122,13 @@ class Root extends Sprite {
 		particle.x = Script4.width*0.5;
 		particle.y = Script4.height*0.5;
 		this.addChild(particle);
-		particle.start(0);
+		particle.start(0.0);
+
+		var particle2 = new PDParticleSystem('particle2');
+		particle2.x = 200;
+		particle2.y = Script4.height - 100;
+		this.addChild(particle2);
+		particle2.start(0.0);
 
 		/*Script4.juggler.tween(bt, 0.3, {
 			alpha: 0.2,

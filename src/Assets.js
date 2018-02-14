@@ -15,7 +15,8 @@ class Assets
 			{ name:'btExample', path:'assets/images/btExample.png', type:'image'},
 			{ name: 'atlas', path:'assets/images/sprites.json', type:'atlas' },
 			{ name: 'bitmapFont', path:'assets/fonts/bitmapfont.xml', type:'bitmapfont' },
-			{ name:'particle', path:'assets/particles/starParticle.png', type:'particle'}
+			{ name:'particle', path:'assets/particles/starParticle.png', type:'particle'},
+			{ name:'particle2', path:'assets/particles/starParticle2.png', type:'particle'}
 		];
 	}
 }
