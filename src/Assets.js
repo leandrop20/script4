@@ -1,12 +1,13 @@
-class Assets
-{
+export default class Assets {
+
+	static get basePath() { return ''; }
+
 	/**
 	* name string
 	* path string
 	* type string (image, audio, spine, atlas, bitmapfont, particle)
 	*/
-	static get ASSETS()
-	{
+	static get ASSETS() {
 		return [
 			{ name:'imgExample', path:'assets/images/gameExample.png', type:'image' },
 			{ name:'coin', path:'assets/sounds/coin.mp3', type:'audio' },
@@ -19,4 +20,5 @@ class Assets
 			{ name:'particle2', path:'assets/particles/starParticle2.png', type:'particle'}
 		];
 	}
+
 }

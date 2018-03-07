@@ -1,4 +1,25 @@
-class Root extends Sprite {
+import Script4 from './com/script4/Script4';
+import Transitions from './com/script4/animation/Transitions';
+import Tween from './com/script4/animation/Tween';
+import DelayedCall from './com/script4/animation/DelayedCall';
+import Sprite from './com/script4/display/Sprite';
+import ImageSuper from './com/script4/display/ImageSuper';
+import Spine from './com/script4/display/Spine';
+import ButtonSuper from './com/script4/display/ButtonSuper';
+import SimpleButton from './com/script4/display/SimpleButton';
+import TextField from './com/script4/text/TextField';
+import TileSprite from './com/script4/display/TileSprite';
+import PDParticleSystem from './com/script4/display/PDParticleSystem';
+
+import Event from './com/script4/events/Event';
+import TouchEvent from './com/script4/events/TouchEvent';
+import TouchPhase from './com/script4/events/TouchPhase';
+import Sound from './com/script4/media/Sound';
+import SoundMixer from './com/script4/media/SoundMixer';
+
+import Align from "./com/script4/utils/Align";
+
+export default class Root extends Sprite {
 
 	constructor() {
 		super();
@@ -11,12 +32,30 @@ class Root extends Sprite {
 		this.addChild(t);
 
 		var t2 = new ImageSuper('imgLoad');
-		t2.position.set(Script4.width-90, 40);
+		t2.position.set(Script4.width - 90, 40);
 		this.addChild(t2);
 
-		var spine = new Spine('pipoqueiro', Script4.width*0.5, Script4.height);
+		var spine = new Spine('pipoqueiro', Script4.width * 0.5, Script4.height);
 		spine.play('walk', true);
 		this.addChild(spine);
+
+		// var spine2 = new Spine('pipoqueiro', Script4.width * 0.5, 200);
+		// spine2.play('walk', true);
+		// spine2.play('hitLaser', false);
+		// spine2.play('killLaser', false);
+		// spine2.play('hitPoison', true);
+		// spine2.play('killPoison', false);
+		// spine2.play('killDefense', false);
+		// spine2.play('freeze', false);
+		// spine2.play('unfreeze', false);
+		// this.addChild(spine2);
+
+		// var spine3 = new Spine('pipoqueiro', Script4.width * 0.5, 300);
+		// spine3.play('walk', true);
+		// this.addChild(spine3);
+
+		var bt2 = new SimpleButton('atlas.danger', 500, 50);
+		this.addChild(bt2);
 
 		var bt = new ButtonSuper('btExample', 100, 350);
 		this.addChild(bt);
@@ -79,7 +118,7 @@ class Root extends Sprite {
 
 		var b4 = new Spine('pipoqueiro');
 		b4.position.set(600, 320);
-		b4.play('walk', true);
+		b4.play('hitPoison', true);
 		container.addChild(b4);
 
 		container.addEventListener(TouchEvent.TOUCH, onTouch);
@@ -124,40 +163,42 @@ class Root extends Sprite {
 		this.addChild(particle);
 		particle.start(0.0);
 
-		var particle2 = new PDParticleSystem('particle2');
-		particle2.x = 200;
-		particle2.y = Script4.height - 100;
-		this.addChild(particle2);
-		particle2.start(0.0);
+		// var particle2 = new PDParticleSystem('particle2');
+		// particle2.x = 200;
+		// particle2.y = Script4.height - 100;
+		// this.addChild(particle2);
+		// particle2.start(0.0);
 
-		/*Script4.juggler.tween(bt, 0.3, {
-			alpha: 0.2,
-			scaleX:0.5,
-			scaleY:0.5,
-			transition:Transitions.LINEAR,
-			delay:0.2,
-			onComplete:onComplete,
-			onCompleteArgs:['argTween'],
-			repeatCount:1,
-			reverse: true
-		});
+		// Script4.juggler.tween(bt, 0.3, {
+		// 	alpha: 0.2,
+		// 	scaleX:0.5,
+		// 	scaleY:0.5,
+		// 	transition:Transitions.LINEAR,
+		// 	delay:0.2,
+		// 	onComplete:onComplete,
+		// 	onCompleteArgs:['argTween', 'arg2'],
+		// 	repeatCount:1,
+		// 	reverse: true
+		// });
 
-		function onComplete(a) {
-			console.log(a);
-		}
+		// function onComplete(a, b) {
+		// 	console.log(a);
+		// 	console.log(b);
+		// }
 
-		var tween = new Tween(t, 0.3, { scaleX:0.3, reverse:true, delay:1.0, transition:Transitions.EASE_IN });
-		Script4.juggler.add(tween);
+		// var tween = new Tween(t, 0.3, { scaleX:0.3, scaleY:0.3, reverse:true, repeatCount:-1, delay:1.0, 
+		// 	transition:Transitions.EASE_IN });
+		// Script4.juggler.add(tween);
 
-		Script4.juggler.delayedCall(onDelayedCall, 2.0, ['arg1', 'arg2']);
-		function onDelayedCall(a, b) {
-			console.log('delayedCallCompleted: ' + a + ', ' + b);
-		}
+		// Script4.juggler.delayedCall(onDelayedCall, 3.0, ['arg1', 'arg2']);
+		// function onDelayedCall(a, b) {
+		// 	console.log('delayedCallCompleted: ' + a + ', ' + b);
+		// 	Script4.juggler.remove(delayedCall);
+		// }
 
-		var delayedCall = new DelayedCall(onDelayedCall, 1.0, ['test2', 'test3']);
-		delayedCall.repeatCount = 3;
-		Script4.juggler.add(delayedCall);
-		// Script4.juggler.remove(delayedCall);*/
+		// var delayedCall = new DelayedCall(onDelayedCall, 1.0, ['test2', 'test3']);
+		// delayedCall.repeatCount = 3;
+		// Script4.juggler.add(delayedCall);
 	}
 
 }

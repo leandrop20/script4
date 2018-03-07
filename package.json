@@ -1,0 +1,29 @@
+{
+  "name": "script4",
+  "version": "0.3.0",
+  "description": "Phaser + Webpack + ES6\r (Inspired by AS3 and Starling)",
+  "main": "Main.js",
+  "scripts": {
+    "dev": "webpack-dev-server --mode development",
+    "build": "webpack-dev-server --mode production",
+    "deploy": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leandrop20/script4.git"
+  },
+  "keywords": [],
+  "author": "leandroP",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/leandrop20/script4/issues"
+  },
+  "homepage": "https://github.com/leandrop20/script4#readme",
+  "dependencies": {
+    "phaser-ce": "^2.10.1",
+    "script-loader": "^0.7.2",
+    "webpack": "^4.1.0",
+    "webpack-cli": "^2.0.10",
+    "webpack-dev-server": "^3.1.0"
+  }
+}

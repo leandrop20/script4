@@ -1,16 +1,17 @@
-class Main extends Script4
-{
-	static get imports() { return [
-		'src/Assets',
-		'src/Root',
-		//IMPORT YOUR CLASSES HERE!
-		'src/possibilities/TouchEvents'
-	]; };
+import PIXI from 'pixi';
+import p2 from 'p2';
+import Phaser from 'phaser';
 
-	constructor()
-	{
-		super(Root);
-		this.setShowStats = true;
-		this.start();
+import Script4 from './com/script4/Script4';
+import Root from './Root';
+
+class Main {
+
+	constructor() {
+		this.script4 = new Script4(Root);
+		this.script4.setShowStats = true;
+		this.script4.start();
 	}
+
 }
+new Main();
