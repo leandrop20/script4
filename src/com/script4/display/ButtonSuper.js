@@ -19,10 +19,12 @@ export default class ButtonSuper extends Phaser.Button {
 	}
 
 	addEventListener(type, listener) {
+		if (!type) throw('event type not found!');
 		this[type].add(listener);
 	}
 
 	removeEventListener(type, listener) {
+		if (!type) throw('event type not found!');
 		this[type].remove(listener);
 	}
 

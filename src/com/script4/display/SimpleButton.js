@@ -81,11 +81,13 @@ export default class SimpleButton extends Sprite {
 	}
 
 	addEventListener(type, listener) {
+		if (!type) throw('event type not found!');
 		this._listener = listener;
 		this.texture.events[type].add(this.onEvent, this);
 	}
 
 	removeEventListener(type, listener) {
+		if (!type) throw('event type not found!');
 		this._listener = null;
 		this.texture.events[type].remove(this.onEvent, this);
 	}

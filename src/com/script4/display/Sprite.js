@@ -67,6 +67,7 @@ export default class Sprite extends Phaser.Group {
 	}
 
 	addEventListener(type, listener) {
+		if (!type) throw('event type not found!');
 		if (type == 'touch') {
 			this.touchEventCallBack = listener;
 			this.recursiveSetEvent('add', this, this);
@@ -76,6 +77,7 @@ export default class Sprite extends Phaser.Group {
 	}
 
 	removeEventListener(type, listener) {
+		if (!type) throw('event type not found!');
 		if (type == 'touch') {
 			this.recursiveSetEvent('remove', this, this);
 		} else if (type == 'enterFrame') {

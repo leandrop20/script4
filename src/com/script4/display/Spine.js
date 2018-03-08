@@ -78,6 +78,7 @@ export default class Spine extends PhaserSpine.Spine {
 	}
 
 	addEventListener(type, listener) {
+		if (!type) throw('event type not found!');
 		if (type == 'touch') {
 			this.touchEventCallBack = listener;
 			this['onChildInputDown'].add(this.touchEvent);
@@ -94,6 +95,7 @@ export default class Spine extends PhaserSpine.Spine {
 	}
 
 	removeEventListener(type, listener) {
+		if (!type) throw('event type not found!');
 		if (type == 'touch') {
 			this['onChildInputDown'].remove(this.touchEvent);
 			this['onChildInputUp'].remove(this.touchEvent);
