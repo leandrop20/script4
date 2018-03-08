@@ -1,5 +1,8 @@
-import Orientation from "./Orientation";
-import Easing from "./Easing";
+import Script4 from '../Script4';
+import Orientation from './Orientation';
+import Easing from './Easing';
+import TweenMax from 'TweenMax';
+import ThrowPropsPlugin from 'ThrowPropsPlugin';
 
 export default class Scroller {
 
@@ -170,7 +173,7 @@ export default class Scroller {
 			minDuration:(this._isStickTouch) ? 0: .3,
 			overShoot:(this._isStickTouch) ? 0: 1
 		};
-		
+
 		ThrowPropsPlugin.to(this._content, {throwProps:{
 							y:{velocity:yVelocity, max:0, min:0 - this._yOverlap, resistance:300},
 							x:{velocity:xVelocity, max:0, min:0 - this._xOverlap, resistance:300}
@@ -342,6 +345,6 @@ export default class Scroller {
 		}
 	}
 
-	getTimer() { return new Date().getMilliseconds(); }
+	getTimer() { return new Date().getMilliseconds();/*Script4.core.time.elapsed;*/ }
 
 }

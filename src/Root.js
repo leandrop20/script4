@@ -17,6 +17,8 @@ import TouchPhase from './com/script4/events/TouchPhase';
 import Sound from './com/script4/media/Sound';
 import SoundMixer from './com/script4/media/SoundMixer';
 
+import ScrollerTest from './possibilities/ScrollerTest';
+
 import Align from "./com/script4/utils/Align";
 
 export default class Root extends Sprite {
@@ -25,7 +27,8 @@ export default class Root extends Sprite {
 		super();
 
 		// this.addChild(new TouchEvents());
-
+		// this.addChild(new ScrollerTest());
+		
 		var t = new ImageSuper('imgExample');
 		t.position.set(130, 110);
 		t.scale.set(0.37);
