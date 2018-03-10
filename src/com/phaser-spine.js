@@ -2245,8 +2245,11 @@ spine.SkeletonJson.prototype = {
 					timelines[timelines.length] = timeline;
 					duration = Math.max(duration, timeline.frames[timeline.getFrameCount() * 3 - 3]);
 
-				} else
-					throw "Invalid timeline type for a bone: " + timelineName + " (" + boneName + ")";
+				} else {
+					if (timelineName != "shear") {
+						throw "Invalid timeline type for a bone: " + timelineName + " (" + boneName + ")";
+					}
+				}
 			}
 		}
 
