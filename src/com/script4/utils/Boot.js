@@ -1,13 +1,16 @@
 import Script4 from '../Script4';
 import PhaserSpine from '../../phaser-spine';
 
+import Assets from '../../../Assets';
+
 export default class Boot {
 	
 	preload() {
 		this.game.plugins.add(PhaserSpine.SpinePlugin);
 
 		for (var i = 0; i < Script4.imagesToPreLoader.length; i++) {
-			this.load.image(Script4.imagesToPreLoader[i].name, Script4.imagesToPreLoader[i].url);
+			this.load.image(Script4.imagesToPreLoader[i].name, 
+				Assets.basePath + Script4.imagesToPreLoader[i].url);
 		}
 	}
 
