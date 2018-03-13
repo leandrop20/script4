@@ -76,15 +76,16 @@ export default class Script4 extends Phaser.Game {
 	}
 
 	render() {
-		if (Script4.core.canvas && !Script4.core.canvas.oncontextmenu) {
-			Script4.core.canvas.oncontextmenu = function (e) {
+		if (this.game.canvas && !this.game.canvas.oncontextmenu) {
+			var _this = this;
+			this.game.canvas.oncontextmenu = function (e) {
 				e.preventDefault();
-				if (Script4.core.contextMenu) { Script4.core.removeContextMenu(); }
-				Script4.core.contextMenu = new ContextMenu(e.layerX, e.layerY);
-				Script4.core.world.addChild(Script4.core.contextMenu);
+				if (_this.game.contextMenu) { _this.game.removeContextMenu(); }
+				_this.game.contextMenu = new ContextMenu(e.layerX, e.layerY);
+				_this.game.world.addChild(_this.game.contextMenu);
 			}
-			document.body.onclick = function (e) {
-				if (Script4.core.contextMenu) { Script4.core.removeContextMenu(); }
+			this.game.canvas.onclick = function (e) {
+				if (_this.game.contextMenu) { _this.game.removeContextMenu(); }
 			}
 		}
 		if (this.game.config.enableDebug){
