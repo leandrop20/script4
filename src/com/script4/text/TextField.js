@@ -13,12 +13,11 @@ export default class TextField extends Phaser.Group {
 		this.box = new Phaser.Graphics(Script4.core, 0, 0);
 		this.box.visible = false;
 		this.box.lineStyle(1, 0x000000);
-		this.box.drawRect(0, 0, width, height);
+		this.box.drawRect(0, 0, width - 1, height - 1);
 		this.box.endFill();
 		this.addChild(this.box, 0);
 
 		this.field = new Phaser.BitmapText(Script4.core, 0, 0, font, text);
-		this.field.align = Align.CENTER;
 		this.field.maxWidth = width;
 		this.field.fontSize = (size)?size:this.field._data.font.size;
 		this.addChild(this.field);
@@ -32,6 +31,9 @@ export default class TextField extends Phaser.Group {
 
 		this.field.mask = this.mask;
 	}
+
+	set fontSize(value) { this.field.fontSize = value; }
+	get fontSize() { return this.field.fontSize; }
 
 	set alignText(value) {
 		this.field.align = value;
@@ -81,7 +83,8 @@ export default class TextField extends Phaser.Group {
 			this.field.anchor.x = 0.5;
 			this.field.x = this.w*0.5;
 		} else if (value == 'right') {
-			this.field.x = this.field.textWidth*0.5;
+			this.field.x = this.width;
+			this.field.anchor.x = 1.0;
 		}
 	}
 

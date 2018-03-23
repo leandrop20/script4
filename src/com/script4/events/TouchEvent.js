@@ -15,7 +15,7 @@ export default class TouchEvent {
 
 	static get TOUCH() { return 'touch'; };
 
-	getTouch(target) {
+	getTouch(target, swap = false) {
 		var globalX = target.game.input.x;
 		var globalY = target.game.input.y;
 
@@ -41,8 +41,8 @@ export default class TouchEvent {
 							if (_this.type == TouchPhase.BEGAN) { Touch.previous = obj; }
 							var point = centerDrag(obj);
 							if (_target.getIndex(obj) != (_target.numChildren-1) 
-									&& _this.type == TouchPhase.BEGAN) { 
-								_target.addChild(obj); 
+									&& _this.type == TouchPhase.BEGAN && swap) { 
+								_target.addChild(obj);
 							}
 
 							return new Touch(obj, _this.type, point.x, point.y);
