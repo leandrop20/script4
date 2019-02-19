@@ -60,6 +60,9 @@ export default class Preloader {
 				case 'xml':
 					this.load.xml(Assets.ASSETS[i].name, Assets.basePath + Assets.ASSETS[i].path);
 					break;
+				case 'dragonbones':
+					this.load.dragonbones(Assets.ASSETS[i].name, Assets.basePath + Assets.ASSETS[i].path);
+					break;
 			}
 		}
 
