@@ -23,6 +23,20 @@ export default class SimpleButton extends Sprite {
 		this.position.set(_x, _y);
 	}
 
+	set upState(texture) {
+		var atlas = texture;
+		if (texture.indexOf('.') != -1) {
+			var parts = texture.split('.');
+			atlas = parts[0];
+			texture = parts[1] + '.png';
+		} else {
+			texture = null;
+		}
+		this.texture.loadTexture(atlas, texture);
+	}
+
+	set textureColor(value) { this.texture.tint = value; }
+
 	get enabled() { return this._enabled; }
 
 	set enabled(bool) {
@@ -50,7 +64,7 @@ export default class SimpleButton extends Sprite {
 		}
 	}
 
-	get text() { (this.tf)?this.tf.text:""; }
+	get text() { return (this.tf)?this.tf.text:""; }
 
 	set text(value) {
 		if (this.tf) { this.tf.text = value; }

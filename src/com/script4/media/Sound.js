@@ -16,12 +16,14 @@ export default class Sound extends Phaser.Sound {
 	}
 
 	addEventListener(type, listener) {
+		if (!type) throw('event type not found!');
 		if (type == 'soundComplete') {
 			this.onStop.add(listener, this);
 		}
 	}
 
 	removeEventListener(type, listener) {
+		if (!type) throw('event type not found!');
 		if (type == 'soundComplete') {
 			this.onStop.remove(listener, this);
 		}

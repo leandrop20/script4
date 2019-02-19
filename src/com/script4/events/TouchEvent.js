@@ -2,6 +2,7 @@ import Script4 from '../Script4';
 import Touch from "./Touch";
 import TouchPhase from "./TouchPhase";
 import Sprite from "../display/Sprite";
+import Spine from "../display/Spine";
 import Rectangle from "../utils/Rectangle";
 import Point from "../geom/Point";
 
@@ -15,9 +16,11 @@ export default class TouchEvent {
 
 	static get TOUCH() { return 'touch'; };
 
-	getTouch(target, swap = false) {
+	getTouch(target, swap = true) {
 		var globalX = target.game.input.x;
 		var globalY = target.game.input.y;
+
+		if (this.type == TouchPhase.BEGAN) { Touch.previous = null; }
 
 		if (Touch.previous) { target = Touch.previous; }
 
@@ -31,9 +34,9 @@ export default class TouchEvent {
 		}
 
 		function getObjTouch(_target, _this) {
-			if (_target instanceof Sprite) {
+			if (_target instanceof Sprite || _target instanceof Spine) {
 				var obj;
-				for (var i=_target.numChildren-1;i>-1;i--) {
+				for (var i = _target.numChildren - 1; i > -1; i--) {
 					obj = _target.getChildAt(i);
 
 					if (isIntersects(obj) && (obj.inputEnabled || obj.inputEnableChildren)) {
@@ -41,21 +44,22 @@ export default class TouchEvent {
 							if (_this.type == TouchPhase.BEGAN) { Touch.previous = obj; }
 							var point = centerDrag(obj);
 							if (_target.getIndex(obj) != (_target.numChildren-1) 
-									&& _this.type == TouchPhase.BEGAN && swap) { 
+									&& _this.type == TouchPhase.BEGAN && swap) {
+								var lastObj = _target.getChildAt(_target.numChildren - 1);
 								_target.addChild(obj);
 							}
 
 							return new Touch(obj, _this.type, point.x, point.y);
 						} else {
-							return getObjTouch(obj, _this);
+							var objTouch = getObjTouch(obj, _this);
+							if (objTouch != null) return objTouch;
 						}
 					}
 				}
+				return null;
 			} else if (isIntersects(_target) && (_target.inputEnabled || _target.inputEnableChildren)) {
 				if (_this.type == TouchPhase.BEGAN) { Touch.previous = _target; }
 				var point = centerDrag(_target);
-				// if (_target.parent.getIndex(_target) != (_target.parent.numChildren-1) && 
-				//_this.type == TouchPhase.BEGAN) { _target.parent.addChild(_target); }
 
 				return new Touch(_target, _this.type, point.x, point.y);
 			}

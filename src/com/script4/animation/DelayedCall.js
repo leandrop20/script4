@@ -2,12 +2,15 @@ import Script4 from "../Script4";
 
 export default class DelayedCall extends Phaser.Tween {
 
-	constructor(callback, delay, args, _this) {
+	constructor(callback, delay, args) {
 		super(new Phaser.Point(), Script4.core, Script4.core.tweens);
 		this.to({}, delay * 1000);
-		var _args = (args) ? args.toString().split(',') : [];
-		this.onRepeat.add(function() { callback(..._args); });
-		this.onComplete.add(function() { callback(..._args); });
+		this.init(callback, args);
+	}
+
+	init(callback, args) {
+		this.onRepeat.add(function() { callback(args); });
+		this.onComplete.add(function() { callback(args); });
 	}
 
 	set repeatCount(value) { this.repeatCounter = value; }

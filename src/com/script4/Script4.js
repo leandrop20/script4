@@ -44,7 +44,7 @@ export default class Script4 extends Phaser.Game {
 		}
 	}
 
-	static get VERSION() { return 'v0.3.1'; }
+	static get VERSION() { return 'v0.3.3'; }
 
 	static get width() { return Script4.core.width; }
 
@@ -76,21 +76,32 @@ export default class Script4 extends Phaser.Game {
 	}
 
 	render() {
-		if (Script4.core.canvas && !Script4.core.canvas.oncontextmenu) {
-			Script4.core.canvas.oncontextmenu = function (e) {
+		if (this.game.canvas && !this.game.canvas.oncontextmenu) {
+			var _this = this;
+			this.game.canvas.oncontextmenu = function (e) {
 				e.preventDefault();
-				if (Script4.core.contextMenu) { Script4.core.removeContextMenu(); }
-				Script4.core.contextMenu = new ContextMenu(e.layerX, e.layerY);
-				Script4.core.world.addChild(Script4.core.contextMenu);
+				if (_this.game.contextMenu) { _this.game.removeContextMenu(); }
+				_this.game.contextMenu = new ContextMenu(e.layerX, e.layerY);
+				_this.game.world.addChild(_this.game.contextMenu);
 			}
-			document.body.onclick = function (e) {
-				if (Script4.core.contextMenu) { Script4.core.removeContextMenu(); }
+			this.game.canvas.onclick = function (e) {
+				if (_this.game.contextMenu) { _this.game.removeContextMenu(); }
 			}
 		}
 		if (this.game.config.enableDebug){
 			if (!this.game.time.advancedTiming) { this.game.time.advancedTiming = true; }
 			this.game.debug.text('FPS: ' + this.game.time.fps, 4, 18, '#FFFFFF');
 		}
+	}
+
+	addEventListener(type, listener) {
+		if (!type) throw('event type not found!');
+		window.addEventListener(type, listener);
+	}
+
+	removeEventListener(type, listener) {
+		if (!type) throw('event type not found!');
+		window.removeEventListener(type, listener);
 	}
 
 }

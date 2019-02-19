@@ -45,7 +45,12 @@ export default class Spine extends PhaserSpine.Spine {
 		super.name = value;
 	}
 
-	play(animationName, isLoop = false) {
+	set animationSpeed(value = 1.0) {
+		this.state.timeScale = value;
+	}
+
+	play(animationName, isLoop = false, animationSpeed = 1.0) {
+		this.animationSpeed = animationSpeed;
 		this.setAnimationByName(0, animationName, isLoop);
 		this.lastAnimation = animationName;
 	}
@@ -56,6 +61,24 @@ export default class Spine extends PhaserSpine.Spine {
 				this.args[i].func({ target:this, animationName:this.lastAnimation });
 			}
 		}
+	}
+
+	getBone(name) {
+		for (var i = 0; i < this.skeleton.bones.length; i++) {
+			if (this.skeleton.bones[i].data.name == name) {
+				return this.skeleton.bones[i];
+			}
+		}
+		return null;
+	}
+
+	getSlot(name) {
+		for (var i = 0; i < this.skeleton.slots.length; i++) {
+			if (this.skeleton.slots[i].currentSpriteName == name) {
+				return this.skeleton.slots[i];
+			}
+		}
+		return null;
 	}
 
 	touchEvent(object, pointer, isDown) {
@@ -112,6 +135,12 @@ export default class Spine extends PhaserSpine.Spine {
 		}
 	}
 
-	removeFromParent() { if (this.parent) { this.parent.removeChild(this); } }
+	removeFromParent() { 
+		for (var i = this.numChildren - 1; i > -1; i--) {
+			this.removeChild(getChildAt(i));
+		}
+		this.killAll();
+		if (this.parent) { this.parent.removeChild(this); }
+	}
 
 }

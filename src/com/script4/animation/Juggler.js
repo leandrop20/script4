@@ -13,6 +13,7 @@ export default class Juggler {
 	tween(target, time, properties) {
 		var tween = new Tween(target, time, properties);
 		tween.start();
+		return tween;
 	}
 	
 	delayedCall(callback, delay, args) {
