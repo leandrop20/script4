@@ -16088,28 +16088,31 @@ class DragonBonesPlugin extends Phaser.Plugin {
 
     addDragonBonesLoader() {
         Phaser.Loader.prototype.dragonbones = function(key, url, scalingVariants) {
-            var _this = this;
-            var cacheData = {
-                atlas: key,
-                basePath: (url.substring(0, url.lastIndexOf('/')) === '') ? '.' : url.substring(0, url.lastIndexOf('/')),
-                variants: undefined
-            };
+            // var _this = this;
+            // var cacheData = {
+            //     atlas: key,
+            //     basePath: (url.substring(0, url.lastIndexOf('/')) === '') ? '.' : url.substring(0, url.lastIndexOf('/')),
+            //     variants: undefined
+            // };
 
-            if (undefined === scalingVariants) {
-                scalingVariants = [''];
-            } else {
-                cacheData.variants = scalingVariants;
-            }
+            // if (undefined === scalingVariants) {
+            //     scalingVariants = [''];
+            // } else {
+            //     cacheData.variants = scalingVariants;
+            // }
 
-            scalingVariants.forEach(function (variant) {
-                 _this.onFileComplete.add(function (progress, cacheKey) {
-                    if (cacheKey === key) {
-                        _this.image(key, url.substr(0, url.lastIndexOf('.')) + variant + '.png');
-                    }
-                 });
-                 _this.json(key, url.substr(0, url.lastIndexOf('.')) + variant + '.json');
-            });
-            
+            // scalingVariants.forEach(function (variant) {
+                 // _this.onFileComplete.add(function (progress, cacheKey) {
+                 //    if (cacheKey === key) {
+                 //        _this.atlas(key, url.substr(0, url.lastIndexOf('.')) + variant + '.png');
+                 //    }
+                 // });
+                 // _this.json(key, url.substr(0, url.lastIndexOf('.')) + variant + '.json');
+            // });
+            var pathName = url.substr(0, url.lastIndexOf('.'));
+
+            this.image(key, pathName + ".png");
+            this.json(key, pathName + ".json");
             this.json(key + "Ske", url.substr(0, url.lastIndexOf('.')) + 'Ske.json');
         }
     }
@@ -16135,38 +16138,20 @@ class DragonBones extends Phaser.Group {
         this.skeleton = this.factory.parseDragonBonesData(skeleton);
         this.armature = this.factory.buildArmatureDisplay(armatureName);
 
-        this.refreshClock();
-
-        console.log(this.armature);
         this.addChild(this.armature);
 
-        // this.game.add.sprite(0, 0, "dragon");
+        // this.armature.x = 200;
+        // this.armature.y = 200;
 
-        this.armature.x = 400;
-        this.armature.y = 200;
+        // this.position.set(200, 200);
+        this.x = 200;
+        this.y = 200;
 
         this.armature.animation.play("walk");
     }
 
-    refreshClock() {
-        var hasEvent = false;
-        var callback = _clockHandler;
-
-        var _this = this;
-        function _clockHandler(passedTime) {
-            _this.factory.clock.advanceTime(-1);
-        }
-
-        this.game.time.events.events.forEach((event, index, events) => {
-            if (event.callback == callback) {
-                hasEvent = true;
-                return;
-            }
-        });
-
-        if (!hasEvent)  {
-            this.game.time.events.loop(20, _clockHandler, dragonBones.PhaserFactory);
-        }
+    update() {
+        this.factory.clock.advanceTime(-1);
     }
 
 }

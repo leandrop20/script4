@@ -34,7 +34,7 @@ export default class Preloader {
 					break;
 				case 'spine':
 					this.load.spine(Assets.ASSETS[i].name, Assets.basePath + Assets.ASSETS[i].path);
-					break;
+					break;			
 				case 'spritesheet':
 					this.load.spritesheet(Assets.ASSETS[i].name, Assets.basePath + Assets.ASSETS[i].path);
 					break;
