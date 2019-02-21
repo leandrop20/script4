@@ -1,7 +1,7 @@
 import Script4 from '../Script4';
-import PhaserDragonBones from '../../dragonBones';
+import PhaserDragonBones from '../../dragonbones/DragonBones';
 
-export default class DragonBones extends PhaserDragonBones.DragonBones {
+export default class DragonBones extends PhaserDragonBones {
 
 	/**
 	*
@@ -12,6 +12,16 @@ export default class DragonBones extends PhaserDragonBones.DragonBones {
 	*/
 	constructor(armatureName, x = 0, y = 0, _args = []) {
 		super(Script4.core, armatureName);
+
+		this.position.set(x, y);
+	}
+
+	play(animationName, playTimes = -1) {
+		this.armature.animation.play(animationName, playTimes);
+	}
+
+	set debug(value) {
+		this.armature.debugDraw = value;
 	}
 
 }

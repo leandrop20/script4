@@ -35,7 +35,10 @@ export default class Root extends Sprite {
 		t.scale.set(0.37);
 		this.addChild(t);
 
-		var dragonbones = new DragonBones("Dragon");
+		var dragonbones = new DragonBones("Dragon", 200, 200);
+		// dragonbones.debug = true;
+		// dragonbones.scale.set(0.6);
+		// dragonbones.play("walk");
 		this.addChild(dragonbones);
 
 		// var t2 = new ImageSuper('imgLoad');
