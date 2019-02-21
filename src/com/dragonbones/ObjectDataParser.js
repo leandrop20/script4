@@ -14,6 +14,7 @@ import BoneFrameData from './BoneFrameData';
 import SlotFrameData from './SlotFrameData';
 import ActionData from './ActionData';
 import TextureData from './TextureData';
+import TweenFrameData from './TweenFrameData';
 import DragonBones from './DragonBones';
 
 export default class ObjectDataParser extends DataParser {
@@ -682,7 +683,7 @@ export default class ObjectDataParser extends DataParser {
                                 frame.prev = prevFrame;
                                 if (this._isOldData) {
                                     if (prevFrame instanceof TweenFrameData && frameObject[ObjectDataParser.DISPLAY_INDEX] == -1) {
-                                        prevFrame.tweenEasing = NO_TWEEN;
+                                        prevFrame.tweenEasing = DragonBones.NO_TWEEN;
                                     }
                                 }
                             }
@@ -696,7 +697,7 @@ export default class ObjectDataParser extends DataParser {
                     frame.prev = prevFrame;
                     if (this._isOldData) {
                         if (prevFrame instanceof TweenFrameData && rawFrames[0][ObjectDataParser.DISPLAY_INDEX] == -1) {
-                            prevFrame.tweenEasing = NO_TWEEN;
+                            prevFrame.tweenEasing = DragonBones.NO_TWEEN;
                         }
                     }
                 }

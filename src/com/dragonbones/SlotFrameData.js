@@ -22,7 +22,7 @@ export default class SlotFrameData extends TweenFrameData {
         this.color = null;
     }
 
-    static get DEFAULT_COLOR() { (SlotFrameData._DEFAULT_COLOR) ? SlotFrameData._DEFAULT_COLOR : new ColorTransform(); }
+    static get DEFAULT_COLOR() { return (SlotFrameData._DEFAULT_COLOR) ? SlotFrameData._DEFAULT_COLOR : new ColorTransform(); }
     static set DEFAULT_COLOR(value) { SlotFrameData._DEFAULT_COLOR = value; }
 
 }
