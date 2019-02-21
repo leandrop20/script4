@@ -13,6 +13,7 @@ import SlotTimelineData from './SlotTimelineData';
 import BoneFrameData from './BoneFrameData';
 import SlotFrameData from './SlotFrameData';
 import ActionData from './ActionData';
+import TextureData from './TextureData';
 import DragonBones from './DragonBones';
 
 export default class ObjectDataParser extends DataParser {

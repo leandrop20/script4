@@ -7,14 +7,13 @@ export default class DragonBones extends Phaser.Group {
 
 		DragonBones.GAME = game;
 
-		this.factory = new PhaserFactory();
-
 		var key = armatureName.toLowerCase();
 
 		var skeletonData = this.game.cache.getJSON(key + "Ske");
+        var textureData = this.game.cache.getJSON(key);
 		var texture = this.game.cache.getImage(key);
-		var textureData = this.game.cache.getJSON(key);
 
+        this.factory = new PhaserFactory();
 		this.skeleton = this.factory.parseDragonBonesData(skeletonData);
 		this.factory.parseTextureAtlasData(textureData, texture);
 		this.armature = this.factory.buildArmatureDisplay(armatureName);
