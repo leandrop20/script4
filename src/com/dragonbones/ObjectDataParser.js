@@ -811,8 +811,7 @@ export default class ObjectDataParser extends DataParser {
         color.blueOffset = ObjectDataParser._getNumber(rawData, ObjectDataParser.BLUE_OFFSET, 0);
     }
     
-    parseDragonBonesData(rawData, scale) {
-        if (scale === void 0) { scale = 1; }
+    parseDragonBonesData(rawData, scale = 1) {
         if (rawData) {
             var version = ObjectDataParser._getString(rawData, ObjectDataParser.VERSION, null);
             this._isOldData = version == ObjectDataParser.DATA_VERSION_2_3 || version == ObjectDataParser.DATA_VERSION_3_0;
@@ -848,8 +847,7 @@ export default class ObjectDataParser extends DataParser {
         // return null;
     }
     
-    parseTextureAtlasData(rawData, textureAtlasData, scale) {
-        if (scale === void 0) { scale = 0; }
+    parseTextureAtlasData(rawData, textureAtlasData, scale = 0) {
         if (rawData) {
             textureAtlasData.name = ObjectDataParser._getString(rawData, ObjectDataParser.NAME, null);
             textureAtlasData.imagePath = ObjectDataParser._getString(rawData, ObjectDataParser.IMAGE_PATH, null);

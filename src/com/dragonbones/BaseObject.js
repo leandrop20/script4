@@ -54,8 +54,7 @@ export default class BaseObject {
     /**
      * @version DragonBones 4.5
      */
-    static clearPool(objectConstructor) {
-        if (objectConstructor === void 0) { objectConstructor = null; }
+    static clearPool(objectConstructor = null) {
         if (objectConstructor) {
             var pool = BaseObject._poolsMap[String(objectConstructor)];
             if (pool && pool.length) {

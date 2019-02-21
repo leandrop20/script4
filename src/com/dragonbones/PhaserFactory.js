@@ -103,9 +103,7 @@ export default class PhaserFactory extends BaseFactory {
         return slot;
     }
 
-    buildArmatureDisplay(armatureName, dragonBonesName, skinName) {
-        if (dragonBonesName === void 0) { dragonBonesName = null; }
-        if (skinName === void 0) { skinName = null; }
+    buildArmatureDisplay(armatureName, dragonBonesName = null, skinName = null) {
         var armature = this.buildArmature(armatureName, dragonBonesName, skinName);
         var armatureDisplay = armature ? armature._display : null;
         if (armatureDisplay) {
@@ -114,8 +112,7 @@ export default class PhaserFactory extends BaseFactory {
         return armatureDisplay;
     }
 
-    getTextureDisplay(textureName, dragonBonesName) {
-        if (dragonBonesName === void 0) { dragonBonesName = null; }
+    getTextureDisplay(textureName, dragonBonesName = null) {
         var textureData = this._getTextureData(dragonBonesName, textureName);
         if (textureData) {
             if (!textureData.texture) {

@@ -1,7 +1,8 @@
 import TweenTimelineState from './TweenTimelineState';
 import Transform from './Transform';
+import DragonBones from './DragonBones';
 
-export defaul class BoneTimelineState extends TweenTimelineState {
+export default class BoneTimelineState extends TweenTimelineState {
 
 	constructor() {
 		super();

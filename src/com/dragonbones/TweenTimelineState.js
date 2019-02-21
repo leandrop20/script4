@@ -1,4 +1,5 @@
 import TimelineState from './TimelineState';
+import DragonBones from './DragonBones';
 
 export default class TweenTimelineState extends TimelineState {
 
@@ -68,7 +69,7 @@ export default class TweenTimelineState extends TimelineState {
     _onClear() {
         super._onClear();
         this._tweenProgress = 0;
-        this._tweenEasing = dragonBones.DragonBones.NO_TWEEN;
+        this._tweenEasing = DragonBones.NO_TWEEN;
         this._curve = null;
     }
 
@@ -78,17 +79,17 @@ export default class TweenTimelineState extends TimelineState {
         self._curve = self._currentFrame.curve;
         if (self._keyFrameCount <= 1 ||
             (self._currentFrame.next == self._timeline.frames[0] &&
-                (self._tweenEasing != dragonBones.DragonBones.NO_TWEEN || self._curve) &&
+                (self._tweenEasing != DragonBones.NO_TWEEN || self._curve) &&
                 self._animationState.playTimes > 0 &&
                 self._animationState.currentPlayTimes == self._animationState.playTimes - 1)) {
-            self._tweenEasing = dragonBones.DragonBones.NO_TWEEN;
+            self._tweenEasing = DragonBones.NO_TWEEN;
             self._curve = null;
         }
     }
 
     _onUpdateFrame(isUpdate) {
         var self = this;
-        if (self._tweenEasing != dragonBones.DragonBones.NO_TWEEN) {
+        if (self._tweenEasing != DragonBones.NO_TWEEN) {
             self._tweenProgress = (self._currentTime - self._currentFrame.position + self._position) / self._currentFrame.duration;
             if (self._tweenEasing != 0) {
                 self._tweenProgress = TweenTimelineState._getEasingValue(self._tweenProgress, self._tweenEasing);

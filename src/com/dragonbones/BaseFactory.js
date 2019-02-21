@@ -1,3 +1,4 @@
+import DragonBones from './DragonBones';
 import ObjectDataParser from './ObjectDataParser';
 import BaseObject from './BaseObject';
 import Bone from './Bone';
@@ -179,8 +180,7 @@ export default class BaseFactory {
     /**
      * @version DragonBones 4.5
      */
-    parseDragonBonesData(rawData, dragonBonesName) {
-        if (dragonBonesName === void 0) { dragonBonesName = null; }
+    parseDragonBonesData(rawData, dragonBonesName = null) {
         var dragonBonesData = this._dataParser.parseDragonBonesData(rawData, 1);
         this.addDragonBonesData(dragonBonesData, dragonBonesName);
         return dragonBonesData;
@@ -188,9 +188,7 @@ export default class BaseFactory {
     /**
      * @version DragonBones 4.5
      */
-    parseTextureAtlasData(rawData, textureAtlas, name, scale) {
-        if (name === void 0) { name = null; }
-        if (scale === void 0) { scale = 0; }
+    parseTextureAtlasData(rawData, textureAtlas, name = null, scale = 0) {
         var textureAtlasData = this._generateTextureAtlasData(null, null);
         this._dataParser.parseTextureAtlasData(rawData, textureAtlasData, scale);
         this._generateTextureAtlasData(textureAtlasData, textureAtlas);
@@ -208,8 +206,7 @@ export default class BaseFactory {
     /**
      * @version DragonBones 3.0
      */
-    addDragonBonesData(data, dragonBonesName) {
-        if (dragonBonesName === void 0) { dragonBonesName = null; }
+    addDragonBonesData(data, dragonBonesName = null) {
         if (data) {
             dragonBonesName = dragonBonesName || data.name;
             if (dragonBonesName) {
@@ -232,8 +229,7 @@ export default class BaseFactory {
     /**
 	* @version DragonBones 3.0
 	*/
-    removeDragonBonesData(dragonBonesName, disposeData) {
-        if (disposeData === void 0) { disposeData = true; }
+    removeDragonBonesData(dragonBonesName, disposeData = true) {
         var dragonBonesData = this._dragonBonesDataMap[dragonBonesName];
         if (dragonBonesData) {
             if (disposeData) {
@@ -261,8 +257,7 @@ export default class BaseFactory {
     /**
      * @version DragonBones 3.0
      */
-    addTextureAtlasData(data, dragonBonesName) {
-        if (dragonBonesName === void 0) { dragonBonesName = null; }
+    addTextureAtlasData(data, dragonBonesName = null) {
         if (data) {
             dragonBonesName = dragonBonesName || data.name;
             if (dragonBonesName) {
@@ -283,8 +278,7 @@ export default class BaseFactory {
     /**
      * @version DragonBones 3.0
      */
-    removeTextureAtlasData(dragonBonesName, disposeData) {
-        if (disposeData === void 0) { disposeData = true; }
+    removeTextureAtlasData(dragonBonesName, disposeData = true) {
         var textureAtlasDataList = this._textureAtlasDataMap[dragonBonesName];
         if (textureAtlasDataList) {
             if (disposeData) {
@@ -299,8 +293,7 @@ export default class BaseFactory {
     /**
      * @version DragonBones 4.5
      */
-    clear(disposeData) {
-        if (disposeData === void 0) { disposeData = true; }
+    clear(disposeData = true) {
         for (var i in this._dragonBonesDataMap) {
             if (disposeData) {
                 this._dragonBonesDataMap[i].returnToPool();
@@ -321,9 +314,7 @@ export default class BaseFactory {
     /**
      * @version DragonBones 3.0
      */
-    buildArmature(armatureName, dragonBonesName, skinName) {
-        if (dragonBonesName === void 0) { dragonBonesName = null; }
-        if (skinName === void 0) { skinName = null; }
+    buildArmature(armatureName, dragonBonesName = null, skinName = null) {
         var dataPackage = {};
         if (this._fillBuildArmaturePackage(dragonBonesName, armatureName, skinName, dataPackage)) {
             var armature = this._generateArmature(dataPackage);
@@ -338,10 +329,8 @@ export default class BaseFactory {
     /**
      * @version DragonBones 4.5
      */
-    copyAnimationsToArmature(toArmature, fromArmatreName, fromSkinName, fromDragonBonesDataName, ifRemoveOriginalAnimationList) {
-        if (fromSkinName === void 0) { fromSkinName = null; }
-        if (fromDragonBonesDataName === void 0) { fromDragonBonesDataName = null; }
-        if (ifRemoveOriginalAnimationList === void 0) { ifRemoveOriginalAnimationList = true; }
+    copyAnimationsToArmature(toArmature, fromArmatreName, fromSkinName = null, fromDragonBonesDataName = null,
+            ifRemoveOriginalAnimationList = true) {
         var dataPackage = {};
         if (this._fillBuildArmaturePackage(fromDragonBonesDataName, fromArmatreName, fromSkinName, dataPackage)) {
             var fromArmatureData = dataPackage.armature;
@@ -385,8 +374,7 @@ export default class BaseFactory {
     /**
      * @version DragonBones 4.5
      */
-    replaceSlotDisplay(dragonBonesName, armatureName, slotName, displayName, slot, displayIndex) {
-        if (displayIndex === void 0) { displayIndex = -1; }
+    replaceSlotDisplay(dragonBonesName, armatureName, slotName, displayName, slot, displayIndex = -1) {
         var dataPackage = {};
         if (this._fillBuildArmaturePackage(dragonBonesName, armatureName, null, dataPackage)) {
             var slotDisplayDataSet = dataPackage.skin.getSlot(slotName);

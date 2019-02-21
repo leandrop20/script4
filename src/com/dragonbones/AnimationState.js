@@ -1,4 +1,8 @@
 import BaseObject from './BaseObject';
+import AnimationTimelineState from './AnimationTimelineState';
+import BoneTimelineState from './BoneTimelineState';
+import SlotTimelineState from './SlotTimelineState';
+import EventObject from './EventObject';
 
 export default class AnimationState extends BaseObject {
 
@@ -349,8 +353,7 @@ export default class AnimationState extends BaseObject {
     /**
      * @version DragonBones 3.0
      */
-    fadeOut(fadeOutTime, pausePlayhead) {
-        if (pausePlayhead === void 0) { pausePlayhead = true; }
+    fadeOut(fadeOutTime, pausePlayhead = true) {
         if (fadeOutTime < 0 || fadeOutTime != fadeOutTime) {
             fadeOutTime = 0;
         }
@@ -388,8 +391,7 @@ export default class AnimationState extends BaseObject {
     /**
      * @version DragonBones 3.0
      */
-    addBoneMask(name, recursive) {
-        if (recursive === void 0) { recursive = true; }
+    addBoneMask(name, recursive = true) {
         var currentBone = this._armature.getBone(name);
         if (!currentBone) {
             return;
@@ -416,8 +418,7 @@ export default class AnimationState extends BaseObject {
     /**
      * @version DragonBones 3.0
      */
-    removeBoneMask(name, recursive) {
-        if (recursive === void 0) { recursive = true; }
+    removeBoneMask(name, recursive = true) {
         var index = this._boneMask.indexOf(name);
         if (index >= 0) {
             this._boneMask.splice(index, 1);
@@ -505,13 +506,12 @@ export default class AnimationState extends BaseObject {
             this._ffdTimelines[i]._isCompleted = false;
         }
     }
-
     
 	get clip() {
 		return this._animationData;
 	}
 
-    static get stateActionEnabled() { return (AnimationState.stateActionEnabled) ? AnimationState.stateActionEnabled : true; }
-    static set stateActionEnabled(value) { AnimationState.stateActionEnabled = value; }
+    static get stateActionEnabled() { return (AnimationState._stateActionEnabled) ? AnimationState._stateActionEnabled : true; }
+    static set stateActionEnabled(value) { AnimationState._stateActionEnabled = value; }
 
 }

@@ -1,12 +1,6 @@
 export default class Transform {
 
-	constructor(x, y, skewX, skewY, scaleX, scaleY) {
-		if (x === void 0) { x = 0; }
-        if (y === void 0) { y = 0; }
-        if (skewX === void 0) { skewX = 0; }
-        if (skewY === void 0) { skewY = 0; }
-        if (scaleX === void 0) { scaleX = 1; }
-        if (scaleY === void 0) { scaleY = 1; }
+	constructor(x = 0, y = 0, skewX = 0, skewY = 0, scaleX = 1, scaleY = 1) {
         this.x = x;
         this.y = y;
         this.skewX = skewX;

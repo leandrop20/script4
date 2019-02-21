@@ -267,9 +267,7 @@ export default class Armature extends BaseObject {
     /**
      * @version DragonBones 3.0
      */
-    invalidUpdate(boneName, updateSlotDisplay) {
-        if (boneName === void 0) { boneName = null; }
-        if (updateSlotDisplay === void 0) { updateSlotDisplay = false; }
+    invalidUpdate(boneName = null, updateSlotDisplay = false) {
         if (boneName) {
             var bone = this.getBone(boneName);
             if (bone) {
@@ -375,8 +373,7 @@ export default class Armature extends BaseObject {
     /**
      * @version DragonBones 3.0
      */
-    addBone(value, parentName) {
-        if (parentName === void 0) { parentName = null; }
+    addBone(value, parentName = null) {
         if (value) {
             value._setArmature(this);
             value._setParent(parentName ? this.getBone(parentName) : null);

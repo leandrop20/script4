@@ -1,6 +1,7 @@
 import PhaserFactory from './PhaserFactory';
+import Sprite from '../script4/display/Sprite';
 
-export default class DragonBones extends Phaser.Group {
+export default class DragonBones extends Sprite {
 
 	constructor(game, armatureName) {
 		super(game);
@@ -60,27 +61,13 @@ export default class DragonBones extends Phaser.Group {
         }
     }
 
-    static get PI_D() { return (DragonBones._PI_D) ? DragonBones._PI_D : Math.PI * 2; }
-    static set PI_D(value) { DragonBones._PI_D = value; }
-
-    static get PI_H() { (DragonBones._PI_H) ? DragonBones._PI_H : Math.PI / 2; }
-    static set PI_H(value) { DragonBones._PI_H = value; }
-
-    static get PI_Q() { return (DragonBones._PI_Q) ? DragonBones._PI_Q : Math.PI / 4; }
-    static set PI_Q(value) { DragonBones._PI_Q = value; }
-
-    static get ANGLE_TO_RADIAN() { return (DragonBones._ANGLE_TO_RADIAN) ? DragonBones._ANGLE_TO_RADIAN : Math.PI / 180; }
-    static set ANGLE_TO_RADIAN(value) { DragonBones._ANGLE_TO_RADIAN = value; }
-    
-    static get RADIAN_TO_ANGLE() { return (DragonBones._RADIAN_TO_ANGLE) ? DragonBones._RADIAN_TO_ANGLE : 180 / Math.PI; }
-    static set RADIAN_TO_ANGLE(value) { DragonBones._RADIAN_TO_ANGLE = value; }
-    
-    static get SECOND_TO_MILLISECOND() { return (DragonBones._SECOND_TO_MILLISECOND) ? DragonBones._SECOND_TO_MILLISECOND : 1000; }
-    static set SECOND_TO_MILLISECOND(value) { DragonBones._SECOND_TO_MILLISECOND = value; }
-
-    static get NO_TWEEN() { return (DragonBones._NO_TWEEN) ? DragonBones._NO_TWEEN : 100; }
-    static set NO_TWEEN(value) { DragonBones._NO_TWEEN = value; }
-    
+    static get PI_D() { return Math.PI * 2; }
+    static get PI_H() { Math.PI / 2; }
+    static get PI_Q() { return Math.PI / 4; }
+    static get ANGLE_TO_RADIAN() { return Math.PI / 180; }
+    static get RADIAN_TO_ANGLE() { return 180 / Math.PI; }
+    static get SECOND_TO_MILLISECOND() { return 1000; }
+    static get NO_TWEEN() { return 100; }
     static get VERSION() { return "4.7.2"; }
     
     static get debug() { return (DragonBones._debug) ? DragonBones._debug : false; }
@@ -202,4 +189,38 @@ PIXI.Sprite.prototype.getBounds = function (targetCoordinateSpace) {
         bounds.y -= targetCoordinateSpaceBounds.y;
     }
     return bounds;
+};
+//FIXED WebGL: INVALID_ENUM: activeTexture: texture unit out of range
+PIXI.WebGLSpriteBatch = function (game) {
+
+    this.game = game;
+    this.vertSize = 5;
+    this.size = 2000; // Math.pow(2, 16) /  this.vertSize;
+    this.vertexSize = (4 * 2) + (4 * 2) + (4) + (4);
+    var numVerts = this.vertexSize * this.size * 4;
+    var numIndices = this.size * 540000;//6
+    this.vertices = new ArrayBuffer(numVerts);
+    this.positions = new Float32Array(this.vertices);
+    this.colors = new Uint32Array(this.vertices);
+    this.indices = new Uint16Array(numIndices);
+    this.lastIndexCount = 0;
+
+    for (var i = 0, j = 0; i < numIndices; i += 6, j += 4) {
+        this.indices[i + 0] = j + 0;
+        this.indices[i + 1] = j + 1;
+        this.indices[i + 2] = j + 2;
+        this.indices[i + 3] = j + 0;
+        this.indices[i + 4] = j + 2;
+        this.indices[i + 5] = j + 3;
+    }
+
+    this.drawing = false;
+    this.currentBatchSize = 0;
+    this.currentBaseTexture = null;
+    this.dirty = true;
+    this.textures = [];
+    this.blendModes = [];
+    this.shaders = [];
+    this.sprites = [];
+    this.defaultShader = null;
 };

@@ -269,8 +269,7 @@ export default class DataParser {
      * @deprecated
      * @see BaseFactory#parsetTextureAtlasData()
      */
-    static parseTextureAtlasData (rawData, scale) {
-        if (scale === void 0) { scale = 1; }
+    static parseTextureAtlasData (rawData, scale = 1) {
         var textureAtlasData = {};
         var subTextureList = rawData[DataParser.SUB_TEXTURE];
         for (var i = 0, len = subTextureList.length; i < len; i++) {

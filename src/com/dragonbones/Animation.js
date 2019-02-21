@@ -182,8 +182,7 @@ export default class Animation extends BaseObject {
     /**
      * @version DragonBones 3.0
      */
-    stop(animationName) {
-        if (animationName === void 0) { animationName = null; }
+    stop(animationName = null) {
         if (animationName) {
             var animationState = this.getState(animationName);
             if (animationState) {
@@ -198,9 +197,7 @@ export default class Animation extends BaseObject {
     /**
      * @version DragonBones 3.0
      */
-    play(animationName, playTimes) {
-        if (animationName === void 0) { animationName = null; }
-        if (playTimes === void 0) { playTimes = -1; }
+    play(animationName = null, playTimes = -1) {
         var animationState = null;
         if (animationName) {
             animationState = this.fadeIn(animationName, 0, playTimes, 0, null, 4 /* All */);
@@ -224,16 +221,8 @@ export default class Animation extends BaseObject {
     /**
      * @version DragonBones 4.5
      */
-    fadeIn(animationName, fadeInTime, playTimes, layer, group, fadeOutMode, additiveBlending, displayControl, pauseFadeOut, pauseFadeIn) {
-        if (fadeInTime === void 0) { fadeInTime = -1; }
-        if (playTimes === void 0) { playTimes = -1; }
-        if (layer === void 0) { layer = 0; }
-        if (group === void 0) { group = null; }
-        if (fadeOutMode === void 0) { fadeOutMode = 3 /* SameLayerAndGroup */; }
-        if (additiveBlending === void 0) { additiveBlending = false; }
-        if (displayControl === void 0) { displayControl = true; }
-        if (pauseFadeOut === void 0) { pauseFadeOut = true; }
-        if (pauseFadeIn === void 0) { pauseFadeIn = true; }
+    fadeIn(animationName, fadeInTime = -1, playTimes = -1, layer = 0, group = null, fadeOutMode, 
+            additiveBlending = false, displayControl = true, pauseFadeOut = true, pauseFadeIn = true) {
         var animationData = this._animations[animationName];
         if (!animationData) {
             this._time = 0;
@@ -289,9 +278,7 @@ export default class Animation extends BaseObject {
     /**
      * @version DragonBones 4.5
      */
-    gotoAndPlayByTime(animationName, time, playTimes) {
-        if (time === void 0) { time = 0; }
-        if (playTimes === void 0) { playTimes = -1; }
+    gotoAndPlayByTime(animationName, time = 0, playTimes = -1) {
         this._time = time;
         return this.fadeIn(animationName, 0, playTimes, 0, null, 4 /* All */);
     }
@@ -299,9 +286,7 @@ export default class Animation extends BaseObject {
     /**
      * @version DragonBones 4.5
      */
-    gotoAndPlayByFrame(animationName, frame, playTimes) {
-        if (frame === void 0) { frame = 0; }
-        if (playTimes === void 0) { playTimes = -1; }
+    gotoAndPlayByFrame(animationName, frame = 0, playTimes = -1) {
         var animationData = this._animations[animationName];
         if (animationData) {
             this._time = animationData.duration * frame / animationData.frameCount;
@@ -312,9 +297,7 @@ export default class Animation extends BaseObject {
     /**
      * @version DragonBones 4.5
      */
-    gotoAndPlayByProgress(animationName, progress, playTimes) {
-        if (progress === void 0) { progress = 0; }
-        if (playTimes === void 0) { playTimes = -1; }
+    gotoAndPlayByProgress(animationName, progress = 0, playTimes = -1) {
         var animationData = this._animations[animationName];
         if (animationData) {
             this._time = animationData.duration * Math.max(progress, 0);
@@ -325,8 +308,7 @@ export default class Animation extends BaseObject {
     /**
      * @version DragonBones 4.5
      */
-    gotoAndStopByTime(animationName, time) {
-        if (time === void 0) { time = 0; }
+    gotoAndStopByTime(animationName, time = 0) {
         var animationState = this.gotoAndPlayByTime(animationName, time, 1);
         if (animationState) {
             animationState.stop();
@@ -337,8 +319,7 @@ export default class Animation extends BaseObject {
     /**
      * @version DragonBones 4.5
      */
-    gotoAndStopByFrame(animationName, frame) {
-        if (frame === void 0) { frame = 0; }
+    gotoAndStopByFrame(animationName, frame = 0) {
         var animationState = this.gotoAndPlayByFrame(animationName, frame, 1);
         if (animationState) {
             animationState.stop();
@@ -349,8 +330,7 @@ export default class Animation extends BaseObject {
     /**
      * @version DragonBones 4.5
      */
-    gotoAndStopByProgress(animationName, progress) {
-        if (progress === void 0) { progress = 0; }
+    gotoAndStopByProgress(animationName, progress = 0) {
         var animationState = this.gotoAndPlayByProgress(animationName, progress, 1);
         if (animationState) {
             animationState.stop();
@@ -444,15 +424,8 @@ export default class Animation extends BaseObject {
      * @see #gotoAndPlayByFrame()
      * @see #gotoAndPlayByProgress()
      */
-    gotoAndPlay(animationName, fadeInTime, duration, playTimes, layer, group, fadeOutMode, pauseFadeOut, pauseFadeIn) {
-        if (fadeInTime === void 0) { fadeInTime = -1; }
-        if (duration === void 0) { duration = -1; }
-        if (playTimes === void 0) { playTimes = -1; }
-        if (layer === void 0) { layer = 0; }
-        if (group === void 0) { group = null; }
-        if (fadeOutMode === void 0) { fadeOutMode = 3 /* SameLayerAndGroup */; }
-        if (pauseFadeOut === void 0) { pauseFadeOut = true; }
-        if (pauseFadeIn === void 0) { pauseFadeIn = true; }
+    gotoAndPlay(animationName, fadeInTime = -1, duration = -1, playTimes = -1, layer = 0, group = null, 
+            fadeOutMode = 3, pauseFadeOut = true, pauseFadeIn = true) {
         var animationState = this.fadeIn(animationName, fadeInTime, playTimes, layer, group, fadeOutMode, false, true, pauseFadeOut, pauseFadeIn);
         if (animationState && duration && duration > 0) {
             animationState.timeScale = animationState.totalTime / duration;
@@ -466,8 +439,7 @@ export default class Animation extends BaseObject {
      * @see #gotoAndStopByFrame()
      * @see #gotoAndStopByProgress()
      */
-    gotoAndStop(animationName, time) {
-        if (time === void 0) { time = 0; }
+    gotoAndStop(animationName, time = 0) {
         return this.gotoAndStopByTime(animationName, time);
     }
 

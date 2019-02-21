@@ -1,12 +1,6 @@
 export default class Matrix {
 
-	constructor(a, b, c, d, tx, ty) {
-		if (a === void 0) { a = 1; }
-        if (b === void 0) { b = 0; }
-        if (c === void 0) { c = 0; }
-        if (d === void 0) { d = 1; }
-        if (tx === void 0) { tx = 0; }
-        if (ty === void 0) { ty = 0; }
+	constructor(a = 1, b = 0, c = 0, d = 1, tx = 0, ty = 0) {
         this.a = a;
         this.b = b;
         this.c = c;
@@ -99,8 +93,7 @@ export default class Matrix {
     /**
      * @version DragonBones 3.0
      */
-    transformPoint(x, y, result, delta) {
-        if (delta === void 0) { delta = false; }
+    transformPoint(x, y, result, delta = false) {
         result.x = this.a * x + this.c * y;
         result.y = this.b * x + this.d * y;
         if (!delta) {
