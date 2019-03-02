@@ -114,13 +114,14 @@ export default class PhaserFactory extends BaseFactory {
 
     getTextureDisplay(textureName, dragonBonesName = null) {
         var textureData = this._getTextureData(dragonBonesName, textureName);
+
         if (textureData) {
             if (!textureData.texture) {
                 var textureAtlasTexture = textureData.parent.texture;
                 var originSize = new Phaser.Rectangle(0, 0, textureData.region.width, textureData.region.height);
                 textureData.texture = new PIXI.Texture(textureAtlasTexture, textureData.region, originSize);
             }
-            return new Phaser.Sprite(Rift.PhaserBones.GAME, 0, 0, textureData.texture);
+            return new Phaser.Sprite(DragonBones.GAME, 0, 0, textureData.texture);
         }
         return null;
     }

@@ -10,6 +10,7 @@ import DisplayData from './DisplayData';
 import AnimationData from './AnimationData';
 import BoneTimelineData from './BoneTimelineData';
 import SlotTimelineData from './SlotTimelineData';
+import AnimationFrameData from './AnimationFrameData';
 import BoneFrameData from './BoneFrameData';
 import SlotFrameData from './SlotFrameData';
 import ActionData from './ActionData';

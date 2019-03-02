@@ -36,6 +36,19 @@ export default class DragonBones extends PhaserDragonBones {
 		this.armature.debugDraw = value;
 	}
 
+	getBone(name) {
+		return this.armature._armature.getBone(name);
+	}
+
+	getSlot (name) {
+		return this.armature._armature.getSlot(name);
+	}
+
+	factoryImage(_name, dragonName = null) {
+		dragonName = (dragonName) ? dragonName : this.ID;
+		return this.factory.getTextureDisplay(_name, dragonName);
+	}
+
 	onUpdate(e) {
 		if (this.armature.animation.isCompleted) {
 			if (this.args != null) {

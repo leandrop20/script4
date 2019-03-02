@@ -109,7 +109,7 @@ spine.Bone.prototype = {
 	a: 0, b: 0, worldX: 0,
 	c: 0, d: 0, worldY: 0,
 	worldSignX: 1, worldSignY: 1,
-	update: function () {
+	_update: function () {
 		this.updateWorldTransform(this.x, this.y, this.rotation, this.scaleX, this.scaleY);
 	},
 	updateWorldTransformWith: function () {
@@ -324,9 +324,9 @@ spine.IkConstraint = function (data, skeleton) {
 };
 spine.IkConstraint.prototype = {
 	apply: function () {
-		this.update();
+		this._update();
 	},
-	update: function () {
+	_update: function () {
 		var target = this.target;
 		var bones = this.bones;
 		switch (bones.length) {
@@ -489,9 +489,9 @@ spine.TransformConstraint = function (data, skeleton) {
 };
 spine.TransformConstraint.prototype = {
 	apply: function () {
-		this.update();
+		this._update();
 	},
-	update: function () {
+	_update: function () {
 		var translateMix = this.translateMix;
 		if (translateMix > 0) {
 			var temp = spine.temp;
@@ -1222,7 +1222,7 @@ spine.Skeleton.prototype = {
 	updateWorldTransform: function () {
 		var updateCache = this.cache;
 		for (var i = 0, n = updateCache.length; i < n; i++)
-			updateCache[i].update();
+			updateCache[i]._update();
 	},
 	/** Sets the bones, constraints, and slots to their setup pose values. */
 	setToSetupPose: function () {
@@ -1361,7 +1361,7 @@ spine.Skeleton.prototype = {
 			if (transformConstraints[i].data.name == constraintName) return transformConstraints[i];
 		return null;
 	},
-	update: function (delta) {
+	_update: function (delta) {
 		this.time += delta;
 	}
 };
@@ -1702,7 +1702,7 @@ spine.AnimationState.prototype = {
 	onComplete: null,
 	onEvent: null,
 	timeScale: 1,
-	update: function (delta) {
+	_update: function (delta) {
 		delta *= this.timeScale;
 		for (var i = 0; i < this.tracks.length; i++) {
 			var current = this.tracks[i];
@@ -2716,7 +2716,7 @@ spine.SkeletonBounds = function () {
 };
 spine.SkeletonBounds.prototype = {
 	minX: 0, minY: 0, maxX: 0, maxY: 0,
-	update: function (skeleton, updateAabb) {
+	_update: function (skeleton, updateAabb) {
 		var slots = skeleton.slots;
 		var slotCount = slots.length;
 		var x = skeleton.x, y = skeleton.y;
@@ -3019,11 +3019,11 @@ class Spine extends Phaser.Group {
         }
     }
 
-    update(dt) {
+    _update(dt) {
     	if (dt === undefined) {
             return;
         }
-        this.state.update(dt);
+        this.state._update(dt);
         this.state.apply(this.skeleton);
         this.skeleton.updateWorldTransform();
         var drawOrder = this.skeleton.drawOrder;
@@ -3117,7 +3117,7 @@ class Spine extends Phaser.Group {
         this.lastTime = this.lastTime || Date.now();
         var timeDelta = (Date.now() - this.lastTime) * 0.001;
         this.lastTime = Date.now();
-        this.update(timeDelta);
+        this._update(timeDelta);
         PIXI.DisplayObjectContainer.prototype.updateTransform.call(this);
     }
 
