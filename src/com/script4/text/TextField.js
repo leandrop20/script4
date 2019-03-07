@@ -35,6 +35,12 @@ export default class TextField extends Phaser.Group {
 		this.align();
 	}
 
+	get color() { return this.field.tint; }
+
+	set color(value) {
+		this.field.tint = value;
+	}
+
 	set alignText(value) {
 		this.field.align = value;
 	}
