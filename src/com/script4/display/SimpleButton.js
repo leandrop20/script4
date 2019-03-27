@@ -11,6 +11,7 @@ export default class SimpleButton extends Sprite {
 		this._listener;
 
 		this.texture = new ImageSuper(texture);
+		this.texture.align(Align.CENTER, Align.MIDDLE);
 		this.texture.input.useHandCursor = true;
 		this.addChild(this.texture);
 		this.texture.events.onInputDown.add(this.onDown, this);
@@ -25,14 +26,17 @@ export default class SimpleButton extends Sprite {
 
 	set upState(texture) {
 		var atlas = texture;
-		if (texture.indexOf('.') != -1) {
-			var parts = texture.split('.');
-			atlas = parts[0];
-			texture = parts[1] + '.png';
-		} else {
-			texture = null;
+		if (!(texture instanceof PIXI.Texture)) {
+			if (texture.indexOf('.') != -1) {
+				var parts = texture.split('.');
+				atlas = parts[0];
+				texture = parts[1] + '.png';
+			} else {
+				texture = null;
+			}
 		}
 		this.texture.loadTexture(atlas, texture);
+		this.texture.readjustSize();
 	}
 
 	set textureColor(value) { this.texture.tint = value; }

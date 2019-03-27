@@ -1,6 +1,7 @@
 import Script4 from '../Script4';
 import BitmapData from '../display/BitmapData';
 import Align from '../utils/Align';
+import Point from '../geom/Point';
 
 import ButtonSuper from './ButtonSuper';
 import Graphics from './Graphics';
@@ -14,7 +15,7 @@ export default class ImageSuper extends Phaser.Image {
 	*/
 	constructor(texture, x = 0, y = 0) {
 		var atlas = texture;
-		if (!(texture instanceof BitmapData)) {
+		if (!(texture instanceof BitmapData) && !(texture instanceof PIXI.Texture)) {
 			if (texture.indexOf('.') != -1) {
 				var parts = texture.split('.');
 				atlas = parts[0];
@@ -25,9 +26,59 @@ export default class ImageSuper extends Phaser.Image {
 		}
 		
 		super(Script4.core, x, y, atlas, texture);
+
 		this.touchEventCallBack;
 		this.inputEnabled = true;
-		this.anchor.set(0.5);
+	}
+
+	//@override
+	loadTexture(key, frame, stopAnimation) {
+		super.loadTexture(key, frame, stopAnimation);
+
+		if (key instanceof PIXI.Texture) {
+			this.setSize(key.baseTexture.width, key.baseTexture.height);
+		}
+
+		this.atlasPosition = (this.atlasPosition) ? this.atlasPosition : new Point();
+
+		if (frame && !(key instanceof PIXI.Texture)) {
+			var data = Script4.core.cache.getJSON(key + "Data");
+			if (data) {
+				var spriteSourceSize = data.frames[frame].spriteSourceSize;
+				if (spriteSourceSize && (spriteSourceSize.x != 0 || spriteSourceSize.y != 0)) {
+					this.atlasPosition.x = spriteSourceSize.x;
+					this.atlasPosition.y = spriteSourceSize.y;
+					this.x = 0;
+					this.y = 0;
+				}
+			}
+		}
+	}
+
+	setSize(w, h) {
+		this.width = w;
+		this.height = h;
+	}
+
+	readjustSize() {
+		this.width = this.texture.frame.width;
+		this.height = this.texture.frame.height;
+	}
+
+	//@override
+	set x(value) {
+		super.x = this.atlasPosition.x + value;
+	}
+
+	//@override
+	set y(value) {
+		super.y = this.atlasPosition.y + value;
+	}
+
+	get color() { return this.tint; }
+
+	set color(value) {
+		this.tint = value;
 	}
 
 	align(hAlign = Align.CENTER, vAlign = Align.MIDDLE) {

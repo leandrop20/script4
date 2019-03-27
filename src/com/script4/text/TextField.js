@@ -118,7 +118,10 @@ export default class TextField extends Phaser.Group {
 	*	value = Align.LEFT (LEFT, CENTER, RIGHT)
 	*/
 	set hAlign(value) {
-		if (value == 'center') {
+		if (value == 'left') {
+			this.field.anchor.x = 0.0;
+			this.field.x = 0;
+		} else if (value == 'center') {
 			this.field.anchor.x = 0.5;
 			this.field.x = this.w*0.5;
 		} else if (value == 'right') {
@@ -131,7 +134,10 @@ export default class TextField extends Phaser.Group {
 	*	value = Align.TOP (TOP, MIDDLE, BOTTOM)
 	*/
 	set vAlign(value) {
-		if (value == 'middle') {
+		if (value == 'top') {
+			this.field.anchor.y = 0.0;
+			this.field.y = 0;
+		} else  if (value == 'middle') {
 			this.field.anchor.y = 0.5;
 			this.field.y = this.h*0.5;
 		} else if (value == 'bottom') {

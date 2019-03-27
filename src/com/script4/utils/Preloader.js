@@ -43,6 +43,9 @@ export default class Preloader {
 						Assets.basePath + Assets.ASSETS[i].path.substr(0, Assets.ASSETS[i].path.length-4) + 'png',
 						Assets.basePath + Assets.ASSETS[i].path
 					);
+					this.load.json(Assets.ASSETS[i].name + "Data",
+						Assets.basePath + Assets.ASSETS[i].path.substr(0, Assets.ASSETS[i].path.length-4) + 'json',
+						Assets.basePath + Assets.ASSETS[i].path);
 					break;
 				case 'bitmapfont':
 					this.load.bitmapFont(Assets.ASSETS[i].name, 
