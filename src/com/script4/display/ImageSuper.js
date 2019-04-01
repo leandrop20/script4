@@ -65,14 +65,18 @@ export default class ImageSuper extends Phaser.Image {
 		this.height = this.texture.frame.height;
 	}
 
+	get x() { return this.position.x; }
+
 	//@override
 	set x(value) {
-		super.x = this.atlasPosition.x + value;
+		this.position.x = this.atlasPosition.x + value;
 	}
+
+	get y() { return this.position.y; }
 
 	//@override
 	set y(value) {
-		super.y = this.atlasPosition.y + value;
+		this.position.y = this.atlasPosition.y + value;
 	}
 
 	get color() { return this.tint; }

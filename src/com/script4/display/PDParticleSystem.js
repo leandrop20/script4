@@ -37,6 +37,8 @@ export default class PDParticleSystem extends Sprite {
 		this.name = 'emitter' + PDParticleSystem.emitterID;
 		this.position = new Point(settings.positionX, settings.positionY);
 		this.positionVar = new Point(settings.positionVarX, settings.positionVarY);
+		this.emitterX = 0;
+		this.emitterY = 0;
 		this.angle = ((settings['angle'] / 180) * Math.PI) - Math.PI;
 		this.angleVar = (settings['angleVar'] / 360) * Math.PI;
 		this.speed = settings.speed;
@@ -77,8 +79,8 @@ export default class PDParticleSystem extends Sprite {
 
 	addParticle() {
 		var particle = new Particle();
-		particle.position.x = this.getVariance(this.positionVar.x);
-		particle.position.y = this.getVariance(this.positionVar.y);
+		particle.position.x = this.emitterX + this.getVariance(this.positionVar.x);
+		particle.position.y = this.emitterY + this.getVariance(this.positionVar.y);
 
 		var angleVar = this.getVariance(this.angleVar);
 		var angle = this.angle + angleVar;
