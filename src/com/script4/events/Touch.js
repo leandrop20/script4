@@ -1,3 +1,6 @@
+import Script4 from "../Script4";
+import Point from "../geom/Point";
+
 export default class Touch {
 
 	static get previous(){ return this._previous; }
@@ -8,6 +11,14 @@ export default class Touch {
 		this.phase = phase;
 		this.globalX = globalX;
 		this.globalY = globalY;
+	}
+
+	getPreviousLocation(obj) {
+		var point = new Point();
+		var global = new Point(Script4.core.input.worldX, Script4.core.input.worldY);
+		point.x = global.x - obj.x + obj.pivot.x;
+		point.y = global.y - obj.y + obj.pivot.y;
+		return point;
 	}
 	
 }
