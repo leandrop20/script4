@@ -16,7 +16,7 @@ export default class TouchEvent {
 
 	static get TOUCH() { return 'touch'; };
 
-	getTouch(target, swap = true) {
+	getTouch(target, swap = false) {
 		var globalX = target.game.input.x;
 		var globalY = target.game.input.y;
 
