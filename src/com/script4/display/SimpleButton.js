@@ -68,6 +68,10 @@ export default class SimpleButton extends Sprite {
 		}
 	}
 
+	set fontColor(_value) {
+		this.tf.textColor = _value;
+	}
+
 	get text() { return (this.tf)?this.tf.text:""; }
 
 	set text(value) {

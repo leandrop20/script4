@@ -81,6 +81,8 @@ export default class Spine extends PhaserSpine.Spine {
 		return null;
 	}
 
+	get numChildren() { return this.children.length; }
+
 	touchEvent(object, pointer, isDown) {
 		if (!(object instanceof ButtonSuper)) {
 			object = (object instanceof Phaser.Graphics || object instanceof Graphics)?object.parent:object;	
