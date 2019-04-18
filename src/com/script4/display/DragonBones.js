@@ -68,7 +68,6 @@ export default class DragonBones extends PhaserDragonBones {
 		this.factory.removeTextureAtlasData(this.ID, true);
 		this.factory.removeDragonBonesData(this.ID, true);
 		this.removeFromParent();
-		this.destroy();
 	}
 
 }

@@ -44,7 +44,7 @@ export default class Script4 extends Phaser.Game {
 		}
 	}
 
-	static get VERSION() { return 'v0.4.91'; }
+	static get VERSION() { return 'v0.4.92'; }
 
 	static get width() { return Script4.core.width; }
 
