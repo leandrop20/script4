@@ -8,10 +8,12 @@ export default class Joystick extends Sprite {
 		super();
 
 		this.bg = new ImageSuper(_bg);
+		this.bg.align();
 		this.bg.position.set(_x, _y);
 		this.addChild(this.bg);
 
 		this.pad = new ImageSuper(_pad);
+		this.pad.align();
 		this.pad.position.set(_x, _y);
 		this.addChild(this.pad);
 
