@@ -66,6 +66,12 @@ export default class Preloader {
 				case 'dragonbones':
 					this.load.dragonbones(Assets.ASSETS[i].name, Assets.basePath + Assets.ASSETS[i].path);
 					break;
+				case 'tilemap':
+					this.load.tilemap(Assets.ASSETS[i].name,
+						Assets.basePath + Assets.ASSETS[i].path, null, Phaser.Tilemap.TILED_JSON);
+					this.load.image(Assets.ASSETS[i].name, Assets.basePath +
+						Assets.ASSETS[i].path.substr(0, Assets.ASSETS[i].path.length-4) + 'png');
+					break;
 			}
 		}
 
