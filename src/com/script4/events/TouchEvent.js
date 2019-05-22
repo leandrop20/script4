@@ -34,7 +34,8 @@ export default class TouchEvent {
 		}
 
 		function getObjTouch(_target, _this) {
-			if (_target instanceof Sprite || _target instanceof Spine) {
+			if (_target instanceof Sprite || _target instanceof Spine 
+					|| _target instanceof Phaser.Group) {
 				var obj;
 				for (var i = _target.numChildren - 1; i > -1; i--) {
 					obj = _target.getChildAt(i);

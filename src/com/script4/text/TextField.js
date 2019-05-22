@@ -23,14 +23,20 @@ export default class TextField extends Phaser.Group {
 		this.field.fontSize = (size)?size:this.field._data.font.size;
 		this.addChild(this.field);
 
-		this.mask = new Phaser.Graphics(Script4.core, 0, 0);
-		this.mask.inputEnabled = true;
-		this.mask.beginFill(0x009900);
-		this.mask.drawRect(0, 0, width + 2, height);
-		this.mask.endFill();
-		this.addChild(this.mask);
+		this._mask = new Phaser.Graphics(Script4.core, 0, 0);
+		this._mask.beginFill(0x009900);
+		this._mask.drawRect(0, 0, width + 2, height);
+		this._mask.endFill();
+		this.addChild(this._mask);
 
-		this.field.mask = this.mask;
+		this.field.mask = this._mask;
+
+		this.hit = new Phaser.Graphics(Script4.core, 0, 0);
+		this.hit.inputEnabled = true;
+		this.hit.beginFill(0x009900, 0.0);
+		this.hit.drawRect(0, 0, width, height);
+		this.hit.endFill();
+		this.addChild(this.hit);
 
 		this.align();
 	}
@@ -50,8 +56,9 @@ export default class TextField extends Phaser.Group {
 	set width(value) {
 		this.w = value;
 		this.box.width = value;
-		this.mask.width = value;
+		this._mask.width = value;
 		this.field.maxWidth = value;
+		this.hit.width = value;
 	}
 
 	get height () { return this.h; }
@@ -59,11 +66,12 @@ export default class TextField extends Phaser.Group {
 	set height(value) {
 		this.h = value;
 		this.box.height = value;
-		this.mask.height = value;
+		this._mask.height = value;
+		this.hit.height = value;
 	}
 
 	set inputEnabled(bool) {
-		this.mask.inputEnabled = bool;
+		this.hit.inputEnabled = bool;
 	}
 
 	/**
