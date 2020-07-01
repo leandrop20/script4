@@ -49,7 +49,7 @@ export class Script4 extends Phaser.Game {
 		this.config = (configs) ? configs : CONFIGS;
 	}
 
-	static get VERSION() { return 'v0.6.1'; }
+	static get VERSION() { return 'v0.7.0'; }
 
 	static get width() { return Script4.core.width; }
 
