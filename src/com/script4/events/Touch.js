@@ -1,7 +1,7 @@
-import Script4 from "../Script4";
-import Point from "../geom/Point";
+import { Script4 } from "../Script4";
+import { Point } from "../geom/Point";
 
-export default class Touch {
+export class Touch {
 
 	static get previous(){ return this._previous; }
 	static set previous(target){ this._previous = target; }

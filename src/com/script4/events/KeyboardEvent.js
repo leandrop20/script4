@@ -1,4 +1,4 @@
-export default class KeyboardEvent {
+export class KeyboardEvent {
 
 	static get KEY_DOWN() { return 'keydown'; }
 	static get KEY_UP() { return 'keyup'; }

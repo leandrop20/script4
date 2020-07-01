@@ -1,7 +1,7 @@
-import Script4 from '../Script4';
-import Align from '../utils/Align';
+import { Script4 } from '../Script4';
+import { Align } from '../utils/Align';
 
-export default class Graphics extends Phaser.Graphics {
+export class Graphics extends Phaser.Graphics {
 	
 	constructor(x = 0, y = 0) {
 		super(Script4.core, x, y);

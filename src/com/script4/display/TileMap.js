@@ -1,7 +1,7 @@
 import Script4 from "../Script4";
 import Align from '../utils/Align';
 
-export default class TileMap extends Phaser.Tilemap {
+export class TileMap extends Phaser.Tilemap {
 
 	constructor(texture, tileW = 0, tileH = 0, width = 0, height = 0) {
 		super(Script4.core, texture, tileW, tileH, width, height);

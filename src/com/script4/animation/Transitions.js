@@ -1,4 +1,4 @@
-export default class Transitions {
+export class Transitions {
 
 	static get EASE_IN() { return 'easeIn'; }
 	static get EASE_IN_BACK() { return 'easeInBack'; }

@@ -1,8 +1,8 @@
-import Script4 from "../Script4";
-import Tween from './Tween';
-import DelayedCall from './DelayedCall';
+import { Script4 } from "../Script4";
+import { Tween } from './Tween';
+import { DelayedCall } from './DelayedCall';
 
-export default class Juggler {
+export class Juggler {
 	
 	constructor() {}
 

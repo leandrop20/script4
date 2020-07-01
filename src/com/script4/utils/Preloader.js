@@ -1,6 +1,6 @@
-import Assets from '../../../../src/Assets';
+import { Assets } from '../../../../src/Assets';
 
-export default class Preloader {
+export class Preloader {
 
 	preload() {
 		this.logo = this.add.sprite(
@@ -27,50 +27,47 @@ export default class Preloader {
 		for (var i = 0; i < Assets.ASSETS.length; i++) {
 			switch(Assets.ASSETS[i].type) {
 				case 'image':
-					this.load.image(Assets.ASSETS[i].name, Assets.basePath + Assets.ASSETS[i].path);
+					this.load.image(Assets.ASSETS[i].name, Assets.ASSETS[i].path);
 					break;
 				case 'audio':
-					this.load.audio(Assets.ASSETS[i].name, Assets.basePath + Assets.ASSETS[i].path);
+					this.load.audio(Assets.ASSETS[i].name, Assets.ASSETS[i].path);
 					break;
 				case 'spine':
-					this.load.spine(Assets.ASSETS[i].name, Assets.basePath + Assets.ASSETS[i].path);
+					this.load.spine(Assets.ASSETS[i].name, Assets.ASSETS[i].path);
 					break;			
 				case 'spritesheet':
-					this.load.spritesheet(Assets.ASSETS[i].name, Assets.basePath + Assets.ASSETS[i].path);
+					this.load.spritesheet(Assets.ASSETS[i].name, Assets.ASSETS[i].path);
 					break;
 				case 'atlas':
 					this.load.atlas(Assets.ASSETS[i].name,
-						Assets.basePath + Assets.ASSETS[i].path.substr(0, Assets.ASSETS[i].path.length-4) + 'png',
-						Assets.basePath + Assets.ASSETS[i].path
-					);
+						Assets.ASSETS[i].path.substr(
+							0, Assets.ASSETS[i].path.length - 4) + 'png', Assets.ASSETS[i].path);
 					this.load.json(Assets.ASSETS[i].name + "Data",
-						Assets.basePath + Assets.ASSETS[i].path.substr(0, Assets.ASSETS[i].path.length-4) + 'json',
-						Assets.basePath + Assets.ASSETS[i].path);
+						Assets.ASSETS[i].path.substr(
+							0, Assets.ASSETS[i].path.length - 4) + 'json', Assets.ASSETS[i].path);
 					break;
 				case 'bitmapfont':
 					this.load.bitmapFont(Assets.ASSETS[i].name, 
-						Assets.basePath + Assets.ASSETS[i].path.substr(0, Assets.ASSETS[i].path.length-3) + 'png',
-						Assets.basePath + Assets.ASSETS[i].path
-					);
+						Assets.ASSETS[i].path.substr(
+							0, Assets.ASSETS[i].path.length - 3) + 'png', Assets.ASSETS[i].path);
 					 break;
 				case 'particle':
-					this.load.image(Assets.ASSETS[i].name, Assets.basePath + Assets.ASSETS[i].path);
+					this.load.image(Assets.ASSETS[i].name, Assets.ASSETS[i].path);
 					this.load.json(Assets.ASSETS[i].name + 'Settings',
-						Assets.basePath + Assets.ASSETS[i].path.substr(0, Assets.ASSETS[i].path.length-3) + 'json',
-						Assets.basePath + Assets.ASSETS[i].path
-					);
+						Assets.ASSETS[i].path.substr(
+							0, Assets.ASSETS[i].path.length - 3) + 'json', Assets.ASSETS[i].path);
 					break;
 				case 'xml':
-					this.load.xml(Assets.ASSETS[i].name, Assets.basePath + Assets.ASSETS[i].path);
+					this.load.xml(Assets.ASSETS[i].name, Assets.ASSETS[i].path);
 					break;
 				case 'dragonbones':
-					this.load.dragonbones(Assets.ASSETS[i].name, Assets.basePath + Assets.ASSETS[i].path);
+					this.load.dragonbones(Assets.ASSETS[i].name, Assets.ASSETS[i].path);
 					break;
 				case 'tilemap':
 					this.load.tilemap(Assets.ASSETS[i].name,
-						Assets.basePath + Assets.ASSETS[i].path, null, Phaser.Tilemap.TILED_JSON);
-					this.load.image(Assets.ASSETS[i].name, Assets.basePath +
-						Assets.ASSETS[i].path.substr(0, Assets.ASSETS[i].path.length-4) + 'png');
+						Assets.ASSETS[i].path, null, Phaser.Tilemap.TILED_JSON);
+					this.load.image(Assets.ASSETS[i].name, 
+						Assets.ASSETS[i].path.substr(0, Assets.ASSETS[i].path.length - 4) + 'png');
 					break;
 			}
 		}

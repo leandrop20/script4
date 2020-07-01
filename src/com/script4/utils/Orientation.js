@@ -1,4 +1,4 @@
-export default class Orientation {
+export class Orientation {
 
 	static get VERTICAL() { return 'myVertical'; }
 	static get HORIZONTAL() { return 'myHorizontal'; }

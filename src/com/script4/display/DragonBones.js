@@ -1,9 +1,9 @@
-import Script4 from '../Script4';
-import PhaserDragonBones from '../../dragonbones/DragonBones';
-import Event from '../../script4/events/Event';
-import PhaserFactory from '../../dragonbones/PhaserFactory';
+import { Script4 } from '../Script4';
+import { PhaserDragonBones } from '../../dragonbones/DragonBones';
+import { Event } from '../../script4/events/Event';
+import { PhaserFactory } from '../../dragonbones/PhaserFactory';
 
-export default class DragonBones extends PhaserDragonBones {
+export class DragonBones extends PhaserDragonBones {
 
 	/**
 	*

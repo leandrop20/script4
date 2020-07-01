@@ -1,10 +1,10 @@
-import Script4 from '../Script4';
-import Orientation from './Orientation';
-import Easing from './Easing';
+import { Script4 } from '../Script4';
+import { Orientation } from './Orientation';
+import { Easing } from './Easing';
 import TweenMax from 'TweenMax';
 import ThrowPropsPlugin from 'ThrowPropsPlugin';
 
-export default class Scroller {
+export class Scroller {
 
 	constructor() {
 		TweenPlugin.activate([ThrowPropsPlugin]);

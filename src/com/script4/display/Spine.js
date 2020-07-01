@@ -1,12 +1,12 @@
-import Script4 from '../Script4';
+import { Script4 } from '../Script4';
 import PhaserSpine from '../../phaser-spine';
-import Graphics from './Graphics';
-import ButtonSuper from './ButtonSuper';
-import TextField from '../text/TextField';
-import TouchEvent from '../events/TouchEvent';
-import TouchPhase from '../events/TouchPhase';
+import { Graphics } from './Graphics';
+import { ButtonSuper } from './ButtonSuper';
+import { TextField } from '../text/TextField';
+import { TouchEvent } from '../events/TouchEvent';
+import { TouchPhase } from '../events/TouchPhase';
 
-export default class Spine extends PhaserSpine.Spine {
+export class Spine extends PhaserSpine.Spine {
 
 	/**
 	*
@@ -139,10 +139,13 @@ export default class Spine extends PhaserSpine.Spine {
 
 	removeFromParent() { 
 		for (var i = this.numChildren - 1; i > -1; i--) {
-			this.removeChild(getChildAt(i));
+			this.removeChild(this.getChildAt(i));
 		}
+
 		this.killAll();
 		if (this.parent) { this.parent.removeChild(this); }
+
+		this.destroy();
 	}
 
 }

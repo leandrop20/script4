@@ -1,14 +1,14 @@
-import Script4 from '../Script4';
-import Point from '../geom/Point';
-import TextField from '../text/TextField';
-import Align from '../utils/Align';
-import Spine from './Spine';
-import ButtonSuper from './ButtonSuper';
-import Graphics from './Graphics';
-import TouchEvent from '../events/TouchEvent';
-import TouchPhase from '../events/TouchPhase';
+import { Script4 } from '../Script4';
+import { Point } from '../geom/Point';
+import { TextField } from '../text/TextField';
+import { Align } from '../utils/Align';
+import { Spine } from './Spine';
+import { ButtonSuper } from './ButtonSuper';
+import { Graphics } from './Graphics';
+import { TouchEvent } from '../events/TouchEvent';
+import { TouchPhase } from '../events/TouchPhase';
 
-export default class Sprite extends Phaser.Group {
+export class Sprite extends Phaser.Group {
 
 	constructor(x = 0, y = 0) {
 		super(Script4.core);

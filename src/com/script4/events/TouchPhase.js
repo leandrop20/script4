@@ -1,4 +1,4 @@
-export default class TouchPhase {
+export class TouchPhase {
 
 	static get BEGAN() { return 'began'; };
 	static get MOVED() { return 'moved'; };

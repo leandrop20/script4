@@ -1,4 +1,4 @@
-export default class Align {
+export class Align {
 
 	static get BOTTOM() { return 'bottom'; }
 	static get CENTER() { return 'center'; }

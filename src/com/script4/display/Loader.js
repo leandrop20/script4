@@ -1,6 +1,6 @@
-import Script4 from '../Script4';
+import { Script4 } from '../Script4';
 
-export default class Loader extends Phaser.Loader {
+export class Loader extends Phaser.Loader {
 
 	constructor(target) {
 		super(Script4.core);

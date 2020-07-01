@@ -1,12 +1,12 @@
-import Script4 from '../Script4';
-import Touch from "./Touch";
-import TouchPhase from "./TouchPhase";
-import Sprite from "../display/Sprite";
-import Spine from "../display/Spine";
-import Rectangle from "../utils/Rectangle";
-import Point from "../geom/Point";
+import { Script4 } from '../Script4';
+import { Touch } from "./Touch";
+import { TouchPhase } from "./TouchPhase";
+import { Sprite } from "../display/Sprite";
+import { Spine } from "../display/Spine";
+import { Rectangle } from "../utils/Rectangle";
+import { Point } from "../geom/Point";
 
-export default class TouchEvent {
+export class TouchEvent {
 
 	constructor(type, target, currentTarget) {
 		this.type = type;
@@ -17,6 +17,8 @@ export default class TouchEvent {
 	static get TOUCH() { return 'touch'; };
 
 	getTouch(target, swap = false) {
+		if (!target || target.game == null) { return; }
+		
 		var globalX = target.game.input.x;
 		var globalY = target.game.input.y;
 
@@ -34,6 +36,8 @@ export default class TouchEvent {
 		}
 
 		function getObjTouch(_target, _this) {
+			if (!_target) { return; }
+
 			if (_target instanceof Sprite || _target instanceof Spine 
 					|| _target instanceof Phaser.Group) {
 				var obj;

@@ -1,4 +1,4 @@
-export default class ContextMenuItem {
+export class ContextMenuItem {
 
 	constructor(_text, _subtext = null) {
 		this.text = _text;

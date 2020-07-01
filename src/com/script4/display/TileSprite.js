@@ -1,7 +1,7 @@
-import Script4 from "../Script4";
-import Align from '../utils/Align';
+import { Script4 } from "../Script4";
+import { Align } from '../utils/Align';
 
-export default class TileSprite extends Phaser.TileSprite {
+export class TileSprite extends Phaser.TileSprite {
 
 	/**
 	* texture = if atlas (atlas.textureName) or textureName only!

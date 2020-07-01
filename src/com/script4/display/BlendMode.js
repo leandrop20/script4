@@ -1,4 +1,4 @@
-export default class BlendMode {
+export class BlendMode {
 
 	static get NORMAL() { return Phaser.blendModes.NORMAL; }
 	static get ADD() { return Phaser.blendModes.ADD; }

@@ -1,6 +1,6 @@
-import Script4 from "../Script4";
-import Sprite from "./Sprite";
-import Point from '../geom/Point';
+import { Script4 } from "../Script4";
+import { Sprite } from "./Sprite";
+import { Point } from '../geom/Point';
 
 class Particle {
 
@@ -23,7 +23,7 @@ class Particle {
 
 }
 
-export default class PDParticleSystem extends Sprite {
+export class PDParticleSystem extends Sprite {
 
 	static get emitterID() { return PDParticleSystem._emitterID; }
 	static set emitterID(_value) { return PDParticleSystem._emitterID = _value; }

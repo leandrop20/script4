@@ -1,6 +1,6 @@
-import Script4 from '../Script4';
+import { Script4 } from '../Script4';
 
-export default class ButtonSuper extends Phaser.Button {
+export class ButtonSuper extends Phaser.Button {
 
 	constructor(texture, x = 0, y = 0, callBack = null) {
 		super(Script4.core, x, y, texture, callBack);

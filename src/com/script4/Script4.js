@@ -1,10 +1,10 @@
-import Juggler from './animation/Juggler';
-import Boot from './utils/Boot';
-import Preloader from './utils/Preloader';
-import ContextMenu from './ui/ContextMenu';
-import ContextMenuItem from './ui/ContextMenuItem';
+import { Juggler } from './animation/Juggler';
+import { Boot } from './utils/Boot';
+import { Preloader } from './utils/Preloader';
+import { ContextMenu } from './ui/ContextMenu';
+import { ContextMenuItem } from './ui/ContextMenuItem';
 
-export default class Script4 extends Phaser.Game {
+export class Script4 extends Phaser.Game {
 	
 	/**
 	* root class
@@ -13,19 +13,9 @@ export default class Script4 extends Phaser.Game {
 	* renderer (Phaser.AUTO, Phaser.CANVAS, Phaser.WEBGL)
 	* canvasID string
 	*/
-	constructor(rootClass, width = 768, height = 450, renderer = Phaser.AUTO, canvasID = '') {
+	constructor(rootClass, width = 768, height = 450, renderer = Phaser.AUTO, 
+			canvasID = '', configs = null) {
 		super(width, height, renderer, canvasID);
-
-		Script4.imagesToPreLoader = [
-			{ name: 'imgBar', url: 'assets/images/imgBar.png' },
-			{ name: 'imgBgBar', url: 'assets/images/imgBgBar.png' },
-			{ name: 'imgLoad', url: 'assets/images/imgLoad.png' }
-		];
-		
-		Script4.customPreloader = {
-			name: 'Preloader',
-			class: new Preloader
-		};
 
 		this.rootClass = rootClass;
 		this.state.render = this.render;
@@ -33,18 +23,33 @@ export default class Script4 extends Phaser.Game {
 		this._juggler;
 		this.contextMenu;
 
-		ContextMenu.customItems = [new ContextMenuItem('Script4', Script4.VERSION)];
+		const IMAGES = [
+			{ name: 'imgBar', url: 'assets/images/imgBar.png' },
+			{ name: 'imgBgBar', url: 'assets/images/imgBgBar.png' },
+			{ name: 'imgLoad', url: 'assets/images/imgLoad.png' }
+		];
+		
+		const PRELOADER = {
+			name: 'Preloader',
+			class: new Preloader
+		};
 
-		this.config = {
+		const CONFIGS = {
 			disableVisibilityChange: true,
 			enableDebug: false,
 			backgroundColor: '#22AAE4',
 			// scaleMode: Phaser.ScaleManager.EXACT_FIT,//NO_SCALE, RESIZE, SHOW_ALL, EXACT_FIT
 			fullScreenScaleMode: Phaser.ScaleManager.EXACT_FIT
 		}
+
+		ContextMenu.customItems = [new ContextMenuItem('Script4', Script4.VERSION)];
+
+		Script4.imagesToPreLoader = (Script4.imagesToPreLoader) ? Script4.imagesToPreLoader : IMAGES;
+		Script4.customPreloader = (Script4.customPreloader) ? Script4.customPreloader : PRELOADER;
+		this.config = (configs) ? configs : CONFIGS;
 	}
 
-	static get VERSION() { return 'v0.5.0'; }
+	static get VERSION() { return 'v0.6.1'; }
 
 	static get width() { return Script4.core.width; }
 

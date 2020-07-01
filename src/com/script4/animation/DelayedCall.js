@@ -1,6 +1,6 @@
-import Script4 from "../Script4";
+import { Script4 } from "../Script4";
 
-export default class DelayedCall extends Phaser.Tween {
+export class DelayedCall extends Phaser.Tween {
 
 	constructor(callback, delay, args) {
 		super(new Phaser.Point(), Script4.core, Script4.core.tweens);

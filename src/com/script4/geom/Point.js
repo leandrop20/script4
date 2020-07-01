@@ -1,4 +1,4 @@
-export default class Point extends Phaser.Point {
+export class Point extends Phaser.Point {
 
 	constructor(x, y) {
 		super(x, y);

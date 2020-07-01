@@ -1,4 +1,4 @@
-export default class ScaleMode {
+export class ScaleMode {
 
 	static get EXACT_FIT() { return 0; }
 	static get NO_SCALE() { return 1; }

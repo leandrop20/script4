@@ -1,4 +1,4 @@
-export default class Easing {
+export class Easing {
 
 	static get Regular_easeOut() { return 'Regular.easeOut'; }
 

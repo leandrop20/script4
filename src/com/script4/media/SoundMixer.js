@@ -1,6 +1,6 @@
-import Script4 from "../Script4";
+import { Script4 } from "../Script4";
 
-export default class SoundMixer {
+export class SoundMixer {
 
 	static stopAll() {
 		Script4.core.sound.stopAll();

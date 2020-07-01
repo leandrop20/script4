@@ -1,14 +1,14 @@
-import Script4 from '../Script4';
-import BitmapData from '../display/BitmapData';
-import Align from '../utils/Align';
-import Point from '../geom/Point';
+import { Script4 } from '../Script4';
+import { BitmapData } from '../display/BitmapData';
+import { Align } from '../utils/Align';
+import { Point } from '../geom/Point';
 
-import ButtonSuper from './ButtonSuper';
-import Graphics from './Graphics';
-import TouchEvent from '../events/TouchEvent';
-import TouchPhase from '../events/TouchPhase';
+import { ButtonSuper } from './ButtonSuper';
+import { Graphics } from './Graphics';
+import { TouchEvent } from '../events/TouchEvent';
+import { TouchPhase } from '../events/TouchPhase';
 
-export default class ImageSuper extends Phaser.Image {
+export class ImageSuper extends Phaser.Image {
 
 	/**
 	* texture = if atlas (atlas.textureName) or textureName only!

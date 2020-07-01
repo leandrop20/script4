@@ -1,4 +1,4 @@
-export default class ScrollEvent {
+export class ScrollEvent {
 
 	static get TWEEN_COMPLETE() { return 'myTweenComplete'; }
 	static get MASK_WIDTH() { return 'myMaskWidth'; }

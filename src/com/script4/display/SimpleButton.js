@@ -1,9 +1,9 @@
-import Sprite from './Sprite';
-import ImageSuper from './ImageSuper';
-import TextField from '../text/TextField';
-import Align from '../utils/Align';
+import { Sprite } from './Sprite';
+import { ImageSuper } from './ImageSuper';
+import { TextField } from '../text/TextField';
+import { Align } from '../utils/Align';
 
-export default class SimpleButton extends Sprite {
+export class SimpleButton extends Sprite {
 
 	constructor(texture, _x = 0, _y = 0, _font = null, _text = null) {
 		super();

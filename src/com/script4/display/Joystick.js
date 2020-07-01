@@ -1,8 +1,8 @@
-import Sprite from '../display/Sprite';
-import ImageSuper from '../display/ImageSuper';
-import Event from '../events/Event';
+import { Sprite } from '../display/Sprite';
+import { ImageSuper } from '../display/ImageSuper';
+import { Event } from '../events/Event';
 
-export default class Joystick extends Sprite {
+export class Joystick extends Sprite {
 	
 	constructor(_bg, _pad, _x = 0, _y = 0) {
 		super();

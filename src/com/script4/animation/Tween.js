@@ -1,6 +1,6 @@
-import Script4  from '../Script4';
+import { Script4 } from '../Script4';
 
-export default class Tween extends Phaser.Tween {
+export class Tween extends Phaser.Tween {
 	
 	constructor(target, time, properties) {
 		super(target, Script4.core, Script4.core.tweens);

@@ -1,7 +1,7 @@
-import Script4 from '../Script4';
-import Align from "../utils/Align";
+import { Script4 } from '../Script4';
+import { Align } from "../utils/Align";
 
-export default class TextField extends Phaser.Group {
+export class TextField extends Phaser.Group {
 
 	constructor(width, height, font, text = '', size = null) {
 		super(Script4.core);

@@ -1,9 +1,9 @@
-import Script4 from '../Script4';
-import Graphics from '../display/Graphics';
-import Sprite from '../display/Sprite';
-import Text from '../text/Text';
+import { Script4 } from '../Script4';
+import { Graphics } from '../display/Graphics';
+import { Sprite } from '../display/Sprite';
+import { Text } from '../text/Text';
 
-export default class ContextMenu extends Sprite {
+export class ContextMenu extends Sprite {
 
 	constructor(_x, _y) {
 		super();

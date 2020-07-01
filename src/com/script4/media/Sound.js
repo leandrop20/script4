@@ -1,6 +1,6 @@
-import Script4 from '../Script4';
+import { Script4 } from '../Script4';
 
-export default class Sound extends Phaser.Sound {
+export class Sound extends Phaser.Sound {
 
 	constructor(soundName) {
 		super(Script4.core, soundName);
