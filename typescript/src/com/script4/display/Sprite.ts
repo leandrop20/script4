@@ -186,9 +186,11 @@ export class Sprite extends Phaser.Group {
 	}
 
 	addTouchEventsInChildren(child: any) {
+		let parent: any = this.parent;
+
 		if (this.touchEventCallBack) {
 			this.recursiveSetEvent('add', child, this);
-		} else if (this.parent.touchEventCallBack) {
+		} else if (parent.touchEventCallBack) {
 			this.recursiveSetEvent('add', this, this.parent);
 		}
 	}

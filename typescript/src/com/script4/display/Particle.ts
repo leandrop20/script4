@@ -1,17 +1,23 @@
 import { Point } from '../geom/Point';
 
 export class Particle {
+	
+    sprite: any;
 
     position: Point;
     velocity: Point;
     accel: Point;
-    sprite: any;
+	life!: number;
+	rotate!: number;
+	velRotate!: number;
+	deltaAlpha!: number;
+	deltaScale!: number;
+	deltaColor!: number[];
 
 	constructor() {
 		this.position = new Point();
 		this.velocity = new Point();
 		this.accel = new Point();
-		this.sprite = null;
 	}
 
 	setVelocity(angle: number, speed: number) {

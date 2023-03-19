@@ -1,11 +1,26 @@
 import { Sprite } from './Sprite';
 import { ImageSuper } from './ImageSuper';
 import { TextField } from '../text/TextField';
-import { Align } from '../utils/Align';
+import { Align } from '../enums/Align';
+import { Rectangle } from '../utils/Rectangle';
+import { ButtonEvent } from '../enums/ButtonEvent';
 
 export class SimpleButton extends Sprite {
 
-	constructor(texture, _x = 0, _y = 0, _font = null, _text = null) {
+    texture: ImageSuper;
+    tf!: TextField;
+
+    _enabled: boolean;
+    _listener: any;
+    scaleWhenDown: number;
+
+	constructor(
+        texture: string,
+        x: number = 0,
+        y: number = 0,
+        font: string | null = null,
+        text: string = ''
+    ) {
 		super();
 		this._enabled = true;
 		this._listener;
@@ -17,15 +32,16 @@ export class SimpleButton extends Sprite {
 		this.texture.events.onInputDown.add(this.onDown, this);
 		this.texture.events.onInputUp.add(this.onUp, this);
 
-		if (_font) { this.createTf(_font, _text); }
+		if (font) { this.createTf(font, text); }
 
 		this.scaleWhenDown = 0.95;
 
-		this.position.set(_x, _y);
+		this.position.set(x, y);
 	}
 
-	set upState(texture) {
+	set upState(texture: any) {
 		var atlas = texture;
+
 		if (!(texture instanceof PIXI.Texture)) {
 			if (texture.indexOf('.') != -1) {
 				var parts = texture.split('.');
@@ -35,17 +51,19 @@ export class SimpleButton extends Sprite {
 				texture = null;
 			}
 		}
+
 		this.texture.loadTexture(atlas, texture);
 		this.texture.readjustSize();
 	}
 
-	set textureColor(value) { this.texture.tint = value; }
+	set textureColor(value: number) { this.texture.tint = value; }
 
 	get enabled() { return this._enabled; }
 
-	set enabled(bool) {
+	set enabled(bool: boolean) {
 		this._enabled = bool;
 		this.texture.inputEnabled = bool;
+
 		if (bool) {
 			this.alpha = 1.0;
 		} else {
@@ -53,27 +71,27 @@ export class SimpleButton extends Sprite {
 		}
 	}
 
-	createTf(_font, _text) {
-		this.tf = new TextField(this.texture.width, this.texture.height, _font, _text);
+	createTf(font: string, text: string = '') {
+		this.tf = new TextField(this.texture.width, this.texture.height, font, text);
 		this.tf.inputEnabled = false;
 		this.tf.position.set(-this.texture.width * 0.5, -this.texture.height * 0.5);
 		this.addChild(this.tf);
 	}
 
-	set fontName(_fontName) {
+	set fontName(fontName: string) {
 		if (this.tf) {
-			this.tf.font = _fontName;
+			this.tf.field.font = fontName;
 		} else {
-			this.createTf(_fontName);
+			this.createTf(fontName);
 		}
 	}
 
-	set fontColor(_value) {
-		this.tf.textColor = _value;
+	set fontColor(value: number) {
+		this.tf.textColor = value;
 	}
 
-	set fontSize(_value) {
-		this.tf.fontSize = _value;
+	set fontSize(value: number) {
+		this.tf.fontSize = value;
 		this.tf.text = this.tf.text;
 	}
 
@@ -83,12 +101,13 @@ export class SimpleButton extends Sprite {
 		if (this.tf) { this.tf.text = value; }
 	}
 
-	set textBound(rect) {
+	set textBound(rect: Rectangle) {
 		if (this.tf) {
 			this.tf.position.set(
 				(-this.texture.width * 0.5) + rect.x,
 				(-this.texture.height * 0.5) + rect.y
 			);
+
 			if (rect.width != 0) { this.tf.width = rect.width; }
 			if (rect.height != 0) { this.tf.height = rect.height; }
 		}
@@ -110,17 +129,19 @@ export class SimpleButton extends Sprite {
 		this._listener({ target: this });
 	}
 
-	addEventListener(type, listener) {
-		if (!type) throw('event type not found!');
+    override addEventListener(type: ButtonEvent, listener: Function): void {
+        if (!type) throw('event type not found!');
+
 		this._listener = listener;
 		this.texture.events[type].add(this.onEvent, this);
-	}
+    }
 
-	removeEventListener(type, listener) {
-		if (!type) throw('event type not found!');
+    override removeEventListener(type: ButtonEvent, listener: Function): void {
+        if (!type) throw('event type not found!');
+
 		this._listener = null;
 		this.texture.events[type].remove(this.onEvent, this);
-	}
+    }
 
 	destroyAll() {
 		this.removeChildren();

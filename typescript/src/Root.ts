@@ -1,8 +1,12 @@
+import { DragonBones } from './com/script4/display/DragonBones';
 import { ImageSuper } from './com/script4/display/ImageSuper';
+import { Sprite } from './com/script4/display/Sprite';
 
-export class Root {
+export class Root extends Sprite {
 
     constructor() {
+		super();
+
         // this.addChild(new TouchEvents());
 		// this.addChild(new ScrollerTest());
 		
@@ -11,7 +15,7 @@ export class Root {
 		t.scale.set(0.37);
 		this.addChild(t);
 
-		var dragonbones = new DragonBones('Dragon', 384, 300, [{ anime:'walk', _function:pos }]);
+		var dragonbones = new DragonBones('Dragon', 384, 300, [{ anime: 'walk', func: pos }]);
 		console.log(dragonbones.animationNames());
 		dragonbones.scale.set(0.4);
 		dragonbones.play('walk', 2);

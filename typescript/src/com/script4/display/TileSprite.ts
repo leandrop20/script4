@@ -1,21 +1,28 @@
-import { Script4 } from "../Script4";
-import { Align } from '../utils/Align';
+import { Script4 } from '../Script4';
+import { Align } from '../enums/Align';
 
 export class TileSprite extends Phaser.TileSprite {
 
 	/**
 	* texture = if atlas (atlas.textureName) or textureName only!
 	*/
-	constructor(texture, x = 0, y = 0, width = 10, height = 10) {
-		var atlas = texture;
-		if (texture.indexOf('.') != -1) {
+	constructor(
+        texture: string,
+        x: number = 0,
+        y: number = 0,
+        width: number = 10,
+        height: number = 10
+    ) {
+		let atlas: string = texture;
+        let _texture: any;
+
+		if (texture && texture.indexOf('.') != -1) {
 			var parts = texture.split('.');
 			atlas = parts[0];
-			texture = parts[1] + '.png';
-		} else {
-			texture = null;
+			_texture = parts[1] + '.png';
 		}
-		super(Script4.core, x, y, width, height, atlas, texture);
+
+		super(Script4.core, x, y, width, height, atlas, _texture);
 	}
 
 	align(hAlign = Align.CENTER, vAlign = Align.MIDDLE) {
@@ -23,7 +30,7 @@ export class TileSprite extends Phaser.TileSprite {
 		this.vAlign = vAlign;
 	}
 
-	set hAlign(value) {
+	set hAlign(value: Align) {
 		switch (value) {
 			case Align.LEFT: this.anchor.x = 0.0; break;
 			case Align.CENTER: this.anchor.x = 0.5; break;
@@ -31,7 +38,7 @@ export class TileSprite extends Phaser.TileSprite {
 		}
 	}
 
-	set vAlign(value) {
+	set vAlign(value: Align) {
 		switch (value) {
 			case Align.TOP: this.anchor.y = 0.0; break;
 			case Align.MIDDLE: this.anchor.y = 0.5; break;
@@ -39,6 +46,10 @@ export class TileSprite extends Phaser.TileSprite {
 		}
 	}
 
-	removeFromParent() { if (this.parent) { this.parent.removeChild(this); } }
+	removeFromParent() {
+        if (this.parent) {
+            this.parent.removeChild(this);
+        }
+    }
 	
 }

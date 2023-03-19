@@ -5,19 +5,25 @@ import { ButtonSuper } from './ButtonSuper';
 import { TextField } from '../text/TextField';
 import { TouchEvent } from '../events/TouchEvent';
 import { TouchPhase } from '../enums/TouchPhase';
-import { SpineArg } from '../interface/SpineArg';
+import { IAnimationArg } from '../interface/IAnimationArg';
+
+Object.defineProperty(Phaser.Group.prototype, 'name', {
+    writable: true,
+    configurable: true
+});
 
 export class Spine extends PhaserSpine.Spine {
 
     box: Graphics;
+    enterFrameEvent!: Phaser.TimerEvent | null;
 
-    args: SpineArg[];
+    args: IAnimationArg[];
     touchEventCallBack!: Function;
     lastAnimation!: string;
 
-	constructor(armatureName: string, x: number = 0, y: number = 0, _args: SpineArg[] = []) {
+	constructor(armatureName: string, x: number = 0, y: number = 0, _args: IAnimationArg[] = []) {
 		super(Script4.core, armatureName);
-		this.name = null;
+		this.name = '';
 		this.args = _args;
 		this.parent.removeChild(this);
 		this.position.set(x, y);
@@ -41,13 +47,13 @@ export class Spine extends PhaserSpine.Spine {
 		this.state.onComplete = function() { _this.onComplete(); }
 	}
 
-	set name(value: string) {
+	override set name(value: string) {
 		if (this.box) { this.box.name = value; }
 
 		super.name = value;
 	}
 
-	set animationSpeed(value: number = 1.0) {
+	set animationSpeed(value: number) {
 		this.state.timeScale = value;
 	}
 
@@ -111,20 +117,20 @@ export class Spine extends PhaserSpine.Spine {
 		this.touchEventCallBack(new TouchEvent(TouchPhase.MOVED, this.parent));
 	}
 
-	addEventListener(type, listener) {
+	addEventListener(type: any, listener: Function) {
 		if (!type) throw('event type not found!');
 
 		if (type == 'touch') {
 			this.touchEventCallBack = listener;
 			this['onChildInputDown'].add(this.touchEvent);
 			this['onChildInputUp'].add(this.touchEvent);
-			for (var i=0;i<this.numChildren;i++) {
-				if (
-                    this.getChildAt(i) instanceof TextField ||
-                    this.getChildAt(i) instanceof Spine
-                ) {
-					this.getChildAt(i)['onChildInputDown'].add(this.touchEvent);
-					this.getChildAt(i)['onChildInputUp'].add(this.touchEvent);
+
+			for (let i = 0;i < this.numChildren; i++) {
+                let obj: any = this.getChildAt(i);
+
+				if (obj instanceof TextField || obj instanceof Spine) {
+					obj['onChildInputDown'].add(this.touchEvent);
+					obj['onChildInputUp'].add(this.touchEvent);
 				}
 			}
 		} else if (type == 'enterFrame') {
@@ -132,31 +138,40 @@ export class Spine extends PhaserSpine.Spine {
 		}
 	}
 
-	removeEventListener(type, listener) {
+	removeEventListener(type: any, listener: Function) {
 		if (!type) throw('event type not found!');
-        
+
 		if (type == 'touch') {
 			this['onChildInputDown'].remove(this.touchEvent);
 			this['onChildInputUp'].remove(this.touchEvent);
-			for (var i=0;i<this.numChildren;i++) {
-				if (this.getChildAt(i) instanceof TextField || this.getChildAt(i) instanceof Spine) {
-					this.getChildAt(i)['onChildInputDown'].remove(this.touchEvent);
-					this.getChildAt(i)['onChildInputUp'].remove(this.touchEvent);
+
+			for (let i = 0;i < this.numChildren; i++) {
+                let obj: any = this.getChildAt(i);
+
+				if (obj instanceof TextField || obj instanceof Spine) {
+					obj['onChildInputDown'].remove(this.touchEvent);
+					obj['onChildInputUp'].remove(this.touchEvent);
 				}
 			}
 		} else if (type == 'enterFrame') {
 			if (this.enterFrameEvent) { 
-				this.game.time.events.remove(this.enterFrameEvent); this.enterFrameEvent = null;
+				this.game.time.events.remove(this.enterFrameEvent);
+                this.enterFrameEvent = null;
 			}
 		}
 	}
 
 	removeFromParent() { 
 		for (var i = this.numChildren - 1; i > -1; i--) {
-			this.removeChild(getChildAt(i));
+            let obj: any = this.getChildAt(i);
+			this.removeChild(obj);
 		}
+
 		this.killAll();
-		if (this.parent) { this.parent.removeChild(this); }
+
+		if (this.parent) {
+            this.parent.removeChild(this);
+        }
 	}
 
 }

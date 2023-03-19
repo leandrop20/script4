@@ -1,6 +1,7 @@
 import { Script4 } from '../Script4';
 import { Sprite } from './Sprite';
 import { Point } from '../geom/Point';
+import { Particle } from './Particle';
 
 export class PDParticleSystem extends Sprite {
 
@@ -12,6 +13,7 @@ export class PDParticleSystem extends Sprite {
     target: any;
 
     texture: string;
+    counter: number;
     positionVar: Point;
     emitterX: number;
     emitterY: number;
@@ -40,6 +42,10 @@ export class PDParticleSystem extends Sprite {
     accelAngleVar: number;
     accelSpeed: number;
     accelSpeedVar: number;
+    blendMode: number;
+    velocityLimit: Point;
+    startColor: number[];
+    endColor: number[];
 
 	constructor(texture: string) {
 		super(0, 0);
@@ -65,7 +71,7 @@ export class PDParticleSystem extends Sprite {
 		this.durationTimer = 0;
 		this.rate = settings.rate;
 		this.rateTimer = 0;
-		this.count = settings.count;
+		this.counter = settings.count;
 		this.active = false;
 		this.velRotate = settings.velRotate;
 		this.velRotateVar = settings.velRotateVar;
@@ -89,12 +95,13 @@ export class PDParticleSystem extends Sprite {
 		this.blendMode = settings.blendMode;
 	}
 
-	getVariance(value) {
+	getVariance(value: number): number {
 		return (Math.random() * value) * (Math.random() > 0.5 ? -1 : 1);
 	}
 
 	addParticle() {
-		var particle = new Particle();
+		var particle: Particle = new Particle();
+
 		particle.position.x = this.emitterX + this.getVariance(this.positionVar.x);
 		particle.position.y = this.emitterY + this.getVariance(this.positionVar.y);
 
@@ -104,7 +111,9 @@ export class PDParticleSystem extends Sprite {
 
 		particle.setVelocity(angle, speed);
 
-		if (this.angleVar !== this.accelAngleVar) { angleVar = this.getVariance(this.accelAngleVar); }
+		if (this.angleVar !== this.accelAngleVar) {
+            angleVar = this.getVariance(this.accelAngleVar);
+        }
 
 		angle = this.accelAngle + angleVar;
 		speed = this.accelSpeed + this.getVariance(this.accelSpeedVar);
@@ -113,16 +122,26 @@ export class PDParticleSystem extends Sprite {
 
 		particle.life = this.life + this.getVariance(this.lifeVar);
 
-		particle.sprite = new Phaser.Sprite(Script4.core, particle.position.x, particle.position.y, this.texture);
+		particle.sprite = new Phaser.Sprite(
+            Script4.core,
+            particle.position.x,
+            particle.position.y,
+            this.texture
+        );
 		particle.sprite.anchor.set(0.5);
 		particle.sprite.particle = particle;
 		particle.sprite.blendMode = Phaser.blendModes[this.blendMode];
-		particle.sprite.tint = Phaser.Color.getColor(this.startColor[0], this.startColor[1], this.startColor[2]);
+		particle.sprite.tint = Phaser.Color.getColor(
+            this.startColor[0],
+            this.startColor[1],
+            this.startColor[2]
+        );
 
 		particle.rotate = this.rotate + this.getVariance(this.rotateVar);
 		particle.velRotate = this.velRotate + this.getVariance(this.velRotateVar);
 
 		particle.deltaColor = [0,0,0];
+
 		for (var i = 0; i < this.startColor.length; i++) {
 			if (this.startColor[i] !== this.endColor[i]) {
 				particle.deltaColor[i] = this.endColor[i]-this.startColor[i];
@@ -132,7 +151,11 @@ export class PDParticleSystem extends Sprite {
 			}
 		}
 
-		particle.sprite.tint = Phaser.Color.getColor(...this.startColor);
+		particle.sprite.tint = Phaser.Color.getColor(
+            this.startColor[0],
+            this.startColor[1],
+            this.startColor[2]
+        );
 
 		if (this.startAlpha !== this.endAlpha) {
 			particle.deltaAlpha = this.endAlpha - this.startAlpha;
@@ -144,6 +167,7 @@ export class PDParticleSystem extends Sprite {
 		particle.sprite.alpha = this.startAlpha;
 
 		var startScale = this.startScale + this.getVariance(this.startScaleVar);
+
 		if (this.startScale !== this.endScale) {
 			particle.deltaScale = (this.endScale + this.getVariance(this.endScaleVar)) - startScale;
 			particle.deltaScale /= particle.life;
@@ -156,20 +180,30 @@ export class PDParticleSystem extends Sprite {
 		this.addChild(particle.sprite);
 	}
 
-	updateParticle(particle, delta) {
+	updateParticle(particle: Particle, delta: number): any {
 		if (particle.life > 0) {
             particle.life -= delta;
-            if(particle.life <= 0) { return this.removeParticle(particle); }
+
+            if (particle.life <= 0) {
+                return this.removeParticle(particle);
+            }
         }
 
         if (this.targetForce > 0) {
             particle.accel.set(this.target.x - particle.position.x, this.target.y - particle.position.y);
-            particle.accel.normalize().multiply(this.targetForce);
+            particle.accel.normalize().multiply(this.targetForce, 0);
         }
 
         particle.velocity.multiplyAdd(particle.accel, delta);
-        if (this.velocityLimit.x > 0 || this.velocityLimit.y > 0)  { particle.velocity.limit(this.velocityLimit); }
-        if (particle.velRotate) { particle.velocity.rotate(particle.velRotate * delta); }
+
+        if (this.velocityLimit.x > 0 || this.velocityLimit.y > 0)  {
+            particle.velocity.limit(this.velocityLimit.x);
+        }
+
+        if (particle.velRotate) {
+            particle.velocity.rotate(particle.velRotate * delta, 0, 0);
+        }
+
         particle.position.multiplyAdd(particle.velocity, 1 * delta);
 
         if (particle.deltaColor) {
@@ -180,42 +214,55 @@ export class PDParticleSystem extends Sprite {
         	particle.sprite.tint = Phaser.Color.getColor(colorValue0, colorValue1, colorValue2);
         }
 
-        if (particle.deltaAlpha) { particle.sprite.alpha = Math.max(0, particle.sprite.alpha + particle.deltaAlpha * delta); }
-        if (particle.deltaScale) { particle.sprite.scale.x = particle.sprite.scale.y += particle.deltaScale * delta; }
+        if (particle.deltaAlpha) {
+            particle.sprite.alpha = Math.max(
+                0,
+                particle.sprite.alpha + particle.deltaAlpha * delta
+            );
+        }
+
+        if (particle.deltaScale) {
+            particle.sprite.scale.x = particle.sprite.scale.y += particle.deltaScale * delta;
+        }
+
         particle.sprite.rotation += particle.rotate * delta;
         particle.sprite.position.x = particle.position.x;
         particle.sprite.position.y = particle.position.y;
 	}
 
-	removeParticle(particle) {
-		this.removeChild(particle.sprite);
-		particle = null;
+	removeParticle(particle: Particle) {
+        particle.sprite.destroy();
 	}
 
-	emit(count = 1) {
+	emit(count: number = 1) {
 		for (var i = 0; i < count; i++) {
 			this.addParticle();
 		}
 	}
 
-	update() {
-	    var delta = Script4.core.time.elapsed / 1000;
+    override update(): void {
+        var delta = Script4.core.time.elapsed / 1000;
 
 		this.durationTimer += delta;
+        
 		if (this.duration > 0) { this.active = this.durationTimer < this.duration; }
 
 		if (this.rate && this.active) {
 			this.rateTimer += delta;
 			if (this.rateTimer >= this.rate) {
 				this.rateTimer = 0;
-				this.emit(this.count);
+				this.emit(this.counter);
 			}
 		}
 
 		for (var i = this.children.length - 1; i >= 0; i--) {
-			this.updateParticle(this.children[i].particle, delta);
+            let obj: any = this.children[i];
+
+			this.updateParticle(obj.particle, delta);
 		}
-	}
+
+        super.update();
+    }
 
 	start(duration = 1.0) {
 		this.active = true;
@@ -226,9 +273,18 @@ export class PDParticleSystem extends Sprite {
 
 	stop(clearParticles = false) {
 		this.active = false;
-		if (clearParticles) { this.removeChildren(); }
+
+		if (clearParticles) {
+            this.removeChildren();
+        }
 	}
 
-	removeFromParent() { if (this.parent) { this.parent.removeChild(this); } }
+    override removeFromParent(): void {
+        if (this.parent) {
+            this.parent.removeChild(this);
+        }
+
+        super.removeFromParent();
+    }
 
 }

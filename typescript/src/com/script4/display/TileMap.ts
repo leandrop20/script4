@@ -3,6 +3,9 @@ import { Align } from '../enums/Align';
 
 export class TileMap extends Phaser.Tilemap {
 
+    anchor!: Phaser.Point;
+    parent: any;
+
 	constructor(texture: string, tileW = 0, tileH = 0, width = 0, height = 0) {
 		super(Script4.core, texture, tileW, tileH, width, height);
 	}

@@ -40,7 +40,7 @@ export class ImageSuper extends Phaser.Image {
 
 	touchEventCallBack!: Function;
 	atlasPosition!: Point;
-	enterFrameEvent!: Phaser.TimerEvent;
+	enterFrameEvent!: Phaser.TimerEvent | null;
 
 	/**
 	* texture = if atlas (atlas.textureName) or textureName only!
@@ -61,6 +61,24 @@ export class ImageSuper extends Phaser.Image {
 		super(Script4.core, x, y, atlas, texture);
 
 		this.inputEnabled = true;
+
+		Object.defineProperty(Phaser.Image, 'x', {
+			get: () => {
+				return this.position.x;
+			},
+			set: (value: number) => {
+				this.position.x = this.atlasPosition.x + value;
+			}
+		});
+
+		Object.defineProperty(Phaser.Image, 'y', {
+			get: () => {
+				return this.position.y;
+			},
+			set: (value: number) => {
+				this.position.y = this.atlasPosition.y + value;
+			}
+		});
 	}
 
 	override loadTexture(
@@ -102,17 +120,17 @@ export class ImageSuper extends Phaser.Image {
 		this.height = this.texture.frame.height;
 	}
 
-	override get x(): number { return this.position.x; }
+	// override get x(): number { return this.position.x; }
 
-	override set x(value: number) {
-		this.position.x = this.atlasPosition.x + value;
-	}
+	// override set x(value: number) {
+	// 	this.position.x = this.atlasPosition.x + value;
+	// }
 
-	override get y(): number { return this.position.y; }
+	// override get y(): number { return this.position.y; }
 
-	override set y(value: number) {
-		this.position.y = this.atlasPosition.y + value;
-	}
+	// override set y(value: number) {
+	// 	this.position.y = this.atlasPosition.y + value;
+	// }
 
 	get color(): number { return this.tint; }
 
@@ -180,16 +198,19 @@ export class ImageSuper extends Phaser.Image {
 				: object;
 			currentTarget = object;
 			target = getTarget(object);
+			let touchPhase: TouchPhase;
 
 			if (isDown == undefined) {
 				target.isTouchDown = true;
 				target.game.input.addMoveCallback(target.onMove, target);
-				target.touchEventCallBack(new TouchEvent(TouchPhase.BEGAN, target, currentTarget));
+				touchPhase = TouchPhase.BEGAN;
 			} else {
 				target.isTouchDown = false;
 				target.game.input.deleteMoveCallback(target.onMove, target);
-				target.touchEventCallBack(new TouchEvent(TouchPhase.ENDED, target, currentTarget));
+				touchPhase = TouchPhase.ENDED;
 			}
+
+			target.touchEventCallBack(new TouchEvent(touchPhase, target, currentTarget));
 		}
 
 		function getTarget(_obj: any): any {
@@ -205,7 +226,7 @@ export class ImageSuper extends Phaser.Image {
 		this.touchEventCallBack(new TouchEvent(TouchPhase.MOVED, this));
 	}
 
-	addEventListener(type, listener: Function) {
+	addEventListener(type: any, listener: Function) {
 		if (!type) throw('event type not found!');
 		
 		if (type == 'touch') {
@@ -218,7 +239,7 @@ export class ImageSuper extends Phaser.Image {
 		}
 	}
 
-	removeEventListener(type, listener: Function) {
+	removeEventListener(type: any, listener: Function) {
 		if (!type) throw('event type not found!');
 
 		if (type == 'touch') {

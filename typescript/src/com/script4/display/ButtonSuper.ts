@@ -1,4 +1,5 @@
 import { Script4 } from '../Script4';
+import { ButtonEvent } from '../enums/ButtonEvent';
 
 export class ButtonSuper extends Phaser.Button {
 
@@ -21,13 +22,13 @@ export class ButtonSuper extends Phaser.Button {
 		this.scale.set(1.0);
 	}
 
-	addEventListener(type: Event, listener: Function) {
+	addEventListener(type: ButtonEvent, listener: Function) {
 		if (!type) throw('event type not found!');
 		
 		this[type].add(listener);
 	}
 
-	removeEventListener(type: Event, listener: Function) {
+	removeEventListener(type: ButtonEvent, listener: Function) {
 		if (!type) throw('event type not found!');
 
 		this[type].remove(listener);

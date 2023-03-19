@@ -97,14 +97,18 @@ export class TouchEvent {
 
 		function centerDrag(_target: any): Point {
 			try {
-				var boundsCenterLocalCoord: Point = new Phaser
+                let x: number = Script4.core
                     .InputHandler(Script4.core)
-                    .globalToLocal(new Phaser.Point(_target.centerX, _target.centerY));
+                    .globalToLocalX(_target.centerX);
+                let y: number = Script4.core
+                    .InputHandler(Script4.core)
+                    .globalToLocalY(_target.centerY);
+                
+				var boundsCenterLocalCoord: Point = new Point(x, y);
+                
 				globalX = globalX + (_target.x - boundsCenterLocalCoord.x);
 	            globalY = globalY + (_target.y - boundsCenterLocalCoord.y);
-	        } catch (e) {
-	        	//Error
-	        }
+	        } catch (e) { /* Error */ }
 
 			return new Point(globalX, globalY);
 		}

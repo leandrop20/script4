@@ -1,9 +1,12 @@
 import { Script4 } from '../Script4';
-import { PhaserDragonBones } from '../../dragonbones/DragonBones';
-import { Event } from '../../script4/events/Event';
-import { PhaserFactory } from '../../dragonbones/PhaserFactory';
+import { DragonBones as PhaserDragonBones } from '../../dragonbones/DragonBones';
+import { Event } from '../enums/Event';
+import { IAnimationArg } from '../interface/IAnimationArg';
 
 export class DragonBones extends PhaserDragonBones {
+
+    args: IAnimationArg[];
+    ID: string;
 
 	/**
 	*
@@ -12,7 +15,7 @@ export class DragonBones extends PhaserDragonBones {
 	* @param y Number
 	* @param _args Array [{ anime:, func: }]
 	*/
-	constructor(armatureName, x = 0, y = 0, _args = []) {
+	constructor(armatureName: string, x = 0, y = 0, _args = []) {
 		super(Script4.core, armatureName);
 		this.args = _args;
 		this.ID = armatureName;
@@ -28,33 +31,33 @@ export class DragonBones extends PhaserDragonBones {
 		return this.armature.animation.animationNames;
 	}
 
-	play(animationName, playTimes = -1) {
+	play(animationName: string, playTimes = -1) {
 		this.armature.animation.play(animationName, playTimes);
 	}
 
-	set debug(value) {
-		this.armature.debugDraw = value;
+	set debug(bool: boolean) {
+		this.armature.debugDraw = bool;
 	}
 
-	getBone(name) {
+	getBone(name: string): any {
 		return this.armature._armature.getBone(name);
 	}
 
-	getSlot (name) {
+	getSlot (name: string): any {
 		return this.armature._armature.getSlot(name);
 	}
 
-	factoryImage(_name, dragonName = null) {
+	factoryImage(name: string, dragonName: any = null) {
 		dragonName = (dragonName) ? dragonName : this.ID;
-		return this.factory.getTextureDisplay(_name, dragonName);
+		return this.factory.getTextureDisplay(name, dragonName);
 	}
 
-	onUpdate(e) {
+	onUpdate(e: any) {
 		if (this.armature.animation.isCompleted) {
 			if (this.args != null) {
 				for (var i = 0; i < this.args.length; i++) {
 					if (this.armature.animation.lastAnimationState.name == this.args[i].anime) {
-						this.args[i]._function();
+						this.args[i].func();
 						break;
 					}
 				}
