@@ -15,7 +15,7 @@ export class DragonBones extends PhaserDragonBones {
 	* @param y Number
 	* @param _args Array [{ anime:, func: }]
 	*/
-	constructor(armatureName: string, x = 0, y = 0, _args = []) {
+	constructor(armatureName: string, x = 0, y = 0, _args: IAnimationArg[] = []) {
 		super(Script4.core, armatureName);
 		this.args = _args;
 		this.ID = armatureName;

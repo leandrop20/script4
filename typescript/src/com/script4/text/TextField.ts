@@ -33,7 +33,7 @@ export class TextField extends Phaser.Group {
         this.field = new Phaser.BitmapText(Script4.core, 0, 0, font, text);
         this.field.align = Align.CENTER;
         this.field.maxWidth = width;
-        this.field.fontSize = (size) ? size : this.field.data.font.size;
+        this.field.fontSize = (size) ? size : this.field.fontSize;
         this.container.addChild(this.field);
 
         this._mask = new Phaser.Graphics(Script4.core, 0, 0);

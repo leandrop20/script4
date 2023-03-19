@@ -165,8 +165,8 @@ export class Bone extends TransformObject {
             return;
         }
         this._ik = null;
-        var oldSlots = null;
-        var oldBones = null;
+        var oldSlots: any = null;
+        var oldBones: any = null;
         if (this._armature) {
             oldSlots = this.getSlots();
             oldBones = this.getBones();

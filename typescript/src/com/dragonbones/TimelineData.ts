@@ -14,7 +14,7 @@ export class TimelineData extends BaseObject {
 	}
 
 	override _onClear () {
-        var prevFrame = null;
+        var prevFrame: any = null;
         for (var i = 0, l = this.frames.length; i < l; ++i) {
             var frame = this.frames[i];
             if (prevFrame && frame != prevFrame) {

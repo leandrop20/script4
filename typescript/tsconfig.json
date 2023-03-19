@@ -4,13 +4,14 @@
         "forceConsistentCasingInFileNames": true,
         "strict": true,
         "allowJs": true,
-        "noImplicitOverride": true,
+        "noImplicitOverride": false,
         "noPropertyAccessFromIndexSignature": true,
-        "noImplicitReturns": true,
-        "noImplicitAny": true,
+        "noImplicitReturns": false,
+        "noImplicitAny": false,
         "noFallthroughCasesInSwitch": true,
         "sourceMap": true,
-        "declaration": false,
+        "declaration": true,
+        // "declarationDir": "./dist/@types",
         "downlevelIteration": true,
         "experimentalDecorators": true,
         "moduleResolution": "node",
@@ -20,10 +21,6 @@
         "lib": [
             "es2020",
             "dom"
-        ],
-        "typeRoots": [
-            "./node_modules/phaser-ce/typescript/phaser.d.ts",
-            "./node_modules/phaser-ce/typescript/pixi.d.ts",
-        ],
+        ]
     }
 }

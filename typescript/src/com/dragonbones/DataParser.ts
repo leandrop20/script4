@@ -264,7 +264,7 @@ export class DataParser {
     }
 
     _globalToLocal(armature: any) {
-        var keyFrames = [];
+        var keyFrames: any[] = [];
         var bones = armature.sortedBones.concat().reverse();
         for (var i = 0, l = bones.length; i < l; ++i) {
             var bone = bones[i];
@@ -331,7 +331,7 @@ export class DataParser {
                 frames[this._animation.frameCount] = endFrame;
             }
         }
-        var insertedFrame = null;
+        var insertedFrame: any = null;
         var replacedFrame = frames[frameStart];
         if (replacedFrame && (frameStart == 0 || frames[frameStart - 1] == replacedFrame.prev)) {
             insertedFrame = replacedFrame;
@@ -357,8 +357,8 @@ export class DataParser {
             }
         }
         // Modify frame link and duration.
-        var prevFrame = null;
-        var nextFrame = null;
+        var prevFrame: any = null;
+        var nextFrame: any = null;
         for (var i = 0, l = frames.length; i < l; ++i) {
             var currentFrame = frames[i];
             if (currentFrame && nextFrame != currentFrame) {
@@ -394,12 +394,12 @@ export class DataParser {
      */
     static parseTextureAtlasData (rawData: any, scale = 1) {
         var textureAtlasData: any = {};
-        var subTextureList = rawData[DataParser.SUB_TEXTURE];
+        var subTextureList: any = rawData[DataParser.SUB_TEXTURE];
         for (var i = 0, len = subTextureList.length; i < len; i++) {
             var subTextureObject = subTextureList[i];
             var subTextureName = subTextureObject[DataParser.NAME];
             var subTextureRegion = new Rectangle();
-            var subTextureFrame = null;
+            var subTextureFrame: any = null;
             subTextureRegion.x = subTextureObject[DataParser.X] / scale;
             subTextureRegion.y = subTextureObject[DataParser.Y] / scale;
             subTextureRegion.width = subTextureObject[DataParser.WIDTH] / scale;

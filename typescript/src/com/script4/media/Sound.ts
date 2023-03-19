@@ -6,7 +6,7 @@ export class Sound extends Phaser.Sound {
 	constructor(soundName: string) {
 		super(Script4.core, soundName);
 
-		Script4.core.sound._sounds.push(this);
+		// Script4.core.sound._sounds.push(this);
 	}
 
 	static play(soundName: string, vol: number = 1.0, loop: boolean = false) {

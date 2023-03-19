@@ -6,12 +6,6 @@ export class TweenTimelineState extends TimelineState {
     _tweenProgress!: number;
     _tweenEasing: any;
     _curve: any;
-    _currentFrame: any;
-    _keyFrameCount: any;
-    _animationState: any;
-    _timeline: any;
-    _currentTime: any;
-    _position: any;
 
 	constructor() {
 		super();

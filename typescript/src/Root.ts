@@ -1,6 +1,25 @@
+import { Script4 } from './com/script4/Script4';
+import { DelayedCall } from './com/script4/animation/DelayedCall';
+import { Tween } from './com/script4/animation/Tween';
+import { ButtonSuper } from './com/script4/display/ButtonSuper';
 import { DragonBones } from './com/script4/display/DragonBones';
 import { ImageSuper } from './com/script4/display/ImageSuper';
+import { PDParticleSystem } from './com/script4/display/PDParticleSystem';
+import { SimpleButton } from './com/script4/display/SimpleButton';
+import { Spine } from './com/script4/display/Spine';
 import { Sprite } from './com/script4/display/Sprite';
+import { TileSprite } from './com/script4/display/TileSprite';
+import { Align } from './com/script4/enums/Align';
+import { ButtonEvent } from './com/script4/enums/ButtonEvent';
+import { Event } from './com/script4/enums/Event';
+import { TouchPhase } from './com/script4/enums/TouchPhase';
+import { Transitions } from './com/script4/enums/Transitions';
+import { TouchEvent } from './com/script4/events/TouchEvent';
+import { Sound } from './com/script4/media/Sound';
+import { SoundMixer } from './com/script4/media/SoundMixer';
+import { TextField } from './com/script4/text/TextField';
+import { ScrollerTest } from './possibilities/ScrollerTest';
+import { TouchEvents } from './possibilities/TouchEvents';
 
 export class Root extends Sprite {
 
@@ -25,13 +44,14 @@ export class Root extends Sprite {
 			dragonbones.play('stand');
 		}
 
-		// var t2 = new ImageSuper('imgLoad');
-		// t2.position.set(Script4.width - 90, 40);
-		// this.addChild(t2);
+		var t2 = new ImageSuper('imgLoad');
+		t2.position.set(Script4.width - 90, 40);
+		this.addChild(t2);
 
-		// var spine = new Spine('pipoqueiro', Script4.width * 0.5, Script4.height);
-		// spine.play('walk', true);
-		// this.addChild(spine);
+		var spine = new Spine('pipoqueiro', Script4.width * 0.5, Script4.height);
+		spine.play('walk', true);
+		spine.name = 'explosao';
+		this.addChild(spine);
 
 		// var spine2 = new Spine('pipoqueiro', Script4.width * 0.5, 200);
 		// spine2.play('walk', true);
@@ -53,16 +73,16 @@ export class Root extends Sprite {
 
 		// var bt = new ButtonSuper('btExample', 100, 350);
 		// this.addChild(bt);
-		// bt.addEventListener(Event.TRIGGERED, onTest);
+		// bt.addEventListener(ButtonEvent.TRIGGERED, onTest);
 		// var channel;
 		// function onTest() {
 		// 	console.log('TRIGGERED');
 		// 	channel = Sound.play('coin', 1.0, false);
 		// 	channel.addEventListener(Event.SOUND_COMPLETE, onSoundComplete);
-		// 	// SoundMixer.stopAll();
+		// 	SoundMixer.stopAll();
 		// }
 
-		// function onSoundComplete(e) {
+		// function onSoundComplete(e: any) {
 		// 	console.log('soundComplete');
 		// }
 
@@ -81,7 +101,7 @@ export class Root extends Sprite {
 		// var tf = new TextField(280, 60, 'bitmapFont', 'Hello á World!');
 		// // tf.hAlign = Align.CENTER;
 		// // tf.vAlign = Align.BOTTOM;
-		// tf.align(Align.CENTER, Align.MIDDLE);
+		// // tf.align(Align.CENTER, Align.MIDDLE);
 		// tf.position.set(480, 180);
 		// // tf.appendText(' mais isso');
 		// // tf.text = 'ÁÂÃáâãÉéÓÔÕô';
@@ -116,8 +136,8 @@ export class Root extends Sprite {
 		// container.addChild(b4);
 
 		// container.addEventListener(TouchEvent.TOUCH, onTouch);
-		// var objDrag;
-		// function onTouch(e) {
+		// var objDrag: any;
+		// function onTouch(e: TouchEvent) {
 		// 	var touch = e.getTouch(b4);
 		// 	if (touch) {
 		// 		if (touch.phase == TouchPhase.BEGAN) {
@@ -138,7 +158,7 @@ export class Root extends Sprite {
 		// }
 
 		// this.addEventListener(Event.ENTER_FRAME, loop);
-		// function loop(e) {
+		// function loop(e: any) {
 		// 	spine.position.x -= 2;
 		// 	if (spine.position.x <= 0) {
 		// 		spine.position.x = 770;
@@ -167,32 +187,43 @@ export class Root extends Sprite {
 		// 	alpha: 0.2,
 		// 	scaleX:0.5,
 		// 	scaleY:0.5,
-		// 	transition:Transitions.LINEAR,
+		// 	transition: Transitions.LINEAR,
 		// 	delay:0.2,
-		// 	onComplete:onComplete,
+		// 	onComplete: onComplete,
 		// 	onCompleteArgs:['argTween', 'arg2'],
 		// 	repeatCount:1,
 		// 	reverse: true
 		// });
 
-		// function onComplete(a, b) {
+		// function onComplete(a: any, b: any) {
 		// 	console.log(a);
 		// 	console.log(b);
 		// }
 
-		// var tween = new Tween(t, 0.3, { scaleX:0.3, scaleY:0.3, reverse:true, repeatCount:-1, delay:1.0, 
-		// 	transition:Transitions.EASE_IN });
+		// var tween = new Tween(
+		// 	t,
+		// 	0.3,
+		// 	{
+		// 		scaleX: 0.3,
+		// 		scaleY: 0.3,
+		// 		reverse: true,
+		// 		repeatCount: -1,
+		// 		delay: 1.0, 
+		// 		transition: Transitions.EASE_IN
+		// 	}
+		// );
 		// Script4.juggler.add(tween);
 
-		// Script4.juggler.delayedCall(onDelayedCall, 3.0, ['arg1', 'arg2']);
-		// function onDelayedCall(a, b) {
+		// let delayedCall: any = Script4.juggler.delayedCall(onDelayedCall, 3.0, ['arg1', 'arg2']);
+
+		// var delayedCall: any = new DelayedCall(onDelayedCall, 1.0, ['test2', 'test3']);
+		// delayedCall.repeatCount = 3;
+		// Script4.juggler.add(delayedCall);
+
+		// function onDelayedCall(a: any, b: any) {
 		// 	console.log('delayedCallCompleted: ' + a + ', ' + b);
 		// 	Script4.juggler.remove(delayedCall);
 		// }
-
-		// var delayedCall = new DelayedCall(onDelayedCall, 1.0, ['test2', 'test3']);
-		// delayedCall.repeatCount = 3;
-		// Script4.juggler.add(delayedCall);
     }
 
 }

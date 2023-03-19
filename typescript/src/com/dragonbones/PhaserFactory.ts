@@ -74,9 +74,9 @@ export class PhaserFactory extends BaseFactory {
     }
     
     override _generateSlot(dataPackage: any, slotDisplayDataSet: any) {
-        var slot = BaseObject.borrowObject(PhaserSlot);
+        var slot: any = BaseObject.borrowObject(PhaserSlot);
         var slotData = slotDisplayDataSet.slot;
-        var displayList = [];
+        var displayList: any[] = [];
         slot.name = slotData.name;
         slot._rawDisplay = new Phaser.Sprite(DragonBones.GAME, 0, 0);
         slot._meshDisplay = null;

@@ -51,7 +51,7 @@ export class Animation extends BaseObject {
 
 	_fadeOut(fadeOutTime: any, layer: any, group: any, fadeOutMode: any, pauseFadeOut: any) {
         var i = 0, l = this._animationStates.length;
-        var animationState = null;
+        var animationState: any = null;
         switch (fadeOutMode) {
             case 1 /* SameLayer */:
                 for (; i < l; ++i) {
@@ -502,7 +502,7 @@ export class Animation extends BaseObject {
      * @see #animations
      */
     get animationDataList(): any {
-    	var list = [];
+    	var list: any[] = [];
         for (var i = 0, l = this._animationNames.length; i < l; ++i) {
             list.push(this._animations[this._animationNames[i]]);
         }

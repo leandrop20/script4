@@ -17,14 +17,24 @@ import { ActionData } from './ActionData';
 import { TextureData } from './TextureData';
 import { TweenFrameData } from './TweenFrameData';
 import { DragonBones } from './DragonBones';
+import { MeshData } from './MeshData';
+import { FFDTimelineData } from './FFDTimelineData';
+import { ExtensionFrameData } from './ExtensionFrameData';
+import { EventData } from './EventData';
+import { Matrix } from './Matrix';
 
 export class ObjectDataParser extends DataParser {
+
+    private static __instance: any;
+
+    static get _instance() { return ObjectDataParser.__instance; }
+    static set _instance(value) { ObjectDataParser.__instance = value; }
 
 	constructor() {
 		super();
 	}
 
-	static _getBoolean(rawData, key, defaultValue) {
+	static _getBoolean(rawData: any, key: any, defaultValue: any): any {
         if (key in rawData) {
             var value = rawData[key];
             var valueType = typeof value;
@@ -51,7 +61,7 @@ export class ObjectDataParser extends DataParser {
         return defaultValue;
     }
 
-    static _getNumber(rawData, key, defaultValue) {
+    static _getNumber(rawData: any, key: any, defaultValue: any): any {
         if (key in rawData) {
             var value = rawData[key];
             if (value == null || value == "NaN") {
@@ -62,21 +72,21 @@ export class ObjectDataParser extends DataParser {
         return defaultValue;
     }
 
-    static _getString(rawData, key, defaultValue) {
+    static _getString(rawData: any, key: any, defaultValue: any): any {
         if (key in rawData) {
             return String(rawData[key]);
         }
         return defaultValue;
     }
     
-    static _getParameter(rawData, index, defaultValue) {
+    static _getParameter(rawData: any, index: any, defaultValue: any): any {
         if (rawData.length > index) {
             return rawData[index];
         }
         return defaultValue;
     }
 
-    _parseArmature(rawData, scale) {
+    _parseArmature(rawData: any, scale: any): any {
         var armature = BaseObject.borrowObject(ArmatureData);
         armature.name = ObjectDataParser._getString(rawData, ObjectDataParser.NAME, null);
         armature.frameRate = ObjectDataParser._getNumber(rawData, ObjectDataParser.FRAME_RATE, this._data.frameRate) || this._data.frameRate;
@@ -142,7 +152,7 @@ export class ObjectDataParser extends DataParser {
         return armature;
     }
 
-    _parseBone(rawData) {
+    _parseBone(rawData: any) {
         var bone = BaseObject.borrowObject(BoneData);
         bone.name = ObjectDataParser._getString(rawData, ObjectDataParser.NAME, null);
         bone.inheritTranslation = ObjectDataParser._getBoolean(rawData, ObjectDataParser.INHERIT_TRANSLATION, true);
@@ -158,7 +168,7 @@ export class ObjectDataParser extends DataParser {
         return bone;
     }
 
-    _parseIK(rawData) {
+    _parseIK(rawData: any) {
         var bone = this._armature.getBone(ObjectDataParser._getString(rawData, (ObjectDataParser.BONE in rawData) ? ObjectDataParser.BONE : ObjectDataParser.NAME, null));
         if (bone) {
             bone.ik = this._armature.getBone(ObjectDataParser._getString(rawData, ObjectDataParser.TARGET, null));
@@ -178,7 +188,7 @@ export class ObjectDataParser extends DataParser {
         }
     }
  
-    _parseSlot(rawData, zOrder) {
+    _parseSlot(rawData: any, zOrder: any): any {
         var slot = BaseObject.borrowObject(SlotData);
         slot.name = ObjectDataParser._getString(rawData, ObjectDataParser.NAME, null);
         slot.parent = this._armature.getBone(ObjectDataParser._getString(rawData, ObjectDataParser.PARENT, null));
@@ -212,7 +222,7 @@ export class ObjectDataParser extends DataParser {
         return slot;
     }
  
-    _parseSkin(rawData) {
+    _parseSkin(rawData: any): any {
         var skin = BaseObject.borrowObject(SkinData);
         skin.name = ObjectDataParser._getString(rawData, ObjectDataParser.NAME, "__default") || "__default";
         if (ObjectDataParser.SLOT in rawData) {
@@ -230,7 +240,7 @@ export class ObjectDataParser extends DataParser {
         return skin;
     }
  
-    _parseSlotDisplaySet(rawData) {
+    _parseSlotDisplaySet(rawData: any): any {
         var slotDisplayDataSet = BaseObject.borrowObject(SlotDisplayDataSet);
         slotDisplayDataSet.slot = this._armature.getSlot(ObjectDataParser._getString(rawData, ObjectDataParser.NAME, null));
         if (ObjectDataParser.DISPLAY in rawData) {
@@ -245,7 +255,7 @@ export class ObjectDataParser extends DataParser {
         return slotDisplayDataSet;
     }
  
-    _parseDisplay(rawData) {
+    _parseDisplay(rawData: any): any {
         var display = BaseObject.borrowObject(DisplayData);
         display.name = ObjectDataParser._getString(rawData, ObjectDataParser.NAME, null);
         if (ObjectDataParser.TYPE in rawData && typeof rawData[ObjectDataParser.TYPE] == "string") {
@@ -285,7 +295,7 @@ export class ObjectDataParser extends DataParser {
         return display;
     }
  
-    _parseMesh(rawData) {
+    _parseMesh(rawData: any): any {
         var mesh = BaseObject.borrowObject(MeshData);
         var rawVertices = rawData[ObjectDataParser.VERTICES];
         var rawUVs = rawData[ObjectDataParser.UVS];
@@ -366,7 +376,7 @@ export class ObjectDataParser extends DataParser {
         return mesh;
     }
  
-    _parseAnimation(rawData) {
+    _parseAnimation(rawData: any): any {
         var animation = BaseObject.borrowObject(AnimationData);
         animation.name = ObjectDataParser._getString(rawData, ObjectDataParser.NAME, "__default") || "__default";
         animation.frameCount = Math.max(ObjectDataParser._getNumber(rawData, ObjectDataParser.DURATION, 1), 1);
@@ -419,7 +429,7 @@ export class ObjectDataParser extends DataParser {
             this._isAutoTween = false;
             this._animationTweenEasing = 0;
         }
-        for (var i in this._armature.bones) {
+        for (let i in this._armature.bones) {
             var bone = this._armature.bones[i];
             if (!animation.getBoneTimeline(bone.name)) {
                 var boneTimeline = BaseObject.borrowObject(BoneTimelineData);
@@ -429,7 +439,7 @@ export class ObjectDataParser extends DataParser {
                 animation.addBoneTimeline(boneTimeline);
             }
         }
-        for (var i in this._armature.slots) {
+        for (let i in this._armature.slots) {
             var slot = this._armature.slots[i];
             if (!animation.getSlotTimeline(slot.name)) {
                 var slotTimeline = BaseObject.borrowObject(SlotTimelineData);
@@ -455,7 +465,7 @@ export class ObjectDataParser extends DataParser {
         return animation;
     }
  
-    _parseBoneTimeline(rawData) {
+    _parseBoneTimeline(rawData: any): any {
         var timeline = BaseObject.borrowObject(BoneTimelineData);
         timeline.bone = this._armature.getBone(ObjectDataParser._getString(rawData, ObjectDataParser.NAME, null));
         this._parseTimeline(rawData, timeline, this._parseBoneFrame);
@@ -492,7 +502,7 @@ export class ObjectDataParser extends DataParser {
         return timeline;
     }
 
-    _parseSlotTimeline(rawData) {
+    _parseSlotTimeline(rawData: any): any {
         var timeline = BaseObject.borrowObject(SlotTimelineData);
         timeline.slot = this._armature.getSlot(ObjectDataParser._getString(rawData, ObjectDataParser.NAME, null));
         this._parseTimeline(rawData, timeline, this._parseSlotFrame);
@@ -502,7 +512,7 @@ export class ObjectDataParser extends DataParser {
         return timeline;
     };
  
-    _parseFFDTimeline(rawData) {
+    _parseFFDTimeline(rawData: any): any {
         var timeline = BaseObject.borrowObject(FFDTimelineData);
         timeline.skin = this._armature.getSkin(ObjectDataParser._getString(rawData, ObjectDataParser.SKIN, null));
         timeline.slot = timeline.skin.getSlot(ObjectDataParser._getString(rawData, ObjectDataParser.SLOT, null)); // NAME;
@@ -520,7 +530,7 @@ export class ObjectDataParser extends DataParser {
         return timeline;
     }
     
-    _parseAnimationFrame(rawData, frameStart, frameCount) {
+    _parseAnimationFrame(rawData: any, frameStart: any, frameCount: any): any {
         var frame = BaseObject.borrowObject(AnimationFrameData);
         this._parseFrame(rawData, frame, frameStart, frameCount);
         if ((ObjectDataParser.ACTION in rawData) || (ObjectDataParser.ACTIONS in rawData)) {
@@ -532,7 +542,7 @@ export class ObjectDataParser extends DataParser {
         return frame;
     }
  
-    _parseBoneFrame(rawData, frameStart, frameCount) {
+    _parseBoneFrame(rawData: any, frameStart: any, frameCount: any): any {
         var frame = BaseObject.borrowObject(BoneFrameData);
         frame.tweenRotate = ObjectDataParser._getNumber(rawData, ObjectDataParser.TWEEN_ROTATE, 0);
         frame.tweenScale = ObjectDataParser._getBoolean(rawData, ObjectDataParser.TWEEN_SCALE, true);
@@ -550,8 +560,8 @@ export class ObjectDataParser extends DataParser {
             }
         }
         var bone = this._timeline.bone;
-        var actions = [];
-        var events = [];
+        var actions: any[] = [];
+        var events: any[] = [];
         if ((ObjectDataParser.ACTION in rawData) || (ObjectDataParser.ACTIONS in rawData)) {
             var slot = this._armature.getSlot(bone.name);
             this._parseActionData(rawData, actions, bone, slot);
@@ -565,7 +575,7 @@ export class ObjectDataParser extends DataParser {
         return frame;
     }
     
-    _parseSlotFrame(rawData, frameStart, frameCount) {
+    _parseSlotFrame(rawData: any, frameStart: any, frameCount: any): any {
         var frame = BaseObject.borrowObject(SlotFrameData);
         frame.displayIndex = ObjectDataParser._getNumber(rawData, ObjectDataParser.DISPLAY_INDEX, 0);
         //frame.zOrder = _getNumber(rawData, Z_ORDER, -1); // TODO zorder
@@ -583,15 +593,15 @@ export class ObjectDataParser extends DataParser {
             }
         }
         else if ((ObjectDataParser.ACTION in rawData) || (ObjectDataParser.ACTIONS in rawData)) {
-            var slot = this._timeline.slot;
-            var actions = [];
+            var slot: any = this._timeline.slot;
+            var actions: any[] = [];
             this._parseActionData(rawData, actions, slot.parent, slot);
             this._mergeFrameToAnimationTimeline(frame.position, actions, null); // Merge actions and events to animation timeline.
         }
         return frame;
     }
     
-    _parseFFDFrame(rawData, frameStart, frameCount) {
+    _parseFFDFrame(rawData: any, frameStart: any, frameCount: any): any {
         var frame = BaseObject.borrowObject(ExtensionFrameData);
         frame.type = ObjectDataParser._getNumber(rawData, ObjectDataParser.TYPE, 0 /* FFD */);
         this._parseTweenFrame(rawData, frame, frameStart, frameCount);
@@ -626,7 +636,7 @@ export class ObjectDataParser extends DataParser {
         return frame;
     }
     
-    _parseTweenFrame(rawData, frame, frameStart, frameCount) {
+    _parseTweenFrame(rawData: any, frame: any, frameStart: any, frameCount: any): any {
         this._parseFrame(rawData, frame, frameStart, frameCount);
         if (frame.duration > 0) {
             if (ObjectDataParser.TWEEN_EASING in rawData) {
@@ -649,14 +659,18 @@ export class ObjectDataParser extends DataParser {
             frame.tweenEasing = DragonBones.NO_TWEEN;
             frame.curve = null;
         }
+
+        return frame;
     }
     
-    _parseFrame(rawData, frame, frameStart, frameCount) {
+    _parseFrame(rawData: any, frame: any, frameStart: any, frameCount: any): any {
         frame.position = frameStart / this._armature.frameRate;
         frame.duration = frameCount / this._armature.frameRate;
+
+        return frame;
     }
     
-    _parseTimeline(rawData, timeline, frameParser) {
+    _parseTimeline(rawData: any, timeline: any, frameParser: any): any {
         timeline.scale = ObjectDataParser._getNumber(rawData, ObjectDataParser.SCALE, 1);
         timeline.offset = ObjectDataParser._getNumber(rawData, ObjectDataParser.OFFSET, 0);
         this._timeline = timeline;
@@ -671,8 +685,8 @@ export class ObjectDataParser extends DataParser {
                     timeline.frames.length = this._animation.frameCount + 1;
                     var frameStart = 0;
                     var frameCount = 0;
-                    var frame = null;
-                    var prevFrame = null;
+                    var frame: any = null;
+                    var prevFrame: any = null;
                     for (var i = 0, iW = 0, l = timeline.frames.length; i < l; ++i) {
                         if (frameStart + frameCount <= i && iW < rawFrames.length) {
                             var frameObject = rawFrames[iW++];
@@ -705,9 +719,11 @@ export class ObjectDataParser extends DataParser {
             }
         }
         this._timeline = null;
+
+        return this._timeline;
     }
     
-    _parseActionData(rawData, actions, bone, slot) {
+    _parseActionData(rawData: any, actions: any, bone: any, slot: any) {
         var actionsObject = rawData[ObjectDataParser.ACTION] || rawData[ObjectDataParser.ACTIONS] || rawData[ObjectDataParser.DEFAULT_ACTIONS];
         if (typeof actionsObject == "string") {
             var actionData = BaseObject.borrowObject(ActionData);
@@ -771,7 +787,7 @@ export class ObjectDataParser extends DataParser {
         }
     }
     
-    _parseEventData(rawData, events, bone, slot) {
+    _parseEventData(rawData: any, events: any, bone: any, slot: any) {
         if (ObjectDataParser.SOUND in rawData) {
             var soundEventData = BaseObject.borrowObject(EventData);
             soundEventData.type = 11 /* Sound */;
@@ -793,7 +809,7 @@ export class ObjectDataParser extends DataParser {
         }
     }
 
-    _parseTransform(rawData, transform) {
+    _parseTransform(rawData: any, transform: any) {
         transform.x = ObjectDataParser._getNumber(rawData, ObjectDataParser.X, 0) * this._armature.scale;
         transform.y = ObjectDataParser._getNumber(rawData, ObjectDataParser.Y, 0) * this._armature.scale;
         transform.skewX = ObjectDataParser._getNumber(rawData, ObjectDataParser.SKEW_X, 0) * DragonBones.ANGLE_TO_RADIAN;
@@ -802,7 +818,7 @@ export class ObjectDataParser extends DataParser {
         transform.scaleY = ObjectDataParser._getNumber(rawData, ObjectDataParser.SCALE_Y, 1);
     }
 
-    _parseColorTransform(rawData, color) {
+    _parseColorTransform(rawData: any, color: any) {
         color.alphaMultiplier = ObjectDataParser._getNumber(rawData, ObjectDataParser.ALPHA_MULTIPLIER, 100) * 0.01;
         color.redMultiplier = ObjectDataParser._getNumber(rawData, ObjectDataParser.RED_MULTIPLIER, 100) * 0.01;
         color.greenMultiplier = ObjectDataParser._getNumber(rawData, ObjectDataParser.GREEN_MULTIPLIER, 100) * 0.01;
@@ -813,7 +829,7 @@ export class ObjectDataParser extends DataParser {
         color.blueOffset = ObjectDataParser._getNumber(rawData, ObjectDataParser.BLUE_OFFSET, 0);
     }
     
-    parseDragonBonesData(rawData, scale = 1) {
+    parseDragonBonesData(rawData: any, scale: any = 1): any {
         if (rawData) {
             var version = ObjectDataParser._getString(rawData, ObjectDataParser.VERSION, null);
             this._isOldData = version == ObjectDataParser.DATA_VERSION_2_3 || version == ObjectDataParser.DATA_VERSION_3_0;
@@ -849,7 +865,7 @@ export class ObjectDataParser extends DataParser {
         // return null;
     }
     
-    parseTextureAtlasData(rawData, textureAtlasData, scale = 0) {
+    parseTextureAtlasData(rawData: any, textureAtlasData: any, scale = 0) {
         if (rawData) {
             textureAtlasData.name = ObjectDataParser._getString(rawData, ObjectDataParser.NAME, null);
             textureAtlasData.imagePath = ObjectDataParser._getString(rawData, ObjectDataParser.IMAGE_PATH, null);
@@ -894,14 +910,11 @@ export class ObjectDataParser extends DataParser {
      * @deprecated
      * @see BaseFactory#parseDragonBonesData()
      */
-    static getInstance() {
+    static getInstance(): any {
         if (!ObjectDataParser._instance) {
             ObjectDataParser._instance = new ObjectDataParser();
         }
         return ObjectDataParser._instance;
     }
-
-    static get _instance() { return ObjectDataParser.__instance; }
-    static set _instance(value) { ObjectDataParser.__instance = value; }
 
 }

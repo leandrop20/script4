@@ -1,9 +1,11 @@
 declare var PIXI: any;
 declare var Phaser: any;
+declare var TweenMax: any;
 
 import 'pixi';
 import 'p2';
 import 'phaser-ce';
+import 'TweenMax';
 
 import { Script4 } from './com/script4/Script4';
 import { Root } from './Root';

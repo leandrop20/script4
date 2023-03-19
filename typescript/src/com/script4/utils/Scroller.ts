@@ -1,8 +1,13 @@
-import { Script4 } from '../Script4';
+declare var TweenMax: any;
+declare var TweenLite: any;
+declare var EaseLookup: any;
+declare var TweenPlugin: any;
+declare var ThrowPropsPlugin: any;
+
 import { Orientation } from '../enums/Orientation';
 import { Easing } from '../enums/Easing';
-import ThrowPropsPlugin from 'ThrowPropsPlugin';
 import { Point } from '../geom/Point';
+import 'ThrowPropsPlugin';
 
 export class Scroller {
 
@@ -390,7 +395,8 @@ export class Scroller {
 	
 	set importProp(a: any) {
 		for (var prop in a) {
-			this[prop] = a[prop];
+			let _this: any = this;
+			_this[prop] = a[prop];
 		}
 	}
 

@@ -61,24 +61,6 @@ export class ImageSuper extends Phaser.Image {
 		super(Script4.core, x, y, atlas, texture);
 
 		this.inputEnabled = true;
-
-		Object.defineProperty(Phaser.Image, 'x', {
-			get: () => {
-				return this.position.x;
-			},
-			set: (value: number) => {
-				this.position.x = this.atlasPosition.x + value;
-			}
-		});
-
-		Object.defineProperty(Phaser.Image, 'y', {
-			get: () => {
-				return this.position.y;
-			},
-			set: (value: number) => {
-				this.position.y = this.atlasPosition.y + value;
-			}
-		});
 	}
 
 	override loadTexture(
@@ -120,17 +102,17 @@ export class ImageSuper extends Phaser.Image {
 		this.height = this.texture.frame.height;
 	}
 
-	// override get x(): number { return this.position.x; }
+	override get x(): number { return this.position.x; }
 
-	// override set x(value: number) {
-	// 	this.position.x = this.atlasPosition.x + value;
-	// }
+	override set x(value: number) {
+		this.position.x = this.atlasPosition.x + value;
+	}
 
-	// override get y(): number { return this.position.y; }
+	override get y(): number { return this.position.y; }
 
-	// override set y(value: number) {
-	// 	this.position.y = this.atlasPosition.y + value;
-	// }
+	override set y(value: number) {
+		this.position.y = this.atlasPosition.y + value;
+	}
 
 	get color(): number { return this.tint; }
 

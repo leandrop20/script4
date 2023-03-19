@@ -1,3 +1,6 @@
+declare var TweenMax: any;
+declare var Ease: any;
+
 import { Script4 } from '../Script4';
 import { Align } from '../enums/Align';
 
@@ -13,7 +16,7 @@ export class TextInput extends Phaser.Group {
     h: number;
     maxLength: number;
     focused: boolean;
-    override type: any;
+	override type: any;
 
 	constructor(width: number, height: number, font: string, size: any = null) {
 		super(Script4.core);
@@ -76,7 +79,7 @@ export class TextInput extends Phaser.Group {
 		this.field.align = value;
 	}
 
-	get width(): number { return this.w; }
+	override get width(): number { return this.w; }
 
 	override set width(value: number) {
 		this.w = value;
@@ -86,7 +89,7 @@ export class TextInput extends Phaser.Group {
 		this.hit.width = value;
 	}
 
-	get height(): number { return this.h; }
+	override get height(): number { return this.h; }
 
 	override set height(value: number) {
 		this.h = value;

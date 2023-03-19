@@ -7,11 +7,6 @@ import { TouchEvent } from '../events/TouchEvent';
 import { TouchPhase } from '../enums/TouchPhase';
 import { IAnimationArg } from '../interface/IAnimationArg';
 
-Object.defineProperty(Phaser.Group.prototype, 'name', {
-    writable: true,
-    configurable: true
-});
-
 export class Spine extends PhaserSpine.Spine {
 
     box: Graphics;

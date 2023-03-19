@@ -17,9 +17,11 @@ export class Juggler {
         return tween;
     }
 
-    delayedCall(callback: Function, delay: number, args: any) {
+    delayedCall(callback: Function, delay: number, args: any): DelayedCall {
         let delayedCall: DelayedCall = new DelayedCall(callback, delay, args);
         delayedCall.start();
+
+        return delayedCall;
     }
 
     removeTweens(object: any) {

@@ -50,7 +50,7 @@ export class Slot extends TransformObject {
 
 	override _onClear() {
         super._onClear();
-        var disposeDisplayList = [];
+        var disposeDisplayList: any[] = [];
         for (var i = 0, l = this._displayList.length; i < l; ++i) {
             var eachDisplay = this._displayList[i];
             if (eachDisplay != this._rawDisplay && eachDisplay != this._meshDisplay &&
@@ -432,7 +432,7 @@ export class Slot extends TransformObject {
 
     set displayList(value) {
     	var backupDisplayList = this._displayList.concat(); // Copy.
-        var disposeDisplayList = [];
+        var disposeDisplayList: any[] = [];
         if (this._setDisplayList(value)) {
             this._update(-1);
         }

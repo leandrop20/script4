@@ -6,8 +6,9 @@ export default class Plugin extends Phaser.Plugin {
 	}
 
 	addLoader() {
-		Phaser.Loader.prototype.dragonbones = 
-			function (key: any, url: string, scalingVariant: any, group: any) {
+		let _class: any = Phaser.Loader.prototype;
+
+		_class.dragonbones = function (key: any, url: string, scalingVariant: any, group: any) {
 				var path = url.substring(0, url.lastIndexOf('.'));
 
 				this.image(key, path + '.png');
