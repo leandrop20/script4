@@ -1,0 +1,40 @@
+{
+"frames": {
+	"castle.png": {
+		"frame": {"x":133, "y":161, "w":32, "h":48},
+		"spriteSourceSize": {"x":0,"y":0,"w":32,"h":48},
+		"sourceSize": {"w":32,"h":48}
+	},
+	"coin.png": {
+		"frame": {"x":0, "y":223, "w":16, "h":25},
+		"spriteSourceSize": {"x":0,"y":0,"w":16,"h":25},
+		"sourceSize": {"w":16,"h":25}
+	},
+	"danger.png": {
+		"frame": {"x":84, "y":196, "w":48, "h":54},
+		"spriteSourceSize": {"x":0,"y":0,"w":48,"h":54},
+		"sourceSize": {"w":48,"h":54}
+	},
+	"super.png": {
+		"frame": {"x":0, "y":196, "w":83, "h":26},
+		"spriteSourceSize": {"x":0,"y":0,"w":83,"h":26},
+		"sourceSize": {"w":83,"h":26}
+	},
+	"tree.png": {
+		"frame": {"x":0, "y":0, "w":256, "h":160},
+		"spriteSourceSize": {"x":0,"y":0,"w":256,"h":160},
+		"sourceSize": {"w":256,"h":160}
+	},
+	"world.png": {
+		"frame": {"x":0, "y":161, "w":98, "h":34},
+		"spriteSourceSize": {"x":0,"y":0,"w":98,"h":34},
+		"sourceSize": {"w":98,"h":34}
+	}
+
+},
+"meta": {
+	"image": "sprites.png",
+	"size": {"w": 257, "h": 251},
+	"scale": "1"
+}
+}

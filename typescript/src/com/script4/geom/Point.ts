@@ -3,7 +3,7 @@ export class Point extends Phaser.Point {
     override x!: number;
     override y!: number;
 
-    constructor(x: number, y: number) {
+    constructor(x: number = 0, y: number = 0) {
 		super(x, y);
 	}
 

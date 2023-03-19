@@ -1,11 +1,10 @@
 {
 	"name": "script4",
 	"version": "1.0.0",
-	"description": "Phaser + Webpack + TypeScript\r (Inspired by AS3 and Starling)",
-	"main": "Main.ts",
+	"description": "Phaser + Webpack + (ES6 ou typescript)\r (Inspired by AS3 and Starling)",
+	"main": "Main.js",
 	"private": true,
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1",
 		"dev": "webpack-dev-server --mode development",
 		"build": "webpack-dev-server --mode production",
 		"deploy": "webpack"
@@ -15,18 +14,19 @@
 		"url": "git+https://github.com/leandrop20/script4.git"
 	},
 	"keywords": [],
-	"author": "Leandro Pinheiro",
+	"author": "leandroP",
 	"license": "ISC",
 	"bugs": {
 		"url": "https://github.com/leandrop20/script4/issues"
 	},
 	"homepage": "https://github.com/leandrop20/script4#readme",
 	"devDependencies": {
+		"expose-loader": "^4.1.0",
 		"phaser-ce": "^2.20.0",
 		"ts-loader": "^9.4.2",
 		"typescript": "^5.0.2",
 		"webpack": "^5.76.2",
 		"webpack-cli": "^5.0.1",
-		"webpack-dev-server": "^4.12.0"
+		"webpack-dev-server": "^4.13.0"
 	}
 }

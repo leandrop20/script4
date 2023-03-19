@@ -1,7 +1,7 @@
-declare var PhaserSpine: any;
-
-import '@azerion/phaser-spine/build/phaser-spine';
+import PhaserSpine from '../../phaser-spine';
 import DragonBonesPlugin from '../../dragonbones/Plugin';
+import PhaserNineSlice from '../../phaser-nineslice';
+
 import { Assets } from '../../../Assets';
 import { Script4 } from '../Script4';
 
@@ -12,8 +12,10 @@ export class Boot {
     state: any;
 
     preload() {
-        // this.game.plugins.add(PhaserSpine.SpinePlugin);
+        this.game.plugins.add(PhaserSpine.SpinePlugin);
         this.game.plugins.add(DragonBonesPlugin);
+        this.game.plugins.add(PhaserNineSlice.NineSlicePlugin);
+
         this.game.load.baseURL = Assets.BASE_PATH;
 
         if (this.game.config.crossOrigin) {
