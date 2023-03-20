@@ -32,7 +32,7 @@ export class DragonBones extends PhaserDragonBones {
 	}
 
 	play(animationName: string, playTimes = -1) {
-		this.armature.animation.play(animationName, playTimes);
+		// this.armature.animation.play(animationName, playTimes);
 	}
 
 	set debug(bool: boolean) {

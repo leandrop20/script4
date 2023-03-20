@@ -13593,12 +13593,12 @@ declare module Phaser {
         /**
         * This callback is invoked every time a DOM onkeypress event is raised, which is only for printable keys. Two arguments are passed: {string} `String.fromCharCode(event.charCode)` and {KeyboardEvent} event.
         */
-        onPressCallback: Function;
+        onPressCallback: Function | null;
 
         /**
         * This callback is invoked every time a key is released. One argument is passed: {KeyboardEvent} event.
         */
-        onUpCallback: Function;
+        onUpCallback: Function | null;
 
         /**
         * The most recent DOM event from keypress.

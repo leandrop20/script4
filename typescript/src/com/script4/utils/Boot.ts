@@ -1,5 +1,5 @@
 import PhaserSpine from '../../phaser-spine';
-import DragonBonesPlugin from '../../dragonbones/Plugin';
+import DragonBonesPlugin from '../../dragonbones/core/Plugin';
 import PhaserNineSlice from '../../phaser-nineslice';
 
 import { Assets } from '../../../Assets';
