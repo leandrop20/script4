@@ -10,7 +10,7 @@ import { Preloader } from './utils/Preloader';
 
 export class Script4 extends Phaser.Game {
 
-    static core: any;
+    static core: Script4;
     static juggler: Juggler;
     static customPreloader: IPreloader;
     static imageToPreloader: IPreloaderImage[];
@@ -20,6 +20,7 @@ export class Script4 extends Phaser.Game {
 	static get height() { return Script4.core.height; }
 
     game: any;
+    input: any;
     rootClass: any;
 
     private _juggler: any;

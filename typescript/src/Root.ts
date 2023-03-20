@@ -25,33 +25,35 @@ export class Root extends Sprite {
 
     constructor() {
 		super();
-
+		
         // this.addChild(new TouchEvents());
 		// this.addChild(new ScrollerTest());
 		
 		var t = new ImageSuper('imgExample');
+		t.align();
 		t.position.set(130, 110);
 		t.scale.set(0.37);
 		this.addChild(t);
 
-		var dragonbones = new DragonBones('Dragon', 384, 300, [{ anime: 'walk', func: pos }]);
+		var dragonbones = new DragonBones('Dragon', 400, 300, [{ anime: 'walk', func: pos }]);
 		console.log(dragonbones.animationNames());
 		dragonbones.scale.set(0.4);
-		dragonbones.play('walk', 2);
+		dragonbones.play('walk', -1);
 		this.addChild(dragonbones);
 
 		function pos() {
 			dragonbones.play('stand');
+			console.log('::pos dragon::');
 		}
 
-		var t2 = new ImageSuper('imgLoad');
-		t2.position.set(Script4.width - 90, 40);
-		this.addChild(t2);
+		// var t2 = new ImageSuper('imgLoad');
+		// t2.position.set(Script4.width - 90, 40);
+		// this.addChild(t2);
 
-		var spine = new Spine('pipoqueiro', Script4.width * 0.5, Script4.height);
-		spine.play('walk', true);
-		spine.name = 'explosao';
-		this.addChild(spine);
+		// var spine = new Spine('pipoqueiro', Script4.width * 0.5, Script4.height);
+		// spine.play('walk', true);
+		// spine.name = 'explosao';
+		// this.addChild(spine);
 
 		// var spine2 = new Spine('pipoqueiro', Script4.width * 0.5, 200);
 		// spine2.play('walk', true);

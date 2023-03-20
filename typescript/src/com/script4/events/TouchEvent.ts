@@ -97,12 +97,9 @@ export class TouchEvent {
 
 		function centerDrag(_target: any): Point {
 			try {
-                let x: number = Script4.core
-                    .InputHandler(Script4.core)
-                    .globalToLocalX(_target.centerX);
-                let y: number = Script4.core
-                    .InputHandler(Script4.core)
-                    .globalToLocalY(_target.centerY);
+				let game: any = Script4.core;
+                let x: number = game.InputHandler(Script4.core).globalToLocalX(_target.centerX);
+                let y: number = game.InputHandler(Script4.core).globalToLocalY(_target.centerY);
                 
 				var boundsCenterLocalCoord: Point = new Point(x, y);
                 

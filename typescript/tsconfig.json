@@ -10,8 +10,6 @@
         "noImplicitAny": false,
         "noFallthroughCasesInSwitch": true,
         "sourceMap": true,
-        "declaration": true,
-        // "declarationDir": "./dist/@types",
         "downlevelIteration": true,
         "experimentalDecorators": true,
         "moduleResolution": "node",
