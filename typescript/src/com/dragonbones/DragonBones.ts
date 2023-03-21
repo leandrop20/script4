@@ -54,10 +54,11 @@ export class DragonBones extends Sprite {
         this.factory = new PhaserFactory();
 		this.skeleton = this.factory.parseDragonBonesData(skeletonData);
 		this.factory.parseTextureAtlasData(textureData, texture);
+        
 		this.armature = this.factory.buildArmatureDisplay(armatureName);
-
+        
 		this.refreshClock();
-
+        
 		this.addChild(this.armature);
 	}
 
@@ -80,7 +81,7 @@ export class DragonBones extends Sprite {
 }
 
 //HACK TO FIX NULL TEXTURE
-const PIXI_SPRITE: any = PIXI.Sprite;
+/* const PIXI_SPRITE: any = PIXI.Sprite;
 
 PIXI_SPRITE.prototype.setTexture = function (texture: any, destroyBase: any) {
     if (destroyBase !== undefined) {
@@ -91,7 +92,7 @@ PIXI_SPRITE.prototype.setTexture = function (texture: any, destroyBase: any) {
     this.texture.baseTexture.skipRender = false;
     this.texture.valid = true;
     this.cachedTint = -1;
-};
+}; */
 
 //HACK TO MAKE BOUNDRY BOX SCALE TO ANIMATION SIZE (if used)
 // PIXI.Sprite.prototype.getBounds = function (targetCoordinateSpace) {

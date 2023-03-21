@@ -1,4 +1,5 @@
 import { Script4 } from '../../script4/Script4';
+import { ImageSuper } from '../../script4/display/ImageSuper';
 import { Slot } from './Slot';
 
 export class PhaserSlot extends Slot {
@@ -66,7 +67,7 @@ export class PhaserSlot extends Slot {
 
     override _updateFrame() {
         var frameDisplay = this._renderDisplay;
-
+        
         if (this._display) {
             var rawDisplayData = this._displayIndex < this._displayDataSet.displays.length
                 ? this._displayDataSet.displays[this._displayIndex]
@@ -76,9 +77,14 @@ export class PhaserSlot extends Slot {
                 : null;
             var currentDisplayData = replacedDisplayData || rawDisplayData;
             var currentTextureData = currentDisplayData.texture;
-
+            
             if (currentTextureData) {
                 var textureAtlasTexture = currentTextureData.parent.texture;
+                let baseTexture = textureAtlasTexture;
+
+                if (!(textureAtlasTexture instanceof PIXI.BaseTexture)) {
+                    baseTexture = new PIXI.BaseTexture(textureAtlasTexture, 1);
+                }
 
                 if (!currentTextureData.texture && textureAtlasTexture) {
                     var originSize = new PIXI.Rectangle(
@@ -87,25 +93,25 @@ export class PhaserSlot extends Slot {
                         currentTextureData.region.width,
                         currentTextureData.region.height
                     );
+                    
                     currentTextureData.texture = new PIXI.Texture(
-                        textureAtlasTexture,
+                        baseTexture,
                         currentTextureData.region, // No need to set frame.
                         currentTextureData.region,
                         originSize,
-                        // currentTextureData.rotated
                     );
                 }
 
                 var texture = (this._armature._replacedTexture || currentTextureData.texture);
                 this._updatePivot(rawDisplayData, currentDisplayData, currentTextureData);
-
+                
                 if (texture && texture.frame) {
                     frameDisplay.setTexture(texture);
                     frameDisplay.width = texture.frame.width;
                     frameDisplay.height = texture.frame.height;
                     frameDisplay.texture.baseTexture.skipRender = false;
                 }
-
+                
                 texture.baseTexture.resolution = 1;
                 texture.baseTexture.source = textureAtlasTexture;
                 this._updateVisible();
@@ -113,6 +119,7 @@ export class PhaserSlot extends Slot {
                 return;
             }
         }
+
         this._pivotX = 0;
         this._pivotY = 0;
         frameDisplay.visible = false;

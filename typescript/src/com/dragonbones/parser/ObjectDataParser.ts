@@ -1017,7 +1017,7 @@ export class ObjectDataParser extends DataParser {
             } else {
                 this._isGlobalTransform = false;
             }
-
+            
             if (version == ObjectDataParser.DATA_VERSION ||
                 version == ObjectDataParser.DATA_VERSION_4_0 ||
                 this._isOldData) {
@@ -1081,7 +1081,7 @@ export class ObjectDataParser extends DataParser {
                         textureData.frame.width = frameWidth * scale;
                         textureData.frame.height = frameHeight * scale;
                     }
-
+                    
                     textureAtlasData.addTexture(textureData);
                 }
             }

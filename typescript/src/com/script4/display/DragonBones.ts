@@ -2,6 +2,8 @@ import { Script4 } from '../Script4';
 import { DragonBones as PhaserDragonBones } from '../../dragonbones/DragonBones';
 import { Event } from '../enums/Event';
 import { IAnimationArg } from '../interface/IAnimationArg';
+import { Graphics } from './Graphics';
+import { ImageSuper } from './ImageSuper';
 
 export class DragonBones extends PhaserDragonBones {
 
@@ -23,7 +25,7 @@ export class DragonBones extends PhaserDragonBones {
 		this.position.set(x, y);
 
 		this.addEventListener(Event.ENTER_FRAME, this.onUpdate);
-
+		
 		// console.log("Animations " + armatureName + ": " + this.armature.animation.animationNames);
 	}
 
@@ -32,7 +34,7 @@ export class DragonBones extends PhaserDragonBones {
 	}
 
 	play(animationName: string, playTimes = -1) {
-		// this.armature.animation.play(animationName, playTimes);
+		this.armature.animation.play(animationName, playTimes);
 	}
 
 	set debug(bool: boolean) {
@@ -52,7 +54,7 @@ export class DragonBones extends PhaserDragonBones {
 		return this.factory.getTextureDisplay(name, dragonName);
 	}
 
-	onUpdate(e: any) {
+	onUpdate(e: any) {		
 		if (this.armature.animation.isCompleted) {
 			if (this.args != null) {
 				for (var i = 0; i < this.args.length; i++) {

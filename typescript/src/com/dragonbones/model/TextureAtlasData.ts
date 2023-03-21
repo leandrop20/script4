@@ -1,4 +1,5 @@
 import { BaseObject } from '../core/BaseObject';
+import { PhaserTextureData } from './PhaserTextureData';
 
 export class TextureAtlasData extends BaseObject {
 
@@ -27,12 +28,11 @@ export class TextureAtlasData extends BaseObject {
         this.imagePath = null;
     }
 
-    addTexture(value: any) {
+    addTexture(value: PhaserTextureData) {
         if (value && value.name && !this.textures[value.name]) {
             this.textures[value.name] = value;
             value.parent = this;
-        }
-        else {
+        } else {
             throw new Error();
         }
     }

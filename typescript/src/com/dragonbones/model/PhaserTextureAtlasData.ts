@@ -22,7 +22,7 @@ export class PhaserTextureAtlasData extends TextureAtlasData {
         }
     }
 
-    generateTextureData() : any {
+    generateTextureData(): any {
         return BaseObject.borrowObject(PhaserTextureData);
     }
 

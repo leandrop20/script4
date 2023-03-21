@@ -16,6 +16,7 @@ export class Assets {
         { name:'spineboy', path:'assets/animations/spineboy.json', type: AssetType.SPINE },
         { name:'pipoqueiro', path:'assets/animations/pipoqueiro.json', type: AssetType.SPINE },
         { name: 'dragon', path:'assets/animations/dragon.json', type: AssetType.DRAGONBONES },
+        { name: 'demon', path:'assets/animations/demon.json', type: AssetType.DRAGONBONES },
         { name:'btExample', path:'assets/images/btExample.png', type: AssetType.IMAGE },
         { name: 'atlas', path:'assets/images/sprites.json', type: AssetType.ATLAS },
         { name: 'bitmapFont', path:'assets/fonts/bitmapfont.xml', type: AssetType.BITMAP_FONT },

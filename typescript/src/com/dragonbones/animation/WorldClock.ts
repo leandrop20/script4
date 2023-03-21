@@ -5,7 +5,7 @@ export class WorldClock {
 
     static _clock: any;
 
-    time: any;
+    time: number;
     timeScale: number;
     _animatebles: any[];
 
@@ -124,7 +124,7 @@ export class WorldClock {
      * @version DragonBones 3.0
      */
     clear() {
-        for (var i = 0, l = this._animatebles.length; i < l; ++i) {
+        for (let i = 0, l = this._animatebles.length; i < l; ++i) {
             this._animatebles[i] = null;
         }
     };
