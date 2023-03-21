@@ -1,4 +1,4 @@
-import { DragonBones } from '../DragonBones';
+import { PhaserDragonBones } from '../PhaserDragonBones';
 import { ObjectDataParser } from '../parser/ObjectDataParser';
 import { BaseObject } from '../core/BaseObject';
 import { Bone } from '../armature/Bone';
@@ -284,9 +284,9 @@ export class BaseFactory {
 
         if (dragonBonesData) {
             if (disposeData) {
-                if (DragonBones.debug) {
-                    for (var i = 0, l = DragonBones._armatures.length; i < l; ++i) {
-                        var armature = DragonBones._armatures[i];
+                if (PhaserDragonBones.debug) {
+                    for (var i = 0, l = PhaserDragonBones._armatures.length; i < l; ++i) {
+                        var armature = PhaserDragonBones._armatures[i];
 
                         if (armature.armatureData.parent == dragonBonesData) {
                             throw new Error(

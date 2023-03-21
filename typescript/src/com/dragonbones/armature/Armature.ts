@@ -1,11 +1,11 @@
 import { BaseObject } from '../core/BaseObject';
-import { DragonBones } from '../DragonBones';
+import { PhaserDragonBones } from '../PhaserDragonBones';
 import { EventObject } from '../event/EventObject';
 
 export class Armature extends BaseObject {
 
-    _bones: any[];
-    _slots: any[];
+    private _bones: any[];
+    private _slots: any[];
     _actions: any[];
     _events: any[];
 
@@ -251,8 +251,8 @@ export class Armature extends BaseObject {
                 }
             }
         }
-        //
-        if (DragonBones.debugDraw) {
+        
+        if (PhaserDragonBones.debugDraw) {
             self._display._debugDraw();
         }
 

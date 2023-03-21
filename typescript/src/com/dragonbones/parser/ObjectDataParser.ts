@@ -16,7 +16,7 @@ import { SlotFrameData } from '../model/SlotFrameData';
 import { ActionData } from '../model/ActionData';
 import { TextureData } from '../model/TextureData';
 import { TweenFrameData } from '../model/TweenFrameData';
-import { DragonBones } from '../DragonBones';
+import { PhaserDragonBones } from '../PhaserDragonBones';
 import { MeshData } from '../model/MeshData';
 import { Matrix } from '../geom/Matrix';
 import { FFDTimelineData } from '../model/FFDTimelineData';
@@ -791,14 +791,14 @@ export class ObjectDataParser extends DataParser {
                 frame.tweenEasing = ObjectDataParser._getNumber(
                     rawData,
                     ObjectDataParser.TWEEN_EASING,
-                    DragonBones.NO_TWEEN
+                    PhaserDragonBones.NO_TWEEN
                 );
             } else if (this._isOldData) {
                 frame.tweenEasing = this._isAutoTween
                     ? this._animationTweenEasing
-                    : DragonBones.NO_TWEEN;
+                    : PhaserDragonBones.NO_TWEEN;
             } else {
-                frame.tweenEasing = DragonBones.NO_TWEEN;
+                frame.tweenEasing = PhaserDragonBones.NO_TWEEN;
             }
 
             if (
@@ -807,7 +807,7 @@ export class ObjectDataParser extends DataParser {
                 this._timeline.scale == 1 &&
                 frame.duration * this._armature.frameRate < 2
             ) {
-                frame.tweenEasing = DragonBones.NO_TWEEN;
+                frame.tweenEasing = PhaserDragonBones.NO_TWEEN;
             }
 
             if (ObjectDataParser.CURVE in rawData) {
@@ -817,7 +817,7 @@ export class ObjectDataParser extends DataParser {
                 );
             }
         } else {
-            frame.tweenEasing = DragonBones.NO_TWEEN;
+            frame.tweenEasing = PhaserDragonBones.NO_TWEEN;
             frame.curve = null;
         }
     }
@@ -867,7 +867,7 @@ export class ObjectDataParser extends DataParser {
                                         prevFrame instanceof TweenFrameData &&
                                         frameObject[ObjectDataParser.DISPLAY_INDEX] == -1
                                     ) {
-                                        prevFrame.tweenEasing = DragonBones.NO_TWEEN;
+                                        prevFrame.tweenEasing = PhaserDragonBones.NO_TWEEN;
                                     }
                                 }
                             }
@@ -882,7 +882,7 @@ export class ObjectDataParser extends DataParser {
                     
                     if (this._isOldData) {
                         if (prevFrame instanceof TweenFrameData && rawFrames[0][ObjectDataParser.DISPLAY_INDEX] == -1) {
-                            prevFrame.tweenEasing = DragonBones.NO_TWEEN;
+                            prevFrame.tweenEasing = PhaserDragonBones.NO_TWEEN;
                         }
                     }
                 }
@@ -990,8 +990,8 @@ export class ObjectDataParser extends DataParser {
     _parseTransform(rawData: any, transform: Transform) {
         transform.x = ObjectDataParser._getNumber(rawData, ObjectDataParser.X, 0) * this._armature.scale;
         transform.y = ObjectDataParser._getNumber(rawData, ObjectDataParser.Y, 0) * this._armature.scale;
-        transform.skewX = ObjectDataParser._getNumber(rawData, ObjectDataParser.SKEW_X, 0) * DragonBones.ANGLE_TO_RADIAN;
-        transform.skewY = ObjectDataParser._getNumber(rawData, ObjectDataParser.SKEW_Y, 0) * DragonBones.ANGLE_TO_RADIAN;
+        transform.skewX = ObjectDataParser._getNumber(rawData, ObjectDataParser.SKEW_X, 0) * PhaserDragonBones.ANGLE_TO_RADIAN;
+        transform.skewY = ObjectDataParser._getNumber(rawData, ObjectDataParser.SKEW_Y, 0) * PhaserDragonBones.ANGLE_TO_RADIAN;
         transform.scaleX = ObjectDataParser._getNumber(rawData, ObjectDataParser.SCALE_X, 1);
         transform.scaleY = ObjectDataParser._getNumber(rawData, ObjectDataParser.SCALE_Y, 1);
     }

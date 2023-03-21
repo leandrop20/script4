@@ -1,4 +1,4 @@
-import { DragonBones } from '../DragonBones';
+import { PhaserDragonBones } from '../PhaserDragonBones';
 import { BaseObject } from '../core/BaseObject';
 import { ExtensionFrameData } from '../model/ExtensionFrameData';
 import { TweenTimelineState } from './TweenTimelineState';
@@ -43,7 +43,7 @@ export class FFDTimelineState extends TweenTimelineState {
         super._onArriveAtFrame(isUpdate);
         self._tweenFFD = 0 /* None */;
 
-        if (self._tweenEasing != DragonBones.NO_TWEEN || self._curve) {
+        if (self._tweenEasing != PhaserDragonBones.NO_TWEEN || self._curve) {
             self._tweenFFD = self._updateExtensionKeyFrame(
                 self._currentFrame,
                 self._currentFrame.next,

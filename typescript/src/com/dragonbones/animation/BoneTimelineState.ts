@@ -1,6 +1,6 @@
 import { TweenTimelineState } from './TweenTimelineState';
 import { Transform } from '../geom/Transform';
-import { DragonBones } from '../DragonBones';
+import { PhaserDragonBones } from '../PhaserDragonBones';
 
 export class BoneTimelineState extends TweenTimelineState {
 
@@ -48,7 +48,10 @@ export class BoneTimelineState extends TweenTimelineState {
         self._tweenRotate = 1 /* Once */;
         self._tweenScale = 1 /* Once */;
 
-        if (self._keyFrameCount > 1 && (self._tweenEasing != DragonBones.NO_TWEEN || self._curve)) {
+        if (
+            self._keyFrameCount > 1 &&
+            (self._tweenEasing != PhaserDragonBones.NO_TWEEN || self._curve)
+        ) {
             var nextFrame = self._currentFrame.next;
             var nextTransform = nextFrame.transform;
             // Transform.
@@ -65,11 +68,11 @@ export class BoneTimelineState extends TweenTimelineState {
                 if (tweenRotate) {
                     if (tweenRotate > 0 ? nextTransform.skewY >= self._currentTransform.skewY : nextTransform.skewY <= self._currentTransform.skewY) {
                         var rotate = tweenRotate > 0 ? tweenRotate - 1 : tweenRotate + 1;
-                        self._durationTransform.skewX = nextTransform.skewX - self._currentTransform.skewX + DragonBones.PI_D * rotate;
-                        self._durationTransform.skewY = nextTransform.skewY - self._currentTransform.skewY + DragonBones.PI_D * rotate;
+                        self._durationTransform.skewX = nextTransform.skewX - self._currentTransform.skewX + PhaserDragonBones.PI_D * rotate;
+                        self._durationTransform.skewY = nextTransform.skewY - self._currentTransform.skewY + PhaserDragonBones.PI_D * rotate;
                     } else {
-                        self._durationTransform.skewX = nextTransform.skewX - self._currentTransform.skewX + DragonBones.PI_D * tweenRotate;
-                        self._durationTransform.skewY = nextTransform.skewY - self._currentTransform.skewY + DragonBones.PI_D * tweenRotate;
+                        self._durationTransform.skewX = nextTransform.skewX - self._currentTransform.skewX + PhaserDragonBones.PI_D * tweenRotate;
+                        self._durationTransform.skewY = nextTransform.skewY - self._currentTransform.skewY + PhaserDragonBones.PI_D * tweenRotate;
                     }
                 } else {
                     self._durationTransform.skewX = Transform.normalizeRadian(nextTransform.skewX - self._currentTransform.skewX);

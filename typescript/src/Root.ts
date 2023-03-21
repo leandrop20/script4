@@ -35,10 +35,10 @@ export class Root extends Sprite {
 		t.scale.set(0.37);
 		this.addChild(t);
 
-		var dragonbones = new DragonBones('Dragon', 550, 280, [{ anime: 'walk', func: pos }]);
+		var dragonbones = new DragonBones('Dragon', 570, 320, [{ anime: 'walk', func: pos }]);
 		console.log(dragonbones.animationNames());
 		dragonbones.scale.set(0.4);
-		dragonbones.play('walk', -1);
+		dragonbones.play('stand', -1);
 		this.addChild(dragonbones);
 
 		function pos() {
@@ -46,10 +46,10 @@ export class Root extends Sprite {
 			console.log('::pos dragon::');
 		}
 		
-		var demon: DragonBones = new DragonBones('Demon', 200, 400);
+		var demon: DragonBones = new DragonBones('Demon', 250, 440);
 		console.log(demon.animationNames());
 		demon.scale.set(0.5);
-		demon.play('dead');
+		demon.play('steady');
 		this.addChild(demon);
 
 		// var t2 = new ImageSuper('imgLoad');

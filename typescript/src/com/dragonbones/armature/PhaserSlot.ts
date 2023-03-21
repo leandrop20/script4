@@ -14,8 +14,7 @@ export class PhaserSlot extends Slot {
         return "[class PhaserSlot]";
     }
 
-    set_game() {
-    }
+    set_game() {}
 
     override _onClear() {
         super._onClear();
@@ -32,7 +31,7 @@ export class PhaserSlot extends Slot {
         if (!this._rawDisplay) {
             this._rawDisplay = new Phaser.Sprite(Script4.core, 0, 0);
         }
-
+        
         this._renderDisplay = (this._display || this._rawDisplay);
     }
 
@@ -106,15 +105,20 @@ export class PhaserSlot extends Slot {
                 this._updatePivot(rawDisplayData, currentDisplayData, currentTextureData);
                 
                 if (texture && texture.frame) {
-                    frameDisplay.setTexture(texture);
-                    frameDisplay.width = texture.frame.width;
-                    frameDisplay.height = texture.frame.height;
-                    frameDisplay.texture.baseTexture.skipRender = false;
+                    if (frameDisplay.texture) {
+                        frameDisplay.setTexture(texture);
+                        frameDisplay.width = texture.frame.width;
+                        frameDisplay.height = texture.frame.height;
+                        frameDisplay.texture.baseTexture.skipRender = false;
+                    }
                 }
                 
                 texture.baseTexture.resolution = 1;
                 texture.baseTexture.source = textureAtlasTexture;
-                this._updateVisible();
+
+                if (frameDisplay.texture) {
+                    this._updateVisible();
+                }
                 
                 return;
             }

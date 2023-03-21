@@ -1,5 +1,5 @@
 import { Script4 } from '../Script4';
-import { DragonBones as PhaserDragonBones } from '../../dragonbones/DragonBones';
+import { PhaserDragonBones } from '../../dragonbones/PhaserDragonBones';
 import { Event } from '../enums/Event';
 import { IAnimationArg } from '../interface/IAnimationArg';
 import { Graphics } from './Graphics';
@@ -23,6 +23,8 @@ export class DragonBones extends PhaserDragonBones {
 		this.ID = armatureName;
 
 		this.position.set(x, y);
+		this.debug = true;
+		this.smoothed = true;
 
 		this.addEventListener(Event.ENTER_FRAME, this.onUpdate);
 		
@@ -38,7 +40,13 @@ export class DragonBones extends PhaserDragonBones {
 	}
 
 	set debug(bool: boolean) {
-		this.armature.debugDraw = bool;
+		DragonBones.debug = DragonBones.debugDraw = bool;
+	}
+
+	set smoothed(bool: boolean) {
+		for (let slot of this.armature._armature._slots) {
+			slot.display.smoothed = bool;
+		}
 	}
 
 	getBone(name: string): any {

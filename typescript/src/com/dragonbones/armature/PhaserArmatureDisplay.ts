@@ -1,6 +1,6 @@
 import { Script4 } from '../../script4/Script4';
 import { PhaserFactory } from '../factory/PhaserFactory';
-import { DragonBones } from '../DragonBones';
+import { PhaserDragonBones } from '../PhaserDragonBones';
 
 export class PhaserArmatureDisplay extends Phaser.Sprite {
 
@@ -41,14 +41,14 @@ export class PhaserArmatureDisplay extends Phaser.Sprite {
 
     _debugDraw() {
         if (!this._debugDrawer) {
-            this._debugDrawer = new Phaser.Graphics(DragonBones.GAME);
+            this._debugDrawer = new Phaser.Graphics(PhaserDragonBones.GAME);
         }
 
         this.addChild(this._debugDrawer);
         this._debugDrawer.clear();
         var bones = this._armature.getBones();
 
-        for (var i = 0, l = bones.length; i < l; ++i) {
+        for (let i = 0, l = bones.length; i < l; ++i) {            
             var bone = bones[i];
             var boneLength = Math.max(bone.length, 5);
             var startX = bone.globalTransformMatrix.tx;

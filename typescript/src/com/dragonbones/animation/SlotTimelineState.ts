@@ -1,6 +1,6 @@
 import { TweenTimelineState } from './TweenTimelineState';
 import { ColorTransform } from '../geom/ColorTransform';
-import { DragonBones } from '../DragonBones';
+import { PhaserDragonBones } from '../PhaserDragonBones';
 
 export class SlotTimelineState extends TweenTimelineState {
 
@@ -38,7 +38,7 @@ export class SlotTimelineState extends TweenTimelineState {
         super._onArriveAtFrame(isUpdate);
 
         if (self._animationState._isDisabled(self.slot)) {
-            self._tweenEasing = DragonBones.NO_TWEEN;
+            self._tweenEasing = PhaserDragonBones.NO_TWEEN;
             self._curve = null;
             self._tweenColor = 0 /* None */;
 
@@ -63,7 +63,7 @@ export class SlotTimelineState extends TweenTimelineState {
             self._tweenColor = 0 /* None */;
             var currentColor = self._currentFrame.color;
 
-            if (self._keyFrameCount > 1 && (self._tweenEasing != DragonBones.NO_TWEEN || self._curve)) {
+            if (self._keyFrameCount > 1 && (self._tweenEasing != PhaserDragonBones.NO_TWEEN || self._curve)) {
                 var nextFrame = self._currentFrame.next;
                 var nextColor = nextFrame.color;
 
@@ -102,7 +102,7 @@ export class SlotTimelineState extends TweenTimelineState {
                 }
             }
         } else {
-            self._tweenEasing = DragonBones.NO_TWEEN;
+            self._tweenEasing = PhaserDragonBones.NO_TWEEN;
             self._curve = null;
             self._tweenColor = 0 /* None */;
         }

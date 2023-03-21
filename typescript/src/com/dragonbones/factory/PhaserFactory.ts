@@ -6,7 +6,7 @@ import { PhaserTextureAtlasData } from '../model/PhaserTextureAtlasData';
 import { Armature } from '../armature/Armature';
 import { Animation } from '../animation/Animation';
 import { PhaserSlot } from '../armature/PhaserSlot';
-import { DragonBones } from '../DragonBones';
+import { PhaserDragonBones } from '../PhaserDragonBones';
 
 export class PhaserFactory extends BaseFactory {
 
@@ -45,7 +45,7 @@ export class PhaserFactory extends BaseFactory {
         return textureAtlasData;
     }
     
-    override _generateArmature(dataPackage: any): any {
+    override _generateArmature(dataPackage: any): Armature {
         var armature = BaseObject.borrowObject(Armature);
         var armatureDisplayContainer: PhaserArmatureDisplay = new PhaserArmatureDisplay();
         armature._armatureData = dataPackage.armature;
@@ -65,7 +65,7 @@ export class PhaserFactory extends BaseFactory {
         var slotData = slotDisplayDataSet.slot;
         var displayList: any[] = [];
         slot.name = slotData.name;
-        slot._rawDisplay = new Phaser.Sprite(DragonBones.GAME, 0, 0);
+        slot._rawDisplay = new Phaser.Sprite(PhaserDragonBones.GAME, 0, 0);
         slot._meshDisplay = null;
 
         for (var i = 0, l = slotDisplayDataSet.displays.length; i < l; ++i) {
@@ -152,7 +152,7 @@ export class PhaserFactory extends BaseFactory {
                 );
             }
 
-            return new Phaser.Sprite(DragonBones.GAME, 0, 0, textureData.texture);
+            return new Phaser.Sprite(PhaserDragonBones.GAME, 0, 0, textureData.texture);
         }
         
         return null;

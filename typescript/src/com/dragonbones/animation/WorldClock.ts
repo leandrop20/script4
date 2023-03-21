@@ -1,4 +1,4 @@
-import { DragonBones } from '../DragonBones';
+import { PhaserDragonBones } from '../PhaserDragonBones';
 import { Armature } from '../armature/Armature';
 
 export class WorldClock {
@@ -13,7 +13,7 @@ export class WorldClock {
 		/**
          * @version DragonBones 3.0
          */
-        this.time = new Date().getTime() / DragonBones.SECOND_TO_MILLISECOND;
+        this.time = new Date().getTime() / PhaserDragonBones.SECOND_TO_MILLISECOND;
         /**
          * @version DragonBones 3.0
          */
@@ -38,7 +38,7 @@ export class WorldClock {
         }
 
         if (passedTime < 0) {
-            passedTime = new Date().getTime() / DragonBones.SECOND_TO_MILLISECOND - this.time;
+            passedTime = new Date().getTime() / PhaserDragonBones.SECOND_TO_MILLISECOND - this.time;
         }
 
         passedTime *= this.timeScale;
@@ -99,8 +99,8 @@ export class WorldClock {
         if (value && this._animatebles.indexOf(value) < 0) {
             this._animatebles.push(value);
 
-            if (DragonBones.debug && value instanceof Armature) {
-                DragonBones.addArmature(value);
+            if (PhaserDragonBones.debug && value instanceof Armature) {
+                PhaserDragonBones.addArmature(value);
             }
         }
     }
@@ -114,8 +114,8 @@ export class WorldClock {
         if (index >= 0) {
             this._animatebles[index] = null;
 
-            if (DragonBones.debug && value instanceof Armature) {
-                DragonBones.removeArmature(value);
+            if (PhaserDragonBones.debug && value instanceof Armature) {
+                PhaserDragonBones.removeArmature(value);
             }
         }
     }

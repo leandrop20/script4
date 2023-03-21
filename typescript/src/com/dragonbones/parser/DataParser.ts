@@ -1,7 +1,7 @@
 import { Point } from '../geom/Point';
 import { Transform } from '../geom/Transform';
 import { Matrix } from '../geom/Matrix';
-import { DragonBones } from '../DragonBones';
+import { PhaserDragonBones } from '../PhaserDragonBones';
 import { TweenTimelineState } from '../animation/TweenTimelineState';
 import { BaseObject } from '../core/BaseObject';
 import { AnimationFrameData } from '../model/AnimationFrameData';
@@ -232,7 +232,7 @@ export class DataParser {
             var frame = timeline.frames[frameIndex];
             var tweenProgress = 0;
 
-            if (frame.tweenEasing != DragonBones.NO_TWEEN) {
+            if (frame.tweenEasing != PhaserDragonBones.NO_TWEEN) {
                 tweenProgress = (position - frame.position) / frame.duration;
                 if (frame.tweenEasing != 0) {
                     tweenProgress = TweenTimelineState._getEasingValue(tweenProgress, frame.tweenEasing);
