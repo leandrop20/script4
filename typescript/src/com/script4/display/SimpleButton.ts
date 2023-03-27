@@ -4,6 +4,7 @@ import { TextField } from '../text/TextField';
 import { Align } from '../enums/Align';
 import { Rectangle } from '../utils/Rectangle';
 import { ButtonEvent } from '../enums/ButtonEvent';
+import { Texture } from '../textures/Texture';
 
 export class SimpleButton extends Sprite {
 
@@ -15,7 +16,7 @@ export class SimpleButton extends Sprite {
     scaleWhenDown: number;
 
 	constructor(
-        texture: string,
+        texture: string | Texture,
         x: number = 0,
         y: number = 0,
         font: string | null = null,

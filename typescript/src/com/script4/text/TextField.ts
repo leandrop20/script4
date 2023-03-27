@@ -12,7 +12,13 @@ export class TextField extends Phaser.Group {
     w: number;
     h: number;
 
-    constructor(width: number, height: number, font: string, text = '', size = null) {
+    constructor(
+        width: number,
+        height: number,
+        font: string,
+        text: string = '',
+        size: number | null = null
+    ) {
         super(Script4.core);
         this.inputEnableChildren = true;
 
@@ -31,6 +37,7 @@ export class TextField extends Phaser.Group {
         this.addChild(this.container);
 
         this.field = new Phaser.BitmapText(Script4.core, 0, 0, font, text);
+        
         this.field.align = Align.CENTER;
         this.field.maxWidth = width;
         this.field.fontSize = (size) ? size : this.field.fontSize;
