@@ -11,7 +11,7 @@ export class Boot {
     load: any;
     state: any;
 
-    preload() {
+    preload():void {
         this.game.plugins.add(PhaserSpine.SpinePlugin);
         this.game.plugins.add(DragonBonesPlugin);
         this.game.plugins.add(PhaserNineSlice.NineSlicePlugin);
@@ -27,7 +27,7 @@ export class Boot {
         }
     }
 
-    create() {
+    create():void {
         this.state.start(Script4.customPreloader.name);
     }
 

@@ -14,7 +14,7 @@ export class Loader extends Phaser.Loader {
 		this.target = target;
 	}
 
-	load(url: string, name: string = 'default') {
+	load(url: string, name: string = 'default'): void {
 		if (name == 'default') {
 			let parts: any[] = url.split('/');
 			name = parts[parts.length - 1];
@@ -28,7 +28,7 @@ export class Loader extends Phaser.Loader {
 		this.start();
 	}
 
-	_onProgress(progress: any, cacheKey: any, success: any, totalLoaded: any, totalFiles: any) {
+	_onProgress(progress: any, cacheKey: any, success: any, totalLoaded: any, totalFiles: any): void {
 		this.onProgress({
 			progress: progress,
 			cacheKey: cacheKey,
@@ -40,21 +40,21 @@ export class Loader extends Phaser.Loader {
 		this.content = cacheKey;
 	}
 
-	_onComplete(e: any) {
+	_onComplete(e: any): void {
 		this.onComplete({
 			content: this.content,
 			target: this.target
 		});
 	}
 
-	_onIOError(e: any) {
+	_onIOError(e: any): void {
 		this.onIOError({
 			name: e,
 			target: this.target
 		});
 	}
 
-	addEventListener(type: string, listener: Function) {
+	addEventListener(type: string, listener: Function): void {
 		if (!type) throw('event type not found!');
 
 		if (type == 'progress') {
@@ -69,7 +69,7 @@ export class Loader extends Phaser.Loader {
 		}
 	}
 
-	removeEventListener(type: string, listener: Function) {
+	removeEventListener(type: string, listener: Function): void {
 		if (!type) throw('event type not found!');
 
 		if (type == 'progress') {

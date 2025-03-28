@@ -36,11 +36,11 @@ export class TextField extends Phaser.Group {
         this.container = new Phaser.Sprite(Script4.core, 0, 0);
         this.addChild(this.container);
 
+        const fontData = this.game.cache.getBitmapFont(font).font;
         this.field = new Phaser.BitmapText(Script4.core, 0, 0, font, text);
-        
         this.field.align = Align.CENTER;
         this.field.maxWidth = width;
-        this.field.fontSize = (size) ? size : this.field.fontSize;
+        this.field.fontSize = (size) ? size : fontData.size;
         this.container.addChild(this.field);
 
         this._mask = new Phaser.Graphics(Script4.core, 0, 0);
@@ -97,7 +97,7 @@ export class TextField extends Phaser.Group {
     /**
      *	value = String text
      */
-    appendText(value: string) {
+    appendText(value: string): void {
         this.field.setText(this.field.text + value);
     }
 
@@ -133,7 +133,7 @@ export class TextField extends Phaser.Group {
         }
     }
 
-    alignPivot(hAlign = Align.CENTER, vAlign = Align.MIDDLE) {
+    alignPivot(hAlign = Align.CENTER, vAlign = Align.MIDDLE): void {
         this.alignPivotX = hAlign;
         this.alignPivotY = vAlign;
     }
@@ -178,16 +178,16 @@ export class TextField extends Phaser.Group {
 
             return false;
         }
-        
+
         return super.align(width, height, cellWidth, cellHeight, position, offset);
     }
 
-    alignField(hAlign = Align.CENTER, vAlign = Align.MIDDLE) {
+    alignField(hAlign = Align.CENTER, vAlign = Align.MIDDLE): void {
         this.hAlign = hAlign;
         this.vAlign = vAlign;
     }
 
-    destroyAll() {
+    destroyAll(): void {
         this.removeChildren();
         this.parent.removeChild(this);
     }

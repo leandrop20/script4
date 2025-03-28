@@ -10,7 +10,7 @@ export class TileMap extends Phaser.Tilemap {
 		super(Script4.core, texture, tileW, tileH, width, height);
 	}
 
-	align(hAlign = Align.CENTER, vAlign = Align.MIDDLE) {
+	align(hAlign = Align.CENTER, vAlign = Align.MIDDLE): void {
 		this.hAlign = hAlign;
 		this.vAlign = vAlign;
 	}
@@ -31,7 +31,7 @@ export class TileMap extends Phaser.Tilemap {
 		}
 	}
 
-	removeFromParent() {
+	removeFromParent(): void {
         if (this.parent) {
             this.parent.removeChild(this);
         }

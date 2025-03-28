@@ -11,7 +11,7 @@ export class ContextMenu extends Sprite {
     constructor(x: number, y: number) {
         super();
 
-        var bg = new Graphics();
+        let bg = new Graphics();
 		bg.lineStyle(1, 0xBDC3C7, 1.0)
 		bg.beginFill(0xFFFFFF);
 		bg.drawRect(0, 0, 240, 128);
@@ -39,10 +39,10 @@ export class ContextMenu extends Sprite {
         frame?: string | number | undefined,
         exists?: boolean | undefined,
         index?: number | undefined
-    ) {
-        var tf: Text; var tfSub: Text;
+    ):void {
+        let tf: Text; let tfSub: Text;
 
-		for (var i = 0; i < ContextMenu.customItems.length; i++) {
+		for (let i = 0; i < ContextMenu.customItems.length; i++) {
 			tf = new Text(
                 0,
                 30,
@@ -63,7 +63,7 @@ export class ContextMenu extends Sprite {
 		}
     }
 
-    override destroy(destroyChildren?: boolean | undefined, soft?: boolean | undefined): void {
+    override destroy(destroyChildren?: boolean | undefined, soft?: boolean | undefined):void {
         this.removeChildren();
         this.removeFromParent();
 

@@ -19,7 +19,7 @@ export class ImageSuper extends Phaser.Image {
 		h: number,
 		callback: any,
 		layers: number = 30
-	) {
+	): Promise<string> {
 		let textureName = `gradient${++ImageSuper.gradientId}`;
 		let bmp = new BitmapData(w, h);
 		let layerY = 0;
@@ -46,11 +46,11 @@ export class ImageSuper extends Phaser.Image {
 	* texture = if atlas (atlas.textureName) or textureName only!
 	*/
 	constructor(texture: any, x = 0, y = 0) {
-		var atlas = texture;
+		let atlas = texture;
 
 		if (!(texture instanceof BitmapData) && !(texture instanceof PIXI.Texture)) {
 			if (texture.indexOf('.') != -1) {
-				var parts = texture.split('.');
+				let parts = texture.split('.');
 				atlas = parts[0];
 				texture = parts[1] + '.png';
 			} else {
@@ -77,10 +77,10 @@ export class ImageSuper extends Phaser.Image {
 		this.atlasPosition = this.atlasPosition ?? new Point();
 
 		if (frame && !(key instanceof PIXI.Texture)) {
-			var data = Script4.core.cache.getJSON(key + 'Data');
+			let data = Script4.core.cache.getJSON(key + 'Data');
 
 			if (data) {
-				var spriteSourceSize: Point = data.frames[frame].spriteSourceSize;
+				let spriteSourceSize: Point = data.frames[frame].spriteSourceSize;
 
 				if (spriteSourceSize && (spriteSourceSize.x != 0 || spriteSourceSize.y != 0)) {
 					this.atlasPosition.x = spriteSourceSize.x;
@@ -92,12 +92,12 @@ export class ImageSuper extends Phaser.Image {
 		}
 	}
 
-	setSize(w: number, h: number) {
+	setSize(w: number, h: number): void {
 		this.width = w;
 		this.height = h;
 	}
 
-	readjustSize() {
+	readjustSize(): void {
 		this.width = this.texture.frame.width;
 		this.height = this.texture.frame.height;
 	}
@@ -120,7 +120,7 @@ export class ImageSuper extends Phaser.Image {
 		this.tint = value;
 	}
 
-	align(hAlign = Align.CENTER, vAlign = Align.MIDDLE) {
+	align(hAlign = Align.CENTER, vAlign = Align.MIDDLE): void {
 		this.hAlign = hAlign;
 		this.vAlign = vAlign;
 	}
@@ -164,15 +164,15 @@ export class ImageSuper extends Phaser.Image {
 		this.mask = mask;
 	}
 
-	removeFromParent() {
+	removeFromParent(): void {
 		if (this.parent) {
 			this.parent.removeChild(this);
 		}
 	}
 
-	touchEvent(object: any, pointer: any, isDown: any) {
-		var target: any;
-		var currentTarget: any;
+	touchEvent(object: any, pointer: any, isDown: any): void {
+		let target: any;
+		let currentTarget: any;
 
 		if (!(object instanceof ButtonSuper)) {
 			object = ((object instanceof Phaser.Graphics || object instanceof Graphics))
@@ -204,11 +204,11 @@ export class ImageSuper extends Phaser.Image {
 		}
 	}
 
-	onMove() {
+	onMove(): void {
 		this.touchEventCallBack(new TouchEvent(TouchPhase.MOVED, this));
 	}
 
-	addEventListener(type: any, listener: Function) {
+	addEventListener(type: any, listener: Function): void {
 		if (!type) throw('event type not found!');
 		
 		if (type == 'touch') {
@@ -221,7 +221,7 @@ export class ImageSuper extends Phaser.Image {
 		}
 	}
 
-	removeEventListener(type: any, listener: Function) {
+	removeEventListener(type: any, listener: Function): void {
 		if (!type) throw('event type not found!');
 
 		if (type == 'touch') {

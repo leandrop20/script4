@@ -63,12 +63,12 @@ export class Joystick extends Sprite {
 		this.pointer = null;
 	}
 
-	get radius() {
+	get radius(): number {
 		return this.scale.x * (this.bg.width / 2);
 	}
 
-	onUpdate(e: any) {
-		var joystick = true;
+	onUpdate(e: any): void {
+		let joystick = true;
 
 		this.game.input.pointers.forEach((p) => {
             joystick = this.checkDistance(p);
@@ -86,9 +86,9 @@ export class Joystick extends Sprite {
 	}
 
 	checkDistance(_pointer: any): boolean {
-		var allow: boolean = true;
+		let allow: boolean = true;
 
-		var d = this.point.distance(_pointer.position);
+		let d = this.point.distance(_pointer.position);
 
 		if (_pointer.isDown && (_pointer === this.pointer || d < this.radius)) {
 			allow = false;
@@ -100,13 +100,13 @@ export class Joystick extends Sprite {
 		return allow;
 	}
 
-	move(point: Phaser.Point) {
+	move(point: Phaser.Point): void {
 		// Calculate x/y of pointer from joystick center
-        var deltaX: number = point.x - this.point.x;
-		var deltaY: number = point.y - this.point.y;
+        let deltaX: number = point.x - this.point.x;
+		let deltaY: number = point.y - this.point.y;
 
 		// Get the angle (radians) of the pointer on the joystick
-        var rotation = this.point.angle(point);
+        let rotation = this.point.angle(point);
 
         // Set bounds on joystick pad
         if (this.point.distance(point) > this.radius) {
@@ -147,12 +147,12 @@ export class Joystick extends Sprite {
         this.pad.cameraOffset.y = this.point.y + deltaY;
 	}
 
-	activate() {
+	activate(): void {
 		this.addEventListener(Event.ENTER_FRAME, this.onUpdate);
 		this.pad.fixedToCamera = true;
 	}
 
-	deactivate() {
+	deactivate(): void {
 		this.removeEventListener(Event.ENTER_FRAME, this.onUpdate);
 		this.pad.fixedToCamera = false;
 	}

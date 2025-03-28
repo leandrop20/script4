@@ -26,7 +26,7 @@ export class Spine extends PhaserSpine.Spine {
 		
 		this.enterFrameEvent;
 
-		var bounds = this.getBounds();
+		let bounds = this.getBounds();
 		this.box = new Graphics();
 		this.box.inputEnabled = true;
 		this.box.beginFill(0x428B36, 0.0);
@@ -38,8 +38,8 @@ export class Spine extends PhaserSpine.Spine {
 		this.box.endFill();
 		this.addChild(this.box);
 
-		var _this = this;
-		this.state.onComplete = function() { _this.onComplete(); }
+		let _this = this;
+		this.state.onComplete = function(): void { _this.onComplete(); }
 	}
 
 	override set name(value: string) {
@@ -52,13 +52,13 @@ export class Spine extends PhaserSpine.Spine {
 		this.state.timeScale = value;
 	}
 
-	play(animationName: string, isLoop: boolean = false, animationSpeed: number = 1.0) {
+	play(animationName: string, isLoop: boolean = false, animationSpeed: number = 1.0): void {
 		this.animationSpeed = animationSpeed;
 		this.setAnimationByName(0, animationName, isLoop);
 		this.lastAnimation = animationName;
 	}
 
-	onComplete() {
+	onComplete(): void {
 		for (let i = 0; i < this.args.length; i++) {
 			if (this.lastAnimation == this.args[i].anime) {
 				this.args[i].func({ target: this, animationName: this.lastAnimation });
@@ -90,7 +90,7 @@ export class Spine extends PhaserSpine.Spine {
         return this.children.length;
     }
 
-	touchEvent(object: any, pointer: any, isDown: boolean) {
+	touchEvent(object: any, pointer: any, isDown: boolean): void {
 		if (!(object instanceof ButtonSuper)) {
 			object = (object instanceof Phaser.Graphics || object instanceof Graphics)
                 ? object.parent
@@ -108,11 +108,11 @@ export class Spine extends PhaserSpine.Spine {
 		}
 	}
 
-	onMove() {
+	onMove(): void {
 		this.touchEventCallBack(new TouchEvent(TouchPhase.MOVED, this.parent));
 	}
 
-	addEventListener(type: any, listener: Function) {
+	addEventListener(type: any, listener: Function): void {
 		if (!type) throw('event type not found!');
 
 		if (type == 'touch') {
@@ -133,7 +133,7 @@ export class Spine extends PhaserSpine.Spine {
 		}
 	}
 
-	removeEventListener(type: any, listener: Function) {
+	removeEventListener(type: any, listener: Function): void {
 		if (!type) throw('event type not found!');
 
 		if (type == 'touch') {
@@ -156,8 +156,8 @@ export class Spine extends PhaserSpine.Spine {
 		}
 	}
 
-	removeFromParent() { 
-		for (var i = this.numChildren - 1; i > -1; i--) {
+	removeFromParent(): void { 
+		for (let i = this.numChildren - 1; i > -1; i--) {
             let obj: any = this.getChildAt(i);
 			this.removeChild(obj);
 		}

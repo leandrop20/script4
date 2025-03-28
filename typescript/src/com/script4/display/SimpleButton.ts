@@ -41,11 +41,11 @@ export class SimpleButton extends Sprite {
 	}
 
 	set upState(texture: any) {
-		var atlas = texture;
+		let atlas = texture;
 
 		if (!(texture instanceof PIXI.Texture)) {
 			if (texture.indexOf('.') != -1) {
-				var parts = texture.split('.');
+				let parts = texture.split('.');
 				atlas = parts[0];
 				texture = parts[1] + '.png';
 			} else {
@@ -59,7 +59,7 @@ export class SimpleButton extends Sprite {
 
 	set textureColor(value: number) { this.texture.tint = value; }
 
-	get enabled() { return this._enabled; }
+	get enabled(): boolean { return this._enabled; }
 
 	set enabled(bool: boolean) {
 		this._enabled = bool;
@@ -72,7 +72,7 @@ export class SimpleButton extends Sprite {
 		}
 	}
 
-	createTf(font: string, text: string = '') {
+	createTf(font: string, text: string = ''): void {
 		this.tf = new TextField(this.texture.width, this.texture.height, font, text);
 		this.tf.inputEnabled = false;
 		this.tf.position.set(-this.texture.width * 0.5, -this.texture.height * 0.5);
@@ -93,10 +93,10 @@ export class SimpleButton extends Sprite {
 
 	set fontSize(value: number) {
 		this.tf.fontSize = value;
-		this.tf.text = this.tf.text;
+		// this.tf.text = this.tf.text;
 	}
 
-	get text() { return (this.tf)?this.tf.text:""; }
+	get text(): string { return (this.tf)?this.tf.text:""; }
 
 	set text(value) {
 		if (this.tf) { this.tf.text = value; }
@@ -114,19 +114,19 @@ export class SimpleButton extends Sprite {
 		}
 	}
 
-	alignText(hAlign = Align.CENTER, vAlign = Align.MIDDLE) {
+	alignText(hAlign = Align.CENTER, vAlign = Align.MIDDLE): void {
 		if (this.tf) { this.tf.align(hAlign, vAlign); }
 	}
 
-	onDown() {
+	onDown(): void {
 		if (this.enabled) { this.scale.set(this.scaleWhenDown); }
 	}
 
-	onUp() {
+	onUp(): void {
 		if (this.enabled) { this.scale.set(1.0); }
 	}
 
-	onEvent() {
+	onEvent(): void {
 		this._listener({ target: this });
 	}
 
@@ -144,7 +144,7 @@ export class SimpleButton extends Sprite {
 		this.texture.events[type].remove(this.onEvent, this);
     }
 
-	destroyAll() {
+	destroyAll(): void {
 		this.removeChildren();
 		this.removeFromParent();
 	}

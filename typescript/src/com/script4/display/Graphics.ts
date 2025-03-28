@@ -7,7 +7,7 @@ export class Graphics extends Phaser.Graphics {
         super(Script4.core, x, y);
     }
 
-    align(hAlign: Align = Align.CENTER, vAlign: Align = Align.MIDDLE) {
+    align(hAlign: Align = Align.CENTER, vAlign: Align = Align.MIDDLE): void {
         this.hAlign = hAlign;
         this.vAlign = vAlign;
     }
@@ -28,7 +28,7 @@ export class Graphics extends Phaser.Graphics {
 		}
 	}
 
-	removeFromParent() {
+	removeFromParent(): void {
         if (this.parent) {
             this.parent.removeChild(this);
         }

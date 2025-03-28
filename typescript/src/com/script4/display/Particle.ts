@@ -20,12 +20,12 @@ export class Particle {
 		this.accel = new Point();
 	}
 
-	setVelocity(angle: number, speed: number) {
+	setVelocity(angle: number, speed: number): void {
 		this.velocity.x = Math.cos(angle) * speed;
 		this.velocity.y = Math.sin(angle) * speed;
 	}
 
-	setAccel(angle: number, speed: number) {
+	setAccel(angle: number, speed: number): void {
 		this.accel.x = Math.cos(angle) * speed;
 		this.accel.y = Math.sin(angle) * speed;
 	}

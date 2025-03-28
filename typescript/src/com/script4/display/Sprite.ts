@@ -40,9 +40,9 @@ export class Sprite extends Phaser.Group {
 		return null;
 	}
 
-	touchEvent(object: any, pointer: any, isDown: boolean) {
-		var target: any;
-		var currentTarget: any;
+	touchEvent(object: any, pointer: any, isDown: boolean): void {
+		let target: any;
+		let currentTarget: any;
 
 		if (!(object instanceof ButtonSuper)) {
 			object = ((object instanceof Phaser.Graphics || object instanceof Graphics))
@@ -77,13 +77,13 @@ export class Sprite extends Phaser.Group {
 		}
 	}
 
-	onMove() {
+	onMove(): void {
 		if (this && this.touchEventCallBack) {
 			this.touchEventCallBack(new TouchEvent(TouchPhase.MOVED, this));
 		}
 	}
 
-	addEventListener(type: any, listener: Function) {
+	addEventListener(type: any, listener: Function): void {
 		if (!type) throw('event type not found!');
 
 		if (type == 'touch') {
@@ -94,7 +94,7 @@ export class Sprite extends Phaser.Group {
 		}
 	}
 
-	removeEventListener(type: any, listener: Function) {
+	removeEventListener(type: any, listener: Function): void {
 		if (!type) throw('event type not found!');
 
 		this.touchEventCallBack = null;
@@ -109,11 +109,11 @@ export class Sprite extends Phaser.Group {
 		}
 	}
 
-	recursiveSetEvent(_type: any, _obj: any, _this: any, recursive: boolean = false) {
+	recursiveSetEvent(_type: any, _obj: any, _this: any, recursive: boolean = false): void {
 		if (!recursive) { setEvent(_type, _this); }
 
-		for (var i = 0; i<_obj.numChildren; i++) {
-			var i_obj = _obj.getChildAt(i);
+		for (let i = 0; i<_obj.numChildren; i++) {
+			let i_obj = _obj.getChildAt(i);
 
 			if (i_obj instanceof Sprite || i_obj instanceof Spine || i_obj instanceof TextField) {
 				_this.recursiveSetEvent(_type, i_obj, _this, true);
@@ -121,7 +121,7 @@ export class Sprite extends Phaser.Group {
 			}
 		}
 
-		function setEvent(_type: any, _obj: any) {
+		function setEvent(_type: any, _obj: any): void {
 			_obj['onChildInputDown'][_type](_this.touchEvent);
 			_obj['onChildInputUp'][_type](_this.touchEvent);
 		}
@@ -131,9 +131,9 @@ export class Sprite extends Phaser.Group {
 		beginIndex?: number | undefined,
 		endIndex?: number | undefined
 	): PIXI.DisplayObject[] {
-		var child: any;
+		let child: any;
 
-		for (var i = this.numChildren - 1; i > -1; i--) {
+		for (let i = this.numChildren - 1; i > -1; i--) {
 			child = this.getChildAt(i);
 
 			if (child.destroyAll) {
@@ -146,7 +146,7 @@ export class Sprite extends Phaser.Group {
 		return super.removeChildren(beginIndex, endIndex);
 	}
 
-	removeFromParent() { if (this.parent) { this.parent.removeChild(this); } }
+	removeFromParent(): void { if (this.parent) { this.parent.removeChild(this); } }
 
 	set hAlign(value: Align) {
 		if (value === Align.CENTER) {
@@ -168,7 +168,7 @@ export class Sprite extends Phaser.Group {
 		}
 	}
 
-	alignPivot(hAlign = Align.CENTER, vAlign = Align.MIDDLE) {
+	alignPivot(hAlign = Align.CENTER, vAlign = Align.MIDDLE): void {
 		this.hAlign = hAlign;
 		this.vAlign = vAlign;
 	}
@@ -185,7 +185,7 @@ export class Sprite extends Phaser.Group {
 		return super.addChildAt(child, index);
 	}
 
-	addTouchEventsInChildren(child: any) {
+	addTouchEventsInChildren(child: any): void {
 		let parent: any = this.parent;
 
 		if (this.touchEventCallBack) {

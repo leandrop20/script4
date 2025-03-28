@@ -9,7 +9,7 @@ export class DelayedCall extends Phaser.Tween {
         this.init(callback, args);
     }
 
-    init(callback: Function, args: any) {
+    init(callback: Function, args: any): void {
         this.onRepeat.add(function () { callback(...args); });
         this.onComplete.add(function () { callback(...args); });
     }

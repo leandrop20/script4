@@ -3,7 +3,7 @@ import { Point } from '../geom/Point';
 
 export class Touch {
 
-	static get previous() { return this._previous; }
+	static get previous():any { return this._previous; }
     
 	static set previous(target) { this._previous = target; }
 
@@ -23,8 +23,8 @@ export class Touch {
 	}
 
 	getPreviousLocation(obj: any): Point {
-		var point: Point = new Point();
-		var global: Point = new Point(Script4.core.input.worldX, Script4.core.input.worldY);
+		let point: Point = new Point();
+		let global: Point = new Point(Script4.core.input.worldX, Script4.core.input.worldY);
 
 		point.x = global.x - obj.x + obj.pivot.x;
 		point.y = global.y - obj.y + obj.pivot.y;

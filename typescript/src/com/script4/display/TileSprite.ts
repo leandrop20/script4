@@ -7,17 +7,17 @@ export class TileSprite extends Phaser.TileSprite {
 	* texture = if atlas (atlas.textureName) or textureName only!
 	*/
 	constructor(
-        texture: string,
-        x: number = 0,
-        y: number = 0,
-        width: number = 10,
-        height: number = 10
-    ) {
+		texture: string,
+		x: number = 0,
+		y: number = 0,
+		width: number = 10,
+		height: number = 10
+	) {
 		let atlas: string = texture;
-        let _texture: any;
+		let _texture: any;
 
 		if (texture && texture.indexOf('.') != -1) {
-			var parts = texture.split('.');
+			let parts = texture.split('.');
 			atlas = parts[0];
 			_texture = parts[1] + '.png';
 		}
@@ -25,7 +25,7 @@ export class TileSprite extends Phaser.TileSprite {
 		super(Script4.core, x, y, width, height, atlas, _texture);
 	}
 
-	align(hAlign = Align.CENTER, vAlign = Align.MIDDLE) {
+	align(hAlign = Align.CENTER, vAlign = Align.MIDDLE): void {
 		this.hAlign = hAlign;
 		this.vAlign = vAlign;
 	}
@@ -46,10 +46,10 @@ export class TileSprite extends Phaser.TileSprite {
 		}
 	}
 
-	removeFromParent() {
-        if (this.parent) {
-            this.parent.removeChild(this);
-        }
-    }
-	
+	removeFromParent(): void {
+		if (this.parent) {
+			this.parent.removeChild(this);
+		}
+	}
+
 }

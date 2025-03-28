@@ -6,11 +6,11 @@ export class Juggler {
 
     constructor() {}
 
-    add(tween: Tween) { tween.start(); }
+    add(tween: Tween): void { tween.start(); }
     
-    remove(tween: Tween) { tween.stop(); }
+    remove(tween: Tween): void { tween.stop(); }
 
-    tween(target: any, time: number, properties: any) {
+    tween(target: any, time: number, properties: any): Tween {
         let tween: Tween = new Tween(target, time, properties);
         tween.start();
 
@@ -24,11 +24,11 @@ export class Juggler {
         return delayedCall;
     }
 
-    removeTweens(object: any) {
+    removeTweens(object: any): void {
         Script4.core.tweens.removeFrom(object, true);
     }
 
-    purge() {
+    purge(): void {
         Script4.core.tweens.removeAll();
     }
 

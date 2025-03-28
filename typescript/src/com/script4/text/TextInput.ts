@@ -1,5 +1,5 @@
-declare var TweenMax: any;
-declare var Ease: any;
+declare let TweenMax: any;
+declare let Ease: any;
 
 import { Script4 } from '../Script4';
 import { Align } from '../enums/Align';
@@ -69,7 +69,7 @@ export class TextInput extends Phaser.Group {
 		this.hit.events.onInputDown.add(this.onFocusIn, this);
 	}
 
-	get color(): number { return this.field.tint; }
+	get color():number { return this.field.tint; }
 
 	set color(value) {
 		this.field.tint = value;
@@ -79,7 +79,7 @@ export class TextInput extends Phaser.Group {
 		this.field.align = value;
 	}
 
-	override get width(): number { return this.w; }
+	override get width():number { return this.w; }
 
 	override set width(value: number) {
 		this.w = value;
@@ -89,7 +89,7 @@ export class TextInput extends Phaser.Group {
 		this.hit.width = value;
 	}
 
-	override get height(): number { return this.h; }
+	override get height():number { return this.h; }
 
 	override set height(value: number) {
 		this.h = value;
@@ -105,11 +105,11 @@ export class TextInput extends Phaser.Group {
 	/**
 	*	value = String text
 	*/
-	appendText(value: string) {
+	appendText(value: string):void {
 		this.field.setText(this.field.text + value);
 	}
 
-	get text(): string { return this.field.text; }
+	get text():string { return this.field.text; }
 
 	set text(value) { this.field.setText(value); }
 
@@ -139,7 +139,7 @@ export class TextInput extends Phaser.Group {
 		}
 	}
 
-	alignPivot(hAlign = Align.CENTER, vAlign = Align.MIDDLE) {
+	alignPivot(hAlign = Align.CENTER, vAlign = Align.MIDDLE):void {
 		this.alignPivotX = hAlign;
 		this.alignPivotY = vAlign;
 	}
@@ -177,7 +177,7 @@ export class TextInput extends Phaser.Group {
         cellHeight: number = 0,
         position?: number | undefined,
         offset?: number | undefined
-    ): boolean {
+    ):boolean {
 		if (!Number.isInteger(width)) {
             this.hAlign = width;
             this.vAlign = height;
@@ -188,7 +188,7 @@ export class TextInput extends Phaser.Group {
         return super.align(width, height, cellWidth, cellHeight, position, offset);
     }
 
-	positionLine() {
+	positionLine():void {
 		switch (this.field.anchor.x) {
 			case 0.0: this.line.x = this.field.textWidth + this.field.x; break;
 			case 0.5: this.line.x = (this.field.textWidth * 0.5) + this.field.x; break;
@@ -202,13 +202,13 @@ export class TextInput extends Phaser.Group {
 		}
 	}
 
-	onWorldClick(e: any) {
+	onWorldClick(e: any):void {
 		if (!(e.targetObject.sprite.parent instanceof TextInput)) {
 			this.onFocusOut();
 		}
 	}
 
-	onFocusIn() {
+	onFocusIn():void {
 		if (!this.focused) {
 			this.focused = true;
 			this.positionLine();
@@ -226,14 +226,14 @@ export class TextInput extends Phaser.Group {
 		}
 	}
 
-	onFocusOut() {
+	onFocusOut():void {
 		this.focused = false;
 		this.game.input.onDown.remove(this.onWorldClick, this);
 		this.line.visible = false;
 		TweenMax.killTweensOf(this.line);
 	}
 
-	onKey(code: any) {
+	onKey(code: any):void {
 		if (this.text.length < this.maxLength) {
 			if (this.type === 'number') {
 				if (isNaN(code)) return;
@@ -243,14 +243,14 @@ export class TextInput extends Phaser.Group {
 		}
 	}
 
-	onBackspace(e: any) {
+	onBackspace(e: any):void {
 		if (e.code === 'Backspace') {
 			this.text = this.text.substring(0, this.text.length - 1);
 			this.positionLine();
 		}
 	}
 
-	destroyAll() {
+	destroyAll():void {
 		Script4.core.input.keyboard.onPressCallback = null;
 		Script4.core.input.keyboard.onUpCallback = null;
 		this.hit.events.onInputDown.remove(this.onFocusIn, this);

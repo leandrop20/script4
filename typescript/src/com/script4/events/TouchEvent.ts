@@ -8,11 +8,11 @@ import { Point } from '../geom/Point';
 
 export class TouchEvent {
 
-    static readonly TOUCH = 'touch';
+	static readonly TOUCH = 'touch';
 
-    type: TouchPhase;
-    target: any;
-    currentTarget: any;
+	type: TouchPhase;
+	target: any;
+	currentTarget: any;
 
 	constructor(type: TouchPhase, target: any, currentTarget: any = null) {
 		this.type = type;
@@ -22,9 +22,9 @@ export class TouchEvent {
 
 	getTouch(target: any, swap = false): any {
 		if (!target || target.game == null) { return; }
-		
-		var globalX = target.game.input.x;
-		var globalY = target.game.input.y;
+
+		let globalX = target.game.input.x;
+		let globalY = target.game.input.y;
 
 		if (this.type == TouchPhase.BEGAN) { Touch.previous = null; }
 
@@ -33,8 +33,8 @@ export class TouchEvent {
 		if (!Touch.previous || Touch.previous == undefined) {
 			return getObjTouch(target, this);
 		} else {
-			var point = centerDrag(Touch.previous);
-			var endTouch = new Touch(Touch.previous, this.type, point.x, point.y);
+			let point = centerDrag(Touch.previous);
+			let endTouch = new Touch(Touch.previous, this.type, point.x, point.y);
 
 			if (this.type == TouchPhase.ENDED) { Touch.previous = null; }
 
@@ -45,35 +45,35 @@ export class TouchEvent {
 			if (!_target) { return null; }
 
 			if (
-                _target instanceof Sprite ||
-                _target instanceof Spine ||
-                _target instanceof Phaser.Group
-            ) {
-				var obj: any;
+				_target instanceof Sprite ||
+				_target instanceof Spine ||
+				_target instanceof Phaser.Group
+			) {
+				let obj: any;
 
-				for (var i = _target.children.length - 1; i > -1; i--) {
+				for (let i = _target.children.length - 1; i > -1; i--) {
 					obj = _target.getChildAt(i);
 
 					if (isIntersects(obj) && (obj.inputEnabled || obj.inputEnableChildren)) {
 						if (_this.currentTarget == obj) {
 							if (_this.type == TouchPhase.BEGAN) {
-                                Touch.previous = obj;
-                            }
+								Touch.previous = obj;
+							}
 
-							var point: Point = centerDrag(obj);
+							let point: Point = centerDrag(obj);
 
 							if (
-                                _target.getIndex(obj) != (_target.children.length - 1) &&
-                                _this.type == TouchPhase.BEGAN &&
-                                swap
-                            ) {
-								// var lastObj: any = _target.getChildAt(_target.numChildren - 1);
+								_target.getIndex(obj) != (_target.children.length - 1) &&
+								_this.type == TouchPhase.BEGAN &&
+								swap
+							) {
+								// let lastObj: any = _target.getChildAt(_target.numChildren - 1);
 								_target.addChild(obj);
 							}
 
 							return new Touch(obj, _this.type, point.x, point.y);
 						} else {
-							var objTouch: any = getObjTouch(obj, _this);
+							let objTouch: any = getObjTouch(obj, _this);
 
 							if (objTouch != null) return objTouch;
 						}
@@ -82,14 +82,14 @@ export class TouchEvent {
 
 				return null;
 			} else if (
-                isIntersects(_target) &&
-                (_target.inputEnabled || _target.inputEnableChildren)
-            ) {
+				isIntersects(_target) &&
+				(_target.inputEnabled || _target.inputEnableChildren)
+			) {
 				if (_this.type == TouchPhase.BEGAN) {
-                    Touch.previous = _target;
-                }
+					Touch.previous = _target;
+				}
 
-				var point: Point = centerDrag(_target);
+				let point: Point = centerDrag(_target);
 
 				return new Touch(_target, _this.type, point.x, point.y);
 			}
@@ -98,14 +98,14 @@ export class TouchEvent {
 		function centerDrag(_target: any): Point {
 			try {
 				let game: any = Script4.core;
-                let x: number = game.InputHandler(Script4.core).globalToLocalX(_target.centerX);
-                let y: number = game.InputHandler(Script4.core).globalToLocalY(_target.centerY);
-                
-				var boundsCenterLocalCoord: Point = new Point(x, y);
-                
+				let x: number = game.InputHandler(Script4.core).globalToLocalX(_target.centerX);
+				let y: number = game.InputHandler(Script4.core).globalToLocalY(_target.centerY);
+
+				let boundsCenterLocalCoord: Point = new Point(x, y);
+
 				globalX = globalX + (_target.x - boundsCenterLocalCoord.x);
-	            globalY = globalY + (_target.y - boundsCenterLocalCoord.y);
-	        } catch (e) { /* Error */ }
+				globalY = globalY + (_target.y - boundsCenterLocalCoord.y);
+			} catch (e) { /* Error */ }
 
 			return new Point(globalX, globalY);
 		}
@@ -118,5 +118,5 @@ export class TouchEvent {
 			return false;
 		}
 	}
-	
+
 }

@@ -14,26 +14,26 @@ export class ButtonSuper extends Phaser.Button {
 		this.onInputUp.add(this.onUp, this);
 	}
 
-	onDown() {
+	onDown(): void {
 		this.scale.set(this.scaleWhenDown);
 	}
 
-	onUp() {
+	onUp(): void {
 		this.scale.set(1.0);
 	}
 
-	addEventListener(type: ButtonEvent, listener: Function) {
+	addEventListener(type: ButtonEvent, listener: Function): void {
 		if (!type) throw('event type not found!');
 		
 		this[type].add(listener);
 	}
 
-	removeEventListener(type: ButtonEvent, listener: Function) {
+	removeEventListener(type: ButtonEvent, listener: Function): void {
 		if (!type) throw('event type not found!');
 
 		this[type].remove(listener);
 	}
 
-	removeFromParent() { if (this.parent) { this.parent.removeChild(this); } }
+	removeFromParent(): void { if (this.parent) { this.parent.removeChild(this); } }
 	
 }

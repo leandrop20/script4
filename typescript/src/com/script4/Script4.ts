@@ -1,5 +1,4 @@
 import { Juggler } from './animation/Juggler';
-import { Event } from './enums/Event';
 import { Point } from './geom/Point';
 import { IPreloader } from './interface/IPreloader';
 import { IPreloaderImage } from './interface/IPreloaderImage';
@@ -15,9 +14,9 @@ export class Script4 extends Phaser.Game {
     static customPreloader: IPreloader;
     static imageToPreloader: IPreloaderImage[];
 
-    static readonly VERSION: string = 'v1.0.0';
-    static get width() { return Script4.core.width; }
-	static get height() { return Script4.core.height; }
+    static readonly VERSION: string = 'v1.0.1';
+    static get width(): number { return Script4.core.width; }
+	static get height(): number { return Script4.core.height; }
 
     game: any;
     rootClass: any;
@@ -28,7 +27,7 @@ export class Script4 extends Phaser.Game {
     readonly PRELOADER_IMAGES_DEFAULT: IPreloaderImage[] = [
         { name: 'imgBar', url: 'assets/images/imgBar.png' },
         { name: 'imgBgBar', url: 'assets/images/imgBgBar.png' },
-        { name: 'imgLoad', url: 'assets/images/imgLoad.png' }
+        { name: 'imgLoad', url: 'assets/images/imgLoad.png' },
     ];
 
     readonly PRELOADER_DEFAULT: IPreloader = {
@@ -84,7 +83,7 @@ export class Script4 extends Phaser.Game {
         }
     }
 
-    start() {
+    start(): void {
         console.log(`Script4 ${Script4.VERSION}`);
         
         Script4.core = this;
@@ -96,16 +95,16 @@ export class Script4 extends Phaser.Game {
         this.state.start('Boot');
     }
 
-    removeContextMenu() {
+    removeContextMenu(): void {
         this.contextMenu.destroy();
         this.contextMenu = null;
     }
 
-    render() {
+    render(): void {
         if (this.game && this.game.canvas && !this.game.canvas.oncontextmenu) {
             this.game
                 .canvas
-                .oncontextmenu = (e: any) => {
+                .oncontextmenu = (e: any): void => {
                     e.preventDefault();
 
                     if (this.game.contextMenu) {
@@ -119,7 +118,7 @@ export class Script4 extends Phaser.Game {
 
             this.game
                 .canvas
-                .onclick = (e: any) => {
+                .onclick = (e: any): void => {
                     if (this.game.contextMenu) {
                         this.game.removeContextMenu();
                     }
@@ -131,17 +130,17 @@ export class Script4 extends Phaser.Game {
                 this.game.time.advancedTiming = true;
             }
 
-            this.game.debug.text('FPS: ' + this.game.time.fps, 4, 18, '#FFFFFF');
+            // this.game.debug.text('FPS: ' + this.game.time.fps, 4, 18, '#FFFFFF');
         }
     }
 
-    addEventListener(type: Event, listener: Function) {
+    addEventListener(type: any, listener: Function): void {
 		if (!type) throw('event type not found!');
 
 		window.addEventListener(type as any, listener as any);
 	}
 
-	removeEventListener(type: Event, listener: Function) {
+	removeEventListener(type: any, listener: Function): void {
 		if (!type) throw('event type not found!');
 
 		window.removeEventListener(type as any, listener as any);

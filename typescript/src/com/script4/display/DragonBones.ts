@@ -31,11 +31,11 @@ export class DragonBones extends PhaserDragonBones {
 		// console.log("Animations " + armatureName + ": " + this.armature.animation.animationNames);
 	}
 
-	animationNames() {
+	animationNames(): any {
 		return this.armature.animation.animationNames;
 	}
 
-	play(animationName: string, playTimes = -1) {
+	play(animationName: string, playTimes = -1): void {
 		this.armature.animation.play(animationName, playTimes);
 	}
 
@@ -57,15 +57,15 @@ export class DragonBones extends PhaserDragonBones {
 		return this.armature._armature.getSlot(name);
 	}
 
-	factoryImage(name: string, dragonName: any = null) {
+	factoryImage(name: string, dragonName: any = null): Phaser.Sprite | null {
 		dragonName = (dragonName) ? dragonName : this.ID;
 		return this.factory.getTextureDisplay(name, dragonName);
 	}
 
-	onUpdate(e: any) {		
+	onUpdate(e: any): void {		
 		if (this.armature.animation.isCompleted) {
 			if (this.args != null) {
-				for (var i = 0; i < this.args.length; i++) {
+				for (let i = 0; i < this.args.length; i++) {
 					if (this.armature.animation.lastAnimationState.name == this.args[i].anime) {
 						this.args[i].func();
 						break;
@@ -75,7 +75,7 @@ export class DragonBones extends PhaserDragonBones {
 		}
 	}
 
-	removeEvent() {
+	removeEvent(): void {
 		this.removeEventListener(Event.ENTER_FRAME, this.onUpdate);
 		this.armature.dispose();
 		this.factory.removeTextureAtlasData(this.ID, true);

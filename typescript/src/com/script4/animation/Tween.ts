@@ -19,17 +19,17 @@ export class Tween extends Phaser.Tween {
         this.yoyo(properties.reverse);
 
         if (properties.onComplete) {
-			var args = (properties.onStartArgs)
+			let args = (properties.onStartArgs)
                 ? properties.onStartArgs.toString().split(',')
                 : [];
-			var args = (properties.onCompleteArgs)
+			let args1 = (properties.onCompleteArgs)
                 ? properties.onCompleteArgs.toString().split(',')
                 : [];
 			this.onStart
                 .add(function() { 
 					if (properties.onStart) { properties.onStart(...args); }
 				});
-			this.onComplete.add(function() { properties.onComplete(...args); });
+			this.onComplete.add(function() { properties.onComplete(...args1); });
 		}
 
         if (
